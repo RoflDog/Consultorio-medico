@@ -1,0 +1,29 @@
+doctype 5
+html
+	head
+		title= title
+		link(rel='stylesheet', href='/stylesheets/style.css')
+		link(rel='stylesheet', href='/lib/bootstrap/css/bootstrap.min.css')   
+	body
+		form(action='/userAlgo', method='post')
+			fieldset
+				legend Agregar Usuario
+				.clearfix
+					label Puesto
+					.input
+						select#title(name="roles")
+							option Doctor
+							option Secretaria
+				.clearfix
+					label Nombre
+					.input
+						input#firstname.xlarge(type="text", size="30", name="firstname")
+				.clearfix
+					label Apellidos
+					.input
+						input#lastname.xlarge(type="text", size="30", name="lastname")
+			fieldset
+				.actions
+					input.btn.primary(type="submit", value="Guardar")&nbsp;
+					
+				

@@ -1,0 +1,26 @@
+extends layout
+
+block content
+	h1= title
+	p Bienvenidos al consultorio chingonsote
+	article.row
+			.span14
+				h2 Lista de usuarios
+				- if (users.length)
+					h3 Existen los siguientes usuarios
+						table.zebra-striped
+							thead
+								tr
+									th Nombre
+									th Apellidos
+									th Rol
+							tbody
+							- users.forEach(function(user){
+								tr
+									td=user['firstname']
+									td=user['lastname']
+									td=user['roles']
+							-})
+				- else
+					p No hay usuarios
+				a(href='/addUser') Agregar usuarios
