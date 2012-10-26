@@ -7,6 +7,7 @@ var express = require('express')
   , passport = require('passport')
   ,	LocalStrategy = require('passport-local').Strategy
   , routes = require('./routes')
+  , users = require('./routes/user.js')
   , http = require('http')
   , path = require('path')
   , mongoose = require ('mongoose')
@@ -42,6 +43,11 @@ app.configure(function(){
 app.configure('development', function(){
   app.use(express.errorHandler());
 });
+//Rutas para cada modulo y submodulo
+//app.get('/', routes.index);
+app.get('/user', users.list);
+app.get('/addUser', users.add);
+app.post('/userAlgo', users.index_post);
 
 //Provide login sessions
 passport.serializeUser(function (user, done){
