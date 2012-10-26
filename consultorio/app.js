@@ -43,12 +43,12 @@ app.configure(function(){
 app.configure('development', function(){
   app.use(express.errorHandler());
 });
-
-<<<<<<< HEAD
-app.get('/', routes.index);
+//Rutas para cada modulo y submodulo
+//app.get('/', routes.index);
 app.get('/user', users.list);
-app.get('/userAdd', users.add);
-=======
+app.get('/addUser', users.add);
+app.post('/userAlgo', users.index_post);
+
 //Provide login sessions
 passport.serializeUser(function (user, done){
 	done(null, user.id);
@@ -102,7 +102,6 @@ app.get('/logout', function(req, res){
   req.logOut();
   res.redirect('/');
 });
->>>>>>> 62635f2e22c81311ce87351ad28c241c75283a6f
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
