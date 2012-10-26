@@ -9,9 +9,9 @@ var mongoose    = require('mongoose'),
 
 
 exports.list = function(req, res){
-  res.send("respond with a resource");
+  res.render("user", { title: "Usuarios" } );
 };
 
-exports.prueba = function(req,res){
-  res.send("esto es una prueba de users");
+exports.add = function(req,res){
+  res.("esto es una prueba de users");
 };
