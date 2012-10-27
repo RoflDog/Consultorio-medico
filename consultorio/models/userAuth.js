@@ -14,7 +14,7 @@ var userAuthSchema = new Schema({
 });
 
 //Creating method for password validation
-userAuthSchema.methods.validatePassword = function(pass){
+userAuthSchema.methods.validatePassword = function (pass){
     //Falta implementar la logica requerida cuando se vaya a usar el hashing
     if (this.password == pass) 
         return true;
@@ -22,4 +22,4 @@ userAuthSchema.methods.validatePassword = function(pass){
 };
 
 //Exporting the model so it can be accesible when required
-module.exports = mongoose.model('User',userAuthSchema);
+module.exports = mongoose.model('UserAuth',userAuthSchema , 'User');
