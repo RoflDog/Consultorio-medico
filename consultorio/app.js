@@ -59,7 +59,7 @@ passport.deserializeUser(function(id,done){
 		done(err,user);
 	});
 });
-    /* No me creaba el usuario
+    /* //No me creaba el usuario
      var usuario = new UserAuth({username : "test1" , password : "1234" , salt : "1234" ,roles : ["admin"]});  
       usuario.save(function(err) {
           if (err) console.log(err);
@@ -72,12 +72,12 @@ passport.deserializeUser(function(id,done){
 passport.use(new LocalStrategy(
   function(username, password, done) {
     UserAuth.findOne({ username: username }, function (err, user) {
+        console.log(user);
       if (err) { return done(err); }
       if (!user) {
         return done(null, false, { message: 'Unknown user' });
       }
-      //Falta crear en user un método para validar el password cuando tenga hashing
-      if (user.password != password) {
+      if (!user.validatePassword(password)) {
         return done(null, false, { message: 'Invalid password' });
       }
       return done(null, user);
@@ -85,16 +85,21 @@ passport.use(new LocalStrategy(
   }
 ));
 
-app.get('/', ensureAuthenticated, routes.index);
+//app.get('/', ensureAuthenticated, routes.index);
+
+//Para desarrollo
+app.get('/', routes.index);
+
+app.get('/partials/:name' , routes.partials);
 
 app.get('/login', function(req, res){
-    res.render('login', { title: "Login", user: req.user, message: req.session.message });
+    res.render('login', { title: "Login", error : req.query['error']  });
 });
 
 app.post('/login',
     passport.authenticate('local', {
         successRedirect: '/',
-        failureRedirect: '/login'
+        failureRedirect: '/login?error=true'
         })
 );
 

@@ -1,5 +1,5 @@
 /**
- * @author IsaíasSilva
+ * @author IsaiasSilva
  */
 
 // The Users Model
