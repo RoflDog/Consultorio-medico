@@ -43,11 +43,11 @@ app.configure(function(){
 app.configure('development', function(){
   app.use(express.errorHandler());
 });
-//Rutas para cada modulo y submodulo
+//Routes
 //app.get('/', routes.index);
 app.get('/user', users.list);
 app.get('/addUser', users.add);
-app.post('/userAlgo', users.index_post);
+app.post('/user', users.index_post);
 
 //Provide login sessions
 passport.serializeUser(function (user, done){

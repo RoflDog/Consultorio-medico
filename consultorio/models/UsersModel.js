@@ -1,3 +1,7 @@
+/**
+ * @author IsaiasSilva
+ */
+
 // The Users Model
 
 var mongoose = require('mongoose')
@@ -20,4 +24,4 @@ var userSchema = new Schema({
 	schedule : { start: {type : "number"}, end: {type : "number"} }
 });
 
-module.exports = mongoose.model('UserModel', userSchema, 'User');
+module.exports = mongoose.model('User', userSchema);
