@@ -11,7 +11,7 @@ var mongoose    = require('mongoose'),
 
 exports.list = function(req, res){
     userModel.find({},function(err, docs){
-        res.render('user.jade', { title: 'Dashboard', users: docs });
+        res.render('user.jade', { title: 'Dashboard', users: docs,  error : req.query['error'] });
     });
 };
 
@@ -26,22 +26,26 @@ exports.index_post = function(req,res){
   user.lastname = req.body.lastname;
   user.mail = req.body.mail;
   
-  var countPass = new Number(Math.random()*4).toFixed(0);
+  var countPass = Math.ceil(Math.random()*4);
   var salt;
   console.log(countPass);
   switch (countPass)
   {
   case 1: 
     salt = "sha1";
+	console.log("entre1");
     break;
   case 2: 
     salt = "md5";
+	console.log("entre2");
     break;
   case 3: 
     salt = "sha256";
+	console.log("entre3");
     break;
   default: 
     salt = "sha512";
+	console.log("entredefault");
   }
   console.log("Hashing salt is: " + salt);
   user.salt = salt;
@@ -54,13 +58,12 @@ exports.index_post = function(req,res){
         errors = [];
         if (!err){
             console.log('Success!');
-            messages.push("Usuario Agregado");
+			res.redirect('/user');
         }
         else {
             console.log('Error !');
-            errors.push("Hubo un error al agregar un usuario");
             console.log(err);
+			res.redirect('/user?error=true');
         }
     });
-  res.redirect('/user');
 };

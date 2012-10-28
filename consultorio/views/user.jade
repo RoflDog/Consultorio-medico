@@ -6,6 +6,8 @@ block content
 	article.row
 			.span14
 				h2 Lista de usuarios
+				- if (error)
+					p Existio un error al conectar en base de datos
 				- if (users.length)
 					h3 Existen los siguientes usuarios
 						table.zebra-striped
