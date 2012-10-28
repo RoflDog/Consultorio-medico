@@ -1,3 +1,7 @@
+/**
+ * @author IsaíasSilva
+ */
+
 // The Users Model
 
 var mongoose = require('mongoose')

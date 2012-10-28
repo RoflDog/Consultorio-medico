@@ -5,7 +5,7 @@ html
 		link(rel='stylesheet', href='/stylesheets/style.css')
 		link(rel='stylesheet', href='/lib/bootstrap/css/bootstrap.min.css')   
 	body
-		form(action='/userAlgo', method='post')
+		form(action='/user', method='post')
 			fieldset
 				legend Agregar Usuario
 				.clearfix
@@ -22,6 +22,14 @@ html
 					label Apellidos
 					.input
 						input#lastname.xlarge(type="text", size="30", name="lastname")
+				.clearfix
+					label E-mail
+					.input
+						input#mail.xlarge(type="text", size="30", name="mail")
+				.clearfix
+					label Password
+					.input
+						input#password.xlarge(type="password", size="30", name="password")
 			fieldset
 				.actions
 					input.btn.primary(type="submit", value="Guardar")&nbsp;
