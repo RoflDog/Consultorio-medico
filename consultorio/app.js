@@ -45,9 +45,12 @@ app.configure('development', function(){
 });
 //Routes
 //app.get('/', routes.index);
-app.get('/user', users.list);
-app.get('/addUser', users.add);
-app.post('/user', users.index_post);
+app.get('/api/users', users.list);
+app.get('/api/user/:id', users.get);
+app.post('/api/user', users.add);
+app.put('/api/user/:id', users.update);
+app.delete('/api/user/:id', users.delete);
+
 
 //Provide login sessions
 passport.serializeUser(function (user, done){

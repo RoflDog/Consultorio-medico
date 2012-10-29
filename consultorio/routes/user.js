@@ -10,16 +10,66 @@ var userModel = require('../models/UsersModel'),
 
 
 exports.list = function(req, res){
-    userModel.find({},function(err, docs){
-        res.render('user.jade', { title: 'Dashboard', users: docs,  error : req.query['error'] });
+    userModel.find({},function(err, users){
+    	
+        res.json({
+        	users : users
+        });
     });
 };
 
-exports.add = function(req,res){
-  res.render('addUser.jade', {title: 'Agregar Usuario'});
+exports.get = function(req,res){
+	var id = req.params.id;
+	userModel.findOne({_id : id} , function(err , user){
+		if (!user)
+			res.json({
+				error : true,
+				message : "User Not Found"
+			});
+		else{
+			res.json({
+				user : user
+			})
+		}
+	});
 };
 
-exports.index_post = function(req,res){
+exports.update = function(req,res){
+	var user = new userModel(req.body);
+	user.save(function(err){
+		 		if(!err){
+  			res.json({
+  				success : true,
+  				message : "User was updated"
+  			});
+  		} else {
+  			res.json({
+  				success : false,
+  				message : "Can't update the specified user"
+  			});
+  		}
+	});
+};
+
+exports.delete = function(req,res){
+	var id = req.params.id;
+  	userModel.remove({ _id : id}, function(err){
+  		if(!err){
+  			res.json({
+  				success : true,
+  				message : "User was removed"
+  			});
+  		} else {
+  			res.json({
+  				success : false,
+  				message : "Can't remove the specified user"
+  			});
+  		}
+  	})
+};
+
+
+exports.add = function(req,res){
   //For now with this is enough
   user = new userModel(req.body);
   
@@ -33,12 +83,18 @@ exports.index_post = function(req,res){
         errors = [];
         if (!err){
             console.log('Success!');
-			res.redirect('/user');
+			res.json({
+				success : true,
+				message : 'User Succesfully Added'
+			});
         }
         else {
             console.log('Error !');
             console.log(err);
-			res.redirect('/user?error=true');
+			res.json({
+				sucess : false,
+				message : 'Couldn\'t Add The User'
+			});
         }
     });
 };
