@@ -39,7 +39,7 @@ app.configure(function(){
   app.use(express.static(path.join(__dirname, 'public')));
 });
 
-//Configure for evelopment environment
+//Configure for development environment
 app.configure('development', function(){
   app.use(express.errorHandler());
 });
@@ -59,20 +59,11 @@ passport.deserializeUser(function(id,done){
 		done(err,user);
 	});
 });
-    /* //No me creaba el usuario
-     var usuario = new UserAuth({username : "test1" , password : "1234" , salt : "1234" ,roles : ["admin"]});  
-      usuario.save(function(err) {
-          if (err) console.log(err);
-          else console.log('Parece que bien');
-        });
-      UserAuth.find({ }, function (err, users) { console.log(users);});
-    */
-   
+
 //Creating the logic for Authentication - Generic
 passport.use(new LocalStrategy(
   function(username, password, done) {
     UserAuth.findOne({ username: username }, function (err, user) {
-        console.log(user);
       if (err) { return done(err); }
       if (!user) {
         return done(null, false, { message: 'Unknown user' });

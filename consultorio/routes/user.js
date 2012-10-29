@@ -4,9 +4,9 @@
  */
  
  // loads model file and engine
-var mongoose    = require('mongoose'),
-    crypto		= require('crypto'),
-    userModel = require('../models/UsersModel');
+var userModel = require('../models/UsersModel'),
+    utils = require('../models/utils');
+
 
 
 exports.list = function(req, res){
@@ -20,37 +20,12 @@ exports.add = function(req,res){
 };
 
 exports.index_post = function(req,res){
-  user = new userModel();
-  user.roles = req.body.roles;
-  user.firstname = req.body.firstname;
-  user.lastname = req.body.lastname;
-  user.mail = req.body.mail;
+  //For now with this is enough
+  user = new userModel(req.body);
   
-  var countPass = Math.ceil(Math.random()*4);
-  var salt;
-  console.log(countPass);
-  switch (countPass)
-  {
-  case 1: 
-    salt = "sha1";
-	console.log("entre1");
-    break;
-  case 2: 
-    salt = "md5";
-	console.log("entre2");
-    break;
-  case 3: 
-    salt = "sha256";
-	console.log("entre3");
-    break;
-  default: 
-    salt = "sha512";
-	console.log("entredefault");
-  }
-  console.log("Hashing salt is: " + salt);
+  var salt = utils.createSalt();
   user.salt = salt;
-  var pass = crypto.createHash(salt).update(req.body.password).digest("hex");
-  console.log("Encrypted pass: " + pass);
+  var pass = utils.hash(req.body.password , user.salt);
   user.password = pass;
   
   user.save(function (err) {
