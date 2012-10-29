@@ -3,7 +3,8 @@
  */
 var mongoose = require('mongoose')
    ,Schema = mongoose.Schema
-   ,ObjectId = Schema.ObjectId;
+   ,ObjectId = Schema.ObjectId
+   ,utils = require('./utils');
    
 //Creating necessary Schema for Authentication
 var userAuthSchema = new Schema({
@@ -15,10 +16,7 @@ var userAuthSchema = new Schema({
 
 //Creating method for password validation
 userAuthSchema.methods.validatePassword = function (pass){
-    //Falta implementar la logica requerida cuando se vaya a usar el hashing
-    if (this.password == pass) 
-        return true;
-    return false;  
+    return this.password == utils.hash(pass,this.salt);   
 };
 
 //Exporting the model so it can be accesible when required

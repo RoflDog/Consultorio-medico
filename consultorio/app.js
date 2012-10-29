@@ -39,15 +39,18 @@ app.configure(function(){
   app.use(express.static(path.join(__dirname, 'public')));
 });
 
-//Configure for evelopment environment
+//Configure for development environment
 app.configure('development', function(){
   app.use(express.errorHandler());
 });
 //Routes
 //app.get('/', routes.index);
-app.get('/user', users.list);
-app.get('/addUser', users.add);
-app.post('/user', users.index_post);
+app.get('/api/users', users.list);
+app.get('/api/user/:id', users.get);
+app.post('/api/user', users.add);
+app.put('/api/user/:id', users.update);
+app.delete('/api/user/:id', users.delete);
+
 
 //Provide login sessions
 passport.serializeUser(function (user, done){
@@ -59,20 +62,11 @@ passport.deserializeUser(function(id,done){
 		done(err,user);
 	});
 });
-    /* //No me creaba el usuario
-     var usuario = new UserAuth({username : "test1" , password : "1234" , salt : "1234" ,roles : ["admin"]});  
-      usuario.save(function(err) {
-          if (err) console.log(err);
-          else console.log('Parece que bien');
-        });
-      UserAuth.find({ }, function (err, users) { console.log(users);});
-    */
-   
+
 //Creating the logic for Authentication - Generic
 passport.use(new LocalStrategy(
   function(username, password, done) {
     UserAuth.findOne({ username: username }, function (err, user) {
-        console.log(user);
       if (err) { return done(err); }
       if (!user) {
         return done(null, false, { message: 'Unknown user' });
