@@ -24,4 +24,4 @@ var userSchema = new Schema({
 	schedule : { start: {type : "number"}, end: {type : "number"} }
 });
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model('UserModel', userSchema , 'User');
