@@ -5,7 +5,8 @@
  
  // loads model file and engine
 var userModel = require('../models/UsersModel'),
-    utils = require('../models/utils');
+    utils = require('../models/utils'),
+	ObjectId = require('mongoose').Types.ObjectId;
 
 
 
@@ -19,8 +20,8 @@ exports.list = function(req, res){
 };
 
 exports.get = function(req,res){
-	var id = req.params.id;
-	userModel.findOne({_id : id} , function(err , user){
+	var id = req.params.id.substring(3);
+	userModel.findOne({_id : new ObjectId(id)} , function(err , user){
 		if (!user)
 			res.json({
 				error : true,
@@ -35,37 +36,56 @@ exports.get = function(req,res){
 };
 
 exports.update = function(req,res){
-	var user = new userModel(req.body);
-	user.save(function(err){
-		 		if(!err){
-  			res.json({
-  				success : true,
-  				message : "User was updated"
-  			});
-  		} else {
-  			res.json({
-  				success : false,
-  				message : "Can't update the specified user"
-  			});
-  		}
+	var id = req.params.id.substring(3);
+	userModel.findOne({ _id : new ObjectId(id) }, function(err,user){
+		if(user){
+			user.username = req.body.username;
+			user.save(function(err){
+				if(!err){
+					res.json({
+						success : true,
+						message : "User was updated"
+					});
+				} else {
+					res.json({
+						success : false,
+						message : "Can't update the specified user"
+					});
+				}
+			});
+		} else { 
+			res.json({
+				success : true,
+				message : "User Not Found"
+			});
+		}
 	});
 };
 
 exports.delete = function(req,res){
-	var id = req.params.id;
-  	userModel.remove({ _id : id}, function(err){
-  		if(!err){
-  			res.json({
-  				success : true,
-  				message : "User was removed"
-  			});
-  		} else {
-  			res.json({
-  				success : false,
-  				message : "Can't remove the specified user"
-  			});
-  		}
-  	})
+	var id = req.params.id.substring(3);
+	userModel.findOne({ _id : new ObjectId(id) }, function(err,user){
+		if(user){
+			userModel.remove({ _id : new ObjectId(id)}, function(err){
+				if(!err){
+					res.json({
+						success : true,
+						message : "User was removed"
+					});
+				} else {
+					res.json({
+						success : false,
+						message : "Can't remove the specified user"
+					});
+				}
+			})
+		} else {
+			res.json({
+				success : true,
+				message : "User Not Found"
+			});
+		}
+	})
 };
 
 
@@ -98,3 +118,7 @@ exports.add = function(req,res){
         }
     });
 };
+
+exports.addView = function(req,res){
+	res.render('addUser.jade',{title: "hola"});
+}
