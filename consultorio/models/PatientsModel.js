@@ -2,7 +2,7 @@
  * @author IsaiasSilva
  */
 
-// The Users Model
+// The Patient Model
 
 var mongoose = require('mongoose')
    ,Schema = mongoose.Schema
