@@ -107,7 +107,7 @@ app.post('/login',
 
 app.get('/logout', function(req, res){
   req.logOut();
-  res.redirect('/');
+  res.redirect('/login?logout=true');
 });
 
 http.createServer(app).listen(app.get('port'), function(){

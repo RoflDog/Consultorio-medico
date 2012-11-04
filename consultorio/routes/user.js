@@ -6,12 +6,19 @@
  // loads model file and engine
 var userModel = require('../models/UsersModel'),
     utils = require('../models/utils'),
-	ObjectId = require('mongoose').Types.ObjectId;
+	ObjectId = require('mongoose').Types.ObjectId,
+	_ = require('underscore')
+	;
 
 
 
 exports.list = function(req, res){
-    userModel.find({},function(err, users){
+    userModel.find({},function(err, rawUsers){
+    	var users = [];
+    	var blackList = ['password' , 'salt'];
+    	_.each(rawUsers , function(user){
+    		users.push(_.omit(user.toObject(), 'password' , 'salt'));
+    	}); 
     	
         res.json({
         	users : users
@@ -20,7 +27,8 @@ exports.list = function(req, res){
 };
 
 exports.get = function(req,res){
-	var id = req.params.id.substring(3);
+	var id = req.params.id;
+	var blackList = ['password' , 'salt'];
 	userModel.findOne({_id : new ObjectId(id)} , function(err , user){
 		if (!user)
 			res.json({
@@ -28,15 +36,16 @@ exports.get = function(req,res){
 				message : "User Not Found"
 			});
 		else{
+			
 			res.json({
-				user : user
+				user : _.omit(user.toObject(),blackList)
 			})
 		}
 	});
 };
 
 exports.update = function(req,res){
-	var id = req.params.id.substring(3);
+	var id = req.params.id;
 	userModel.findOne({ _id : new ObjectId(id) }, function(err,user){
 		if(user){
 			user.username = req.body.username;
@@ -63,7 +72,7 @@ exports.update = function(req,res){
 };
 
 exports.delete = function(req,res){
-	var id = req.params.id.substring(3);
+	var id = req.params;
 	userModel.findOne({ _id : new ObjectId(id) }, function(err,user){
 		if(user){
 			userModel.remove({ _id : new ObjectId(id)}, function(err){
@@ -118,7 +127,3 @@ exports.add = function(req,res){
         }
     });
 };
-
-exports.addView = function(req,res){
-	res.render('addUser.jade',{title: "hola"});
-}
