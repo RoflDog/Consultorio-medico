@@ -6,13 +6,18 @@
  // loads model file and engine
 var patientModel = require('../models/PatientsModel'),
     utils = require('../models/utils'),
-	ObjectId = require('mongoose').Types.ObjectId;
+	ObjectId = require('mongoose').Types.ObjectId
+	_ = require('underscore');
 
 
 
 exports.list = function(req, res){
-    patientModel.find({},function(err, patients){
-    	
+    patientModel.find({},function(err, rawPatients){
+		var patients = [];
+		_.each(rawPatients, function(patient){
+			patients.push(_.omit(patient.toObject()));
+		});
+		
         res.json({
         	patients : patients
         });
@@ -20,7 +25,7 @@ exports.list = function(req, res){
 };
 
 exports.get = function(req,res){
-	var id = req.params.id.substring(3);
+	var id = req.params.id;
 	patientModel.findOne({_id : new ObjectId(id)} , function(err , patient){
 		if (!patient)
 			res.json({
@@ -29,17 +34,24 @@ exports.get = function(req,res){
 			});
 		else{
 			res.json({
-				patient : patient
+				patient : _.omit(patient.toObject())
 			})
 		}
 	});
 };
 
 exports.update = function(req,res){
-	var id = req.params.id.substring(3);
+	var id = req.params.id;
 	patientModel.findOne({ _id : new ObjectId(id) }, function(err,patient){
 		if(patient){
-			patient.patientname = req.body.patientname;
+			var newval = req.body;
+			patient.firstname = newval.firstname || patient.firstname;
+			patient.lastname = newval.lastname || patient.lastname;
+			patient.birthdate = newval.birthdate || patient.birthdate;
+			patient.email = newval.email || patient.email;
+			patient.phone = newval.phone || patient.phone;
+			patient.address = newval.address || patient.address;
+			patient.notes = newval.notes || patient.notes;
 			patient.save(function(err){
 				if(!err){
 					res.json({
@@ -63,7 +75,7 @@ exports.update = function(req,res){
 };
 
 exports.delete = function(req,res){
-	var id = req.params.id.substring(3);
+	var id = req.params.id;
 	patientModel.findOne({ _id : new ObjectId(id) }, function(err,patient){
 		if(patient){
 			patientModel.remove({ _id : new ObjectId(id)}, function(err){
@@ -93,11 +105,6 @@ exports.add = function(req,res){
   //For now with this is enough
   patient = new patientModel(req.body);
   
-  var salt = utils.createSalt();
-  patient.salt = salt;
-  var pass = utils.hash(req.body.password , patient.salt);
-  patient.password = pass;
-  
   patient.save(function (err) {
         messages = [];
         errors = [];
@@ -113,12 +120,8 @@ exports.add = function(req,res){
             console.log(err);
 			res.json({
 				sucess : false,
-				message : 'Couldn\'t Add The patient'
+				message : 'Couldn\'t Add The Patient'
 			});
         }
     });
 };
-
-exports.addView = function(req,res){
-	res.render('addpatient.jade',{title: "hola"});
-}
