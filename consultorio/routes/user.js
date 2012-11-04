@@ -48,7 +48,23 @@ exports.update = function(req,res){
 	var id = req.params.id;
 	userModel.findOne({ _id : new ObjectId(id) }, function(err,user){
 		if(user){
-			user.username = req.body.username;
+			var newval = req.body;
+			user.username = newval.username || user.username;
+			user.firstname = newval.firstname || user.firstname;
+			user.lastname = newval.lastname || user.lastname;
+			user.birthdate = newval.birthdate || user.birthdate;
+			user.email = newval.email || user.email;
+			user.phone = newval.phone || user.phone;
+			user.address = newval.address || user.address;
+			user.roles = newval.roles || user.roles;
+			user.schedule = newval.schedule || user.schedule;
+			if(newval.password){
+				  var salt = utils.createSalt();
+				  user.salt = salt;
+				  var pass = utils.hash(newval.password , user.salt);
+				  user.password = pass;
+			}
+						
 			user.save(function(err){
 				if(!err){
 					res.json({
