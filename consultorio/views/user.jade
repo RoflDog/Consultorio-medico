@@ -22,6 +22,10 @@ block content
 									td=user['firstname']
 									td=user['lastname']
 									td=user['roles']
+									td
+										a(href='/editUser?id=' + user['_id']) Editar
+									td
+										a(href='/removeUser?id=' + user['_id']) Eliminar
 							-})
 				- else
 					p No hay usuarios

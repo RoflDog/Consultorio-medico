@@ -8,6 +8,7 @@ var express = require('express')
   ,	LocalStrategy = require('passport-local').Strategy
   , routes = require('./routes')
   , users = require('./routes/user.js')
+  , patients = require('./routes/patient.js')
   , http = require('http')
   , path = require('path')
   , mongoose = require ('mongoose')
@@ -45,11 +46,18 @@ app.configure('development', function(){
 });
 //Routes
 //app.get('/', routes.index);
+//API for users
 app.get('/api/users', users.list);
 app.get('/api/user/:id', users.get);
 app.post('/api/user', users.add);
 app.put('/api/user/:id', users.update);
 app.delete('/api/user/:id', users.delete);
+//API for patients
+app.get('/api/patients', patients.list);
+app.get('/api/patient/:id', patients.get);
+app.post('/api/patient', patients.add);
+app.put('/api/patient/:id', patients.update);
+app.delete('/api/patient/:id', patients.delete);
 
 
 //Provide login sessions
