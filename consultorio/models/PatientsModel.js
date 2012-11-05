@@ -13,7 +13,7 @@ var patientSchema = new Schema({
 	active : Boolean,
 	firstname : String,
 	lastname : String,
-	birthDate : Date,
+	birthdate : Date,
 	email : String,
 	phone : [{type : String, format : "phone"}],
 	address : String,

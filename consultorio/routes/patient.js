@@ -12,12 +12,7 @@ var patientModel = require('../models/PatientsModel'),
 
 
 exports.list = function(req, res){
-    patientModel.find({},function(err, rawPatients){
-		var patients = [];
-		_.each(rawPatients, function(patient){
-			patients.push(_.omit(patient.toObject()));
-		});
-		
+    patientModel.find({},function(err, patients){
         res.json({
         	patients : patients
         });
@@ -34,7 +29,7 @@ exports.get = function(req,res){
 			});
 		else{
 			res.json({
-				patient : _.omit(patient.toObject())
+				patient : patient
 			})
 		}
 	});

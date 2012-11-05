@@ -1,7 +1,33 @@
 doctype 5
-html
+html(ng-app="Consultorio")
   head
     title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
-  body
-    block content
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(rel='stylesheet', href='/lib/bootstrap/css/bootstrap.css')
+    link(rel='stylesheet', href='/lib/bootstrap/css/bootstrap-responsive.css')
+    .navbar.navbar-fixed-top.navbar-inverse#barra
+            .brand 
+                a(href='/') Consultorio medico
+            .navbar-inner
+                ul.nav
+                    li#Usuarios
+                        a(href='/user') Usuarios
+                    li#Usuarios
+                        a(href='#n_n') Pacientes
+                    li#Usuarios
+                        a(href='#o_o') Citas
+                    li#Usuarios
+                        a(href='#u_u') Pagos
+                    
+                    //a.brand(href='#' , sytle='padding-left:5px') Usuarios
+  body(style='padding-top:50px;padding-left:50px')
+    div.container-fluid
+        div.row-fluid
+            div.span2
+                block izquierda
+                a(href='/addUser')
+                    button.btn.btn-large Agregar
+                button.btn.btn-large Consultar
+                button.btn.btn-large Eliminar
+            div.span10
+                block contenido
