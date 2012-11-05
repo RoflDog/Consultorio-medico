@@ -12,7 +12,7 @@ var express = require('express')
   , http = require('http')
   , path = require('path')
   , mongoose = require ('mongoose')
-  , UserAuth = require('./models/userAuth.js')
+  , User = require('./models/UsersModel.js')
   ;
 
 //Connect MongoDB when the application starts
@@ -66,7 +66,7 @@ passport.serializeUser(function (user, done){
 });
 
 passport.deserializeUser(function(id,done){
-	UserAuth.findOne({_id : id}, function(err, user){
+	User.findOne({_id : id}, function(err, user){
 		done(err,user);
 	});
 });
@@ -74,7 +74,7 @@ passport.deserializeUser(function(id,done){
 //Creating the logic for Authentication - Generic
 passport.use(new LocalStrategy(
   function(username, password, done) {
-    UserAuth.findOne({ username: username }, function (err, user) {
+    User.findOne({ username: username }, function (err, user) {
       if (err) { return done(err); }
       if (!user) {
         return done(null, false, { message: 'Unknown user' });

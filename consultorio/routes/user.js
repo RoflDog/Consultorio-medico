@@ -17,7 +17,7 @@ exports.list = function(req, res){
     	var users = [];
     	var blackList = ['password' , 'salt'];
     	_.each(rawUsers , function(user){
-    		users.push(_.omit(user.toObject(), 'password' , 'salt'));
+    		users.push(_.omit(user.toObject(), blackList));
     	}); 
     	
         res.json({
