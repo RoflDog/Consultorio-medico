@@ -1,33 +1,38 @@
 doctype 5
 html(ng-app="Consultorio")
   head
-    title= title
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     link(rel='stylesheet', href='/lib/bootstrap/css/bootstrap.css')
     link(rel='stylesheet', href='/lib/bootstrap/css/bootstrap-responsive.css')
-    .navbar.navbar-fixed-top.navbar-inverse#barra
-            .brand 
-                a(href='/') Consultorio medico
-            .navbar-inner
-                ul.nav
-                    li#Usuarios
-                        a(href='/user') Usuarios
-                    li#Usuarios
-                        a(href='#n_n') Pacientes
-                    li#Usuarios
-                        a(href='#o_o') Citas
-                    li#Usuarios
-                        a(href='#u_u') Pagos
-                    
-                    //a.brand(href='#' , sytle='padding-left:5px') Usuarios
+    script(src='/lib/angular/angular.js')
+    script(src='/javascripts/app.js')
+    script(src='/javascripts/controllers.js')
   body(style='padding-top:50px;padding-left:50px')
     div.container-fluid
         div.row-fluid
-            div.span2
+            div.span1
                 block izquierda
-                a(href='/addUser')
-                    button.btn.btn-large Agregar
-                button.btn.btn-large Consultar
-                button.btn.btn-large Eliminar
+                    a(href='/addUser')
+                        button.btn.btn-large Agregar
+                    a(href='/')
+                        button.btn.btn-large Consultar
+                    a(href='/')
+                        button.btn.btn-large Eliminar
             div.span10
                 block contenido
+                .navbar.navbar-fixed-top.navbar-inverse#barra
+                    .brand
+                        a(href='/') Consultorio medico
+                    .navbar-inner
+                        ul.nav
+                            li#Usuarios
+                                a(href='/user') Usuarios
+                            li#Usuarios
+                                a(href='#n_n') Pacientes
+                            li#Usuarios
+                                a(href='#o_o') Citas
+                            li#Usuarios
+                                a(href='#u_u') Pagos
+    footer
+        block foot
+            p &copy; 2012 RoflDog Studios
