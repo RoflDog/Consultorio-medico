@@ -1,33 +1,33 @@
 h2 Agregar nuevo usuario
-  form(action='/api/user', method='post')
-			fieldset
-				legend Agregar Usuario
-				.clearfix
-					label Puesto
-					.input
-						select#title(name="roles")
-							option Doctor
-							option Secretaria
-				.clearfix
-					label Nombre de Usuario
-					.input
-						input#firstname.xlarge(type="text", size="30", name="username")
-				.clearfix
-					label Nombre
-					.input
-						input#firstname.xlarge(type="text", size="30", name="firstname")
-				.clearfix
-					label Apellidos
-					.input
-						input#lastname.xlarge(type="text", size="30", name="lastname")
-				.clearfix
-					label E-mail
-					.input
-						input#mail.xlarge(type="text", size="30", name="mail")
-				.clearfix
-					label Password
-					.input
-						input#password.xlarge(type="password", size="30", name="password")
-			fieldset
-				.actions
-					input.btn.primary(type="submit", value="Guardar")&nbsp;
+    form(action='/api/user', method='post')
+            fieldset
+                legend Agregar Usuario
+                .clearfix
+                    label Puesto
+                    .input
+                        select#title(name="roles")
+                            option Doctor
+                            option Secretaria
+                .clearfix
+                    label Nombre de Usuario
+                    .input
+                        input#firstname.xlarge(type="text", size="30", name="username")
+                .clearfix
+                    label Nombre
+                    .input
+                        input#firstname.xlarge(type="text", size="30", name="firstname")
+                .clearfix
+                    label Apellidos
+                    .input
+                        input#lastname.xlarge(type="text", size="30", name="lastname")
+                .clearfix
+                    label E-mail
+                    .input
+                        input#mail.xlarge(type="text", size="30", name="mail")
+                .clearfix
+                    label Password
+                    .input
+                        input#password.xlarge(type="password", size="30", name="password")
+            fieldset
+                .actions
+                    input.btn.primary(type="submit", value="Guardar")&nbsp;

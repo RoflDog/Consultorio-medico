@@ -5,13 +5,13 @@ angular.module('Consultorio',[]).
             templateUrl:'partials/index',
             controller: IndexCtrl
         }).
-        when('/addUser',{
+        when('/indexUser',{
             templateUrl:'partials/addUser',
-            controller: AddUserCtrl
+            //controller: AddUserCtrl
         }).
         when('/indexUser',{
             templateUrl:'partials/indexUser',
-            //controller: AddUserCtrl
+            controller: IndexCtrl
         }).
         when('/indexPatient',{
             templateUrl:'partials/indexPatient',

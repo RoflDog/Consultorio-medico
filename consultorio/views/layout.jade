@@ -4,6 +4,8 @@ html(ng-app="Consultorio")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     title Consultorio Medico
     link(rel='stylesheet', href='/lib/bootstrap/css/bootstrap.css')
+    link(rel='stylesheet', href='/lib/bootstrap/js/bootstrap.min.js')
+    link(rel='stylesheet', href='/lib/bootstrap/js/bootstrap.js')
     link(rel='stylesheet', href='/lib/bootstrap/css/bootstrap-responsive.css')
     script(src='/lib/angular/angular.js')
     script(src='/javascripts/app.js')
@@ -14,28 +16,24 @@ html(ng-app="Consultorio")
     body(style='padding-top:50px;padding-left:50px')
         div.container-fluid
             div.row-fluid
-                div.span1
-                    block izquierda
-                        a(href='/addUser')
-                            button.btn.btn-large Agregar
-                        a(href='/')
-                            button.btn.btn-large Consultar
-                        a(href='/')
-                            button.btn.btn-large Eliminar
-                div.span10
+                div.span5
                     block contenido
                     .navbar.navbar-fixed-top.navbar-inverse#barra
                         .brand
                             a(href='/') Consultorio medico
                         .navbar-inner
                             ul.nav
+                                li.divider-vertical
                                 li#Usuarios
                                     a(href='/indexUser') Usuarios
-                                li#Usuarios
+                                li.divider-vertical
+                                li#Pacientes
                                     a(href='/indexPatient') Pacientes
-                                li#Usuarios
+                                li.divider-vertical
+                                li#Citas
                                     a(href='#o_o') Citas
-                                li#Usuarios
+                                li.divider-vertical
+                                li#Pagos
                                     a(href='#u_u') Pagos
     footer
         block foot
