@@ -137,7 +137,7 @@ exports.add = function(req,res){
             console.log('Error !');
             console.log(err);
 			res.json({
-				sucess : false,
+				success : false,
 				message : 'Couldn\'t Add The User'
 			});
         }

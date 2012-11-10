@@ -1,33 +1,29 @@
 h2 Agregar nuevo usuario
-    form(action='/api/user', method='post')
-            fieldset
                 legend Agregar Usuario
                 .clearfix
                     label Puesto
                     .input
-                        select#title(name="roles")
+                        select#title(name="roles",ng-model='form.roles')
                             option Doctor
                             option Secretaria
                 .clearfix
                     label Nombre de Usuario
                     .input
-                        input#firstname.xlarge(type="text", size="30", name="username")
+                        input#firstname.xlarge(type="text", size="30", name="username",ng-model='form.username')
                 .clearfix
                     label Nombre
                     .input
-                        input#firstname.xlarge(type="text", size="30", name="firstname")
+                        input#firstname.xlarge(type="text", size="30", name="firstname",ng-model='form.firstname')
                 .clearfix
                     label Apellidos
                     .input
-                        input#lastname.xlarge(type="text", size="30", name="lastname")
+                        input#lastname.xlarge(type="text", size="30", name="lastname",ng-model='form.lastname')
                 .clearfix
                     label E-mail
                     .input
-                        input#mail.xlarge(type="text", size="30", name="mail")
+                        input#mail.xlarge(type="text", size="30", name="mail",ng-model='form.email')
                 .clearfix
                     label Password
                     .input
-                        input#password.xlarge(type="password", size="30", name="password")
-            fieldset
-                .actions
-                    input.btn.primary(type="submit", value="Guardar")&nbsp;
+                        input#password.xlarge(type="password", size="30", name="password",ng-model='form.password')
+                    input.btn.primary(type="button", value="Guardar",ng-click='submitUser()')&nbsp;

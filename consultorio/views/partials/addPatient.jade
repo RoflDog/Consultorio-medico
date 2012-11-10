@@ -1,0 +1,46 @@
+//
+   Created with JetBrains WebStorm.
+   User: Alex64
+   Date: 8/11/12
+   Time: 10:01 PM
+   To change this template use File | Settings | File Templates.
+html(ng-app="Consultorio")
+h2 Agregar nuevo paciente
+        legend Agregar Paciente
+        legend Datos Personales
+            .clearfix
+                label Nombre del paciente
+                .input
+                    input#firstname.xlarge(type="text", size="30", name="patientName",ng-model='form.firstname')
+            .clearfix
+                label Apellido del paciente
+                .input
+                    input#lastname.xlarge(type="text", size="30", name="patientLastname",ng-model='form.lastname')
+            .clearfix
+                label Fecha de nacimiento
+                .input
+                    input#date.xlarge(type="date", name="patientBirth",ng-model='form.birthdate')
+        legend Datos de contacto
+            .clearfix
+                label E-mail
+                .input
+                    input#email.xlarge(type="text",size="30",name="patientEmail",ng-model='form.email')
+            .clearfix
+                label Teléfono
+                .input
+                    input#Phone.xlarge(type="text",,size="30",name="patientPhone",ng-model='form.phone')
+            .clearfix
+                label Dirección
+                .input
+                    input#address.xlarge(type="text",size="30",name="addressPatient",ng-model='form.address')
+        legend Notas
+            .clearfix
+                table#notes(id="tableNotes")
+                    tr
+                        th Detalles
+                        th Fecha
+                    tr
+                        td Algo
+                        td Algo2
+                input.btn.primary(type="button",value="Agregar notas")&nbsp;
+        input.btn.primary(type="button",value="Guardar",ng-click='submitPatient()')&nbsp;
