@@ -1,29 +1,109 @@
-h2 Agregar nuevo usuario
-                legend Agregar Usuario
-                .clearfix
-                    label Puesto
-                    .input
-                        select#title(name="roles",ng-model='form.roles')
-                            option Doctor
-                            option Secretaria
-                .clearfix
-                    label Nombre de Usuario
-                    .input
-                        input#firstname.xlarge(type="text", size="30", name="username",ng-model='form.username')
-                .clearfix
-                    label Nombre
-                    .input
-                        input#firstname.xlarge(type="text", size="30", name="firstname",ng-model='form.firstname')
-                .clearfix
-                    label Apellidos
-                    .input
-                        input#lastname.xlarge(type="text", size="30", name="lastname",ng-model='form.lastname')
-                .clearfix
-                    label E-mail
-                    .input
-                        input#mail.xlarge(type="text", size="30", name="mail",ng-model='form.email')
-                .clearfix
-                    label Password
-                    .input
-                        input#password.xlarge(type="password", size="30", name="password",ng-model='form.password')
-                    input.btn.primary(type="button", value="Guardar",ng-click='submitUser()')&nbsp;
+//
+    legend Agregar Usuario
+    .clearfix
+        label Nombre de Usuario
+        .input
+            input#firstname.xlarge(type="text", size="30", name="username",ng-model='form.username')
+    .clearfix
+        label Puesto
+        .input
+            select#title(name="roles",ng-model='form.roles')
+                option Doctor
+                option Secretaria
+                option Administrador
+    .clearfix
+        label Nombre
+        .input
+            input#firstname.xlarge(type="text", size="30", name="firstname",ng-model='form.firstname')
+    .clearfix
+        label Apellidos
+        .input
+            input#lastname.xlarge(type="text", size="30", name="lastname",ng-model='form.lastname')
+    .clearfix
+        label Fecha de Nacimiento
+        .input
+            input
+    .clearfix
+        label E-mail
+        .input
+            input#mail.xlarge(type="text", size="30", name="mail",ng-model='form.email')
+    .clearfix
+        label Password
+        .input
+            span.add-on
+                i.icon-envelope
+            input#password.xlarge(type="password", size="30", name="password",ng-model='form.password')
+        input.btn.primary(type="button", value="Guardar",ng-click='submitUser()')&nbsp;
+
+form.form-horizontal
+    fieldset
+        legend Agregar nuevo usuario
+
+        .control-group
+            label.control-label(for="inputUsername") Nombre de usuario
+            .controls
+                .input-prepend
+                    span.add-on
+                        i.icon-user
+                    input#username.xlarge(type="text", size="30", name="username",ng-model='form.username')
+                span.help-block
+                    i.icon-hand-right
+                    |&nbsp;Nombre con el que aparecera en el sistema
+
+        .control-group
+            label.control-label(for="inputTitle") Puesto
+            .controls
+                .input-prepend
+                    span.add-on
+                        i.icon-th-list
+                    select#title(name="roles")
+                        option(value="secretary") Secretaria
+                        option(value="doctor") Doctor
+                        option(value="administrator") Administrador
+                span.help-block
+                    i.icon-hand-right
+                    |&nbsp;Ocupación en el consultorio
+
+        .control-group
+            label.control-label(for="inputPassword") Contraseña
+            .controls
+                input#password.xlarge(type="password", size="30", name="password",ng-model='form.password')
+                span.help-block
+                    i.icon-hand-right
+                    |&nbsp;Contraseña para entrar al sistema
+
+        .control-group
+            label.control-label(for="inputFirstName") Nombres
+            .controls
+                input#firstname.xlarge(type="text", size="30", name="firstname",ng-model='form.firstname')
+                //span.help-block Nombre con el que aparecera en el sistema
+
+        .control-group
+            label.control-label(for="inputLastName") Apellidos
+            .controls
+                input#lastname.xlarge(type="text", size="30", name="lastname",ng-model='form.lastname')
+
+        .control-group
+            label.control-label(for="inputBirth") Fecha de nacimiento
+            .controls
+                .input-prepend
+                    span.add-on
+                        i.icon-calendar
+                    input#birthdate.xlarge(type="datetime", size="30", name="birth",ng-model='form.birthdate')
+
+        .control-group
+            label.control-label(for="inputTel") Telefono
+            .controls
+                input#phone.xlarge(type="tel", size="30", name="tel",ng-model='form.phone')
+
+        .control-group
+            label.control-label(for="inputMail") email
+            .controls
+                .input-prepend
+                    span.add-on
+                        i.icon-envelope
+                    input#email.xlarge(type="email", size="30", name="birth",ng-model='form.email')
+
+        .control-group
+            .controls
+                button(type="submit", class="btn-success", ng-click='submitUser()') Agregar

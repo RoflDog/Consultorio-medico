@@ -11,7 +11,7 @@ angular.module('Consultorio',[]).
         }).*/
         when('/indexUser',{
             templateUrl:'partials/indexUser',
-            controller: IndexCtrl
+            controller: IndexUserCtrl
         }).
         when('/addUser',{
             templateUrl:'partials/addUser',

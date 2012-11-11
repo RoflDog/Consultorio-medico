@@ -1,21 +1,28 @@
-|<div class="btn-group" data-toggle="buttons-radio">
-|  <button type="button" class="btn">Agregar</button>
-|  <button type="button" class="btn">Modificar</button>
-|  <button type="button" class="btn">Eliminar</button>
-|</div>
+br
 
-p Desplegar información general sobre los usuarios como pagina de inicio, a discutir.
-
-p Creo necesario la consulta como inicial, elimiado y modificacion y agregar aparte, lo mismo para las demas vistas.
-
-p Trabajo en ello...
-
-p Se supone que lo de la derecha cambiara para cada modulo según corresponda
 
 h3 Cantidad de usuarios: {{users.length}}
+a(class="btn-success btn-large", href='/addUser')
+    i(class="icon-plus icon-white")
+    |&nbsp; Nuevo
+br
+br
 div(ng-repeat='user in users')
-    h3 {{user.username}} User
-    h3 {{user.lastname}} Ap
-    h3 {{user.firstname}} Nom
-a(href='/addUser') Agregar
+    h4 {{user.username}}, {{user.rol}}
+    strong Nombre:
+    | {{user.lastname}}, {{user.firstname}}
+    br
+    strong Nacimiento:
+    | {{user.birthdate}}
+    br
+    strong Telefonos:
+    br {{user.phone}}
+    br
+    strong Email:
+    | {{user.email}}
+    br
+    a(class="btn btn-warning", href="#") <i class="icon-pencil icon-white"></i>
 
+
+
+//&nbsp;
