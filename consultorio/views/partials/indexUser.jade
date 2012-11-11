@@ -1,0 +1,28 @@
+br
+
+
+h3 Cantidad de usuarios: {{users.length}}
+a(class="btn-success btn-large", href='/addUser')
+    i(class="icon-plus icon-white")
+    |&nbsp; Nuevo
+br
+br
+div(ng-repeat='user in users')
+    h4 {{user.username}}, {{user.rol}}
+    strong Nombre:
+    | {{user.lastname}}, {{user.firstname}}
+    br
+    strong Nacimiento:
+    | {{user.birthdate}}
+    br
+    strong Telefonos:
+    br {{user.phone}}
+    br
+    strong Email:
+    | {{user.email}}
+    br
+    a(class="btn btn-warning", href="#") <i class="icon-pencil icon-white"></i>
+
+
+
+//&nbsp;
