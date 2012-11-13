@@ -1,9 +1,30 @@
 h3 Cantidad de pacientes: {{patients.length}}
-div(ng-repeat='patient in patients')
-    h3 {{patient.lastname}} Ap
-    h3 {{patient.firstname}} Nom
-    h3 {{patient.phone}} Tel
-    h3 {{patient.email}} Email
-    h3 {{patient.birthdate}} Naciemiento
-a(href='/addPatient') Nada
-|nada
+a(class="btn-success btn-large", href='/addPatient')
+    i(class="icon-plus icon-white")
+    |&nbsp; Nuevo
+br
+br
+table#tablePatient(class="table table-striped", cellpaddin="0", cellspacing="0")
+    thead
+        th
+            strong Nombre
+        th
+            strong Apellido
+        th
+            strong Telefono
+        th
+            strong Email
+        th
+            strong Nacimiento
+        tr
+    tbody(ng-repeat='patient in patients')
+        tr
+            td {{patient.firstname}}
+            td {{patient.lastname}}
+            td {{patient.phone}}
+            td {{patient.email}}
+            td {{patient.birthdate}}
+            td
+                a(class="btn btn-warning", href="/modifyPatient/{{patient._id}}")
+                    i(class="icon-pencil icon-white")
+                //a(href='/modifyPatient/{{patient._id}}') Ir

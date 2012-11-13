@@ -1,19 +1,17 @@
 //
    Created with JetBrains WebStorm.
    User: Alex64
-   Date: 8/11/12
-   Time: 10:01 PM
+   Date: 11/11/12
+   Time: 04:47 PM
    To change this template use File | Settings | File Templates.
-
 form.form-horizontal
-    fieldset
-        legend Agregar nuevo paciente
+        legend Modificar datos del paciente
         legend Datod personales
         .control-group
             label.control-label(for="inputPatientame") Nombre del paciente
             .controls
                 .input-prepend
-                    input#firstname.xlarge(type="text", size="30", name="patientName",ng-model='form.firstname')
+                    input#firstname.xlarge(type="text", size="30",name="patientName", ng-model='form.firstname')
         .control-group
             label.control-label(for="inputPatientlastname") Apellido del paciente
             .controls
@@ -75,15 +73,4 @@ form.form-horizontal
                                 $(currentNode).parent().parent().remove();
                             }
                         });
-        .control-group
-                    .controls
-                        button(type="submit", class="btn-success", ng-click='submitPatient()') Agregar
-        //table#notePatient
-                            tr
-                                th Detalles
-                                th Fecha
-                            tr#noteContent
-                                td
-                                    input#details.xlarge(type="text",size="30",name="detailNotePatient")
-                                td
-                                    input#date.xlarge(type="date",name="dateNotePatient")
+        input.btn.primary(type="button",value="Modificar",ng-click='modifyPatient()')&nbsp;
