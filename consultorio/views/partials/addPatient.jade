@@ -38,7 +38,7 @@ form.form-horizontal
             label.control-label(for="inputPatienttel") Teléfono
             .controls
                 .input-prepend
-                    input#Phone.xlarge(type="text",,size="30",name="patientPhone",ng-model='form.phone')
+                    input#phone.xlarge(type="text",,size="30",name="patientPhone",ng-model='form.phone')
         .control-group
             label.control-label(for="inputPatientaddress") Dirección
             .controls
@@ -48,36 +48,14 @@ form.form-horizontal
         .control-group
             label.control-label(for="inputPatientnotes") Notas
             .controls
-                table(class="tab")
-                    tr(class="row")
-                        td
-                            input#txtName_1(type="text",value="AC")
-                        td
-                            input(type="button", class="deleteThisRow",value="Delete")
-                        input(class='btnAdd',type="button",value="Agregar notas")&nbsp;
-                    script(type="text/javascript")
-                        $(document).ready(function(){
-                            var clonedRow = $('.row').clone().html();
-                            var appendRow = 'tr(class = "row")' + clonedRow;
-                            $('.btnAdd').click(function(){
-                                $('.tab tr:last').after(appendRow);
-                            });
-                            $('.deleteThisRow').live('click',function(){
-                                var rowLength = $('.row').length;
-                                if(rowLength > 1){
-                                    deleteRow(this);
-                                }else{
-                                    $('.tab tr:last').after(appendRow);
-                                    deleteRow(this);
-                                }
-                            });
-                            function deleteRow(currentNode){
-                                $(currentNode).parent().parent().remove();
-                            }
-                        });
+                .input-prepend
+                    input#noteDetail.xlarge(type="text",size="50",name="notedetailPatient",ng-model='form.note.detail')
+                .input-prepend
+                    input#noteDate.xlarge(type="text",size="50",name="notedatePatient",ng-model='form.note.date')
+                        i.icon-calendar
         .control-group
-                    .controls
-                        button(type="submit", class="btn-success", ng-click='submitPatient()') Agregar
+            .controls
+                button(type="submit", class="btn-success", ng-click='submitPatient()') Agregar
         //table#notePatient
                             tr
                                 th Detalles

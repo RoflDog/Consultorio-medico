@@ -27,4 +27,6 @@ table#tablePatient(class="table table-striped", cellpaddin="0", cellspacing="0")
             td
                 a(class="btn btn-warning", href="/modifyPatient/{{patient._id}}")
                     i(class="icon-pencil icon-white")
-                //a(href='/modifyPatient/{{patient._id}}') Ir
+            td
+                a(href="#",class="btn btn-danger",bs-popover="/partials/deletePatient",data-title="{{patient.firstname}} {{patient.lastname}}",data-placement="left")
+                    i(class="icon-remove-circle icon-white")
