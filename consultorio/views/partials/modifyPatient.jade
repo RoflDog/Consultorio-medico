@@ -1,0 +1,53 @@
+//
+   Created with JetBrains WebStorm.
+   User: Alex64
+   Date: 11/11/12
+   Time: 04:47 PM
+   To change this template use File | Settings | File Templates.
+form.form-horizontal
+        legend Modificar datos del paciente
+        legend Datod personales
+        .control-group
+            label.control-label(for="inputPatientame") Nombre del paciente
+            .controls
+                .input-prepend
+                    input#firstname.xlarge(type="text", size="30",name="patientName", ng-model='form.firstname')
+        .control-group
+            label.control-label(for="inputPatientlastname") Apellido del paciente
+            .controls
+                .input-prepend
+                    input#lastname.xlarge(type="text", size="30", name="patientLastname",ng-model='form.lastname')
+        .control-group
+            label.control-label(for="inputPatientbirthdate") Fecha de nacimiento
+            .controls
+                .input-prepend
+                    span.add-on
+                        i.icon-calendar
+                    input#date.xlarge(type="text", name="patientBirth",ng-model='form.birthdate')
+        legend  Datos de contacto
+        .control-group
+            label.control-label(for="inputPatientemail") Email
+            .controls
+                .input-prepend
+                    span.add-on
+                        i.icon-envelope
+                    input#email.xlarge(type="text",size="30",name="patientEmail",ng-model='form.email')
+        .control-group
+            label.control-label(for="inputPatienttel") Teléfono
+            .controls
+                .input-prepend
+                    input#Phone.xlarge(type="text",,size="30",name="patientPhone",ng-model='form.phone')
+        .control-group
+            label.control-label(for="inputPatientaddress") Dirección
+            .controls
+                .input-prepend
+                    input#address.xlarge(type="text",size="30",name="addressPatient",ng-model='form.address')
+        legend Notas
+        .control-group
+            label.control-label(for="inputPatientnotes") Notas
+            .controls
+                .input-prepend
+                    input#address.xlarge(type="text",size="50",name="addressPatient",ng-model='form.note.detail')
+                .input-prepend
+                    nput#address.xlarge(type="text",size="50",name="addressPatient",ng-model='form.note.date')
+        input.btn.primary(type="button",value="Modificar",ng-click='modifyPatient()')&nbsp;

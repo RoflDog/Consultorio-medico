@@ -4,43 +4,63 @@
    Date: 8/11/12
    Time: 10:01 PM
    To change this template use File | Settings | File Templates.
-html(ng-app="Consultorio")
-h2 Agregar nuevo paciente
-        legend Agregar Paciente
-        legend Datos Personales
-            .clearfix
-                label Nombre del paciente
-                .input
+form.form-horizontal
+    fieldset
+        legend Agregar nuevo paciente
+        legend Datod personales
+        .control-group
+            label.control-label(for="inputPatientame") Nombre del paciente
+            .controls
+                .input-prepend
                     input#firstname.xlarge(type="text", size="30", name="patientName",ng-model='form.firstname')
-            .clearfix
-                label Apellido del paciente
-                .input
+        .control-group
+            label.control-label(for="inputPatientlastname") Apellido del paciente
+            .controls
+                .input-prepend
                     input#lastname.xlarge(type="text", size="30", name="patientLastname",ng-model='form.lastname')
-            .clearfix
-                label Fecha de nacimiento
-                .input
-                    input#date.xlarge(type="date", name="patientBirth",ng-model='form.birthdate')
-        legend Datos de contacto
-            .clearfix
-                label E-mail
-                .input
+        .control-group
+            label.control-label(for="inputPatientbirthdate") Fecha de nacimiento
+            .controls
+                .input-prepend
+                    span.add-on
+                        i.icon-calendar
+                    input#date.xlarge(type="text", name="patientBirth",ng-model='form.birthdate')
+        legend  Datos de contacto
+        .control-group
+            label.control-label(for="inputPatientemail") Email
+            .controls
+                .input-prepend
+                    span.add-on
+                        i.icon-envelope
                     input#email.xlarge(type="text",size="30",name="patientEmail",ng-model='form.email')
-            .clearfix
-                label Teléfono
-                .input
-                    input#Phone.xlarge(type="text",,size="30",name="patientPhone",ng-model='form.phone')
-            .clearfix
-                label Dirección
-                .input
+        .control-group
+            label.control-label(for="inputPatienttel") Teléfono
+            .controls
+                .input-prepend
+                    input#phone.xlarge(type="text",,size="30",name="patientPhone",ng-model='form.phone')
+        .control-group
+            label.control-label(for="inputPatientaddress") Dirección
+            .controls
+                .input-prepend
                     input#address.xlarge(type="text",size="30",name="addressPatient",ng-model='form.address')
         legend Notas
-            .clearfix
-                table#notes(id="tableNotes")
-                    tr
-                        th Detalles
-                        th Fecha
-                    tr
-                        td Algo
-                        td Algo2
-                input.btn.primary(type="button",value="Agregar notas")&nbsp;
-        input.btn.primary(type="button",value="Guardar",ng-click='submitPatient()')&nbsp;
+        .control-group
+            label.control-label(for="inputPatientnotes") Notas
+            .controls
+                .input-prepend
+                    input#noteDetail.xlarge(type="text",size="50",name="notedetailPatient",ng-model='form.note.detail')
+                .input-prepend
+                    input#noteDate.xlarge(type="text",size="50",name="notedatePatient",ng-model='form.note.date')
+                        i.icon-calendar
+        .control-group
+            .controls
+                button(type="submit", class="btn-success", ng-click='submitPatient()') Agregar
+        //table#notePatient
+                            tr
+                                th Detalles
+                                th Fecha
+                            tr#noteContent
+                                td
+                                    input#details.xlarge(type="text",size="30",name="detailNotePatient")
+                                td
+                                    input#date.xlarge(type="date",name="dateNotePatient")

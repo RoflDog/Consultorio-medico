@@ -1,0 +1,5 @@
+form.form-horizontal
+        legend Seguro que desea eliminar al usuario {{user.username}}
+        .control-group
+            input.btn.primary(type="button",value="Eliminar",ng-click='deleteUser(patient._id)')&nbsp;
+            input.btn.primary(type="button" ,class="btn",value="Cancelar", ng-click="dismiss()")

@@ -1,14 +1,10 @@
-angular.module('Consultorio',[]).
+var app=angular.module('Consultorio',[]).
     config(['$routeProvider','$locationProvider',function($routeProvider,$locationProvider){
     $routeProvider.
         when('/',{
             templateUrl:'partials/index',
             controller: IndexCtrl
         }).
-        /*when('/indexUser',{
-            templateUrl:'partials/addUser'//,
-            //controller: AddUserCtrl
-        }).*/
         when('/indexUser',{
             templateUrl:'partials/indexUser',
             controller: IndexUserCtrl
@@ -25,12 +21,16 @@ angular.module('Consultorio',[]).
             templateUrl:'partials/addPatient',
             controller:AddPatientCtrl
         }).
-        /*when('/consultPatient',{
-            templateUrl:'partials/patient/consultPatient',
-            controller:ConsultPatientCtrl
-        }).*/
+        when('/modifyPatient/:_id',{
+            templateUrl:'/partials/modifyPatient',
+            controller:ModifyPatientCtrl
+        }).
+        when('/modifyUser/:_id',{
+            templateUrl:'/partials/modifyUser',
+            controller:ModifyUserCtrl
+        }).
         otherwise({
             redirectTo:'/'
-        })
+        });
     $locationProvider.html5Mode(true);
 }]);
