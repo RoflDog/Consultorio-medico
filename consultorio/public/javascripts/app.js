@@ -25,6 +25,10 @@ var app=angular.module('Consultorio',[]).
             templateUrl:'/partials/modifyPatient',
             controller:ModifyPatientCtrl
         }).
+        when('/modifyUser/:_id',{
+            templateUrl:'/partials/modifyUser',
+            controller:ModifyUserCtrl
+        }).
         otherwise({
             redirectTo:'/'
         });

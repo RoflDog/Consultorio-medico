@@ -61,3 +61,19 @@ function ModifyPatientCtrl($scope,$http,$location,$routeParams){
             });
     };
 }
+
+function ModifyUserCtrl($scope,$http,$location,$routeParams){
+    $scope.form={};
+
+    $http.get('/api/user/'+$routeParams._id).
+        success(function(data){
+            $scope.form=data.user;
+        });
+
+    $scope.modifyUser=function(data){
+        $http.put('/api/user/'+$routeParams._id,$scope.form).
+            success(function(){
+                $location.path('/indexUser');
+            });
+    };
+}

@@ -1,15 +1,17 @@
-form.form-horizontal(name='formUser')
+form.form-horizontal
     fieldset
         legend Agregar nuevo usuario
 
         .control-group
-            label.control-label(for="username") Nombre de usuario
+            label.control-label(for="inputUsername") Nombre de usuario
             .controls
                 .input-prepend
                     span.add-on
                         i.icon-user
                     input#username.xlarge(type="text", size="30", name="username",ng-model='form.username')
-                p.help-block Nombre con el que aparecera en el sistema
+                span.help-block
+                    i.icon-hand-right
+                    |&nbsp;Nombre con el que aparecera en el sistema
 
         .control-group
             label.control-label(for="inputTitle") Puesto
@@ -17,17 +19,21 @@ form.form-horizontal(name='formUser')
                 .input-prepend
                     span.add-on
                         i.icon-th-list
-                    select#title(name="roles",ng-model='form.roles' )
+                    select#title(name="roles")
                         option(value="secretary") Secretaria
                         option(value="doctor") Doctor
                         option(value="administrator") Administrador
-                p.help-block Ocupación en el consultorio
+                span.help-block
+                    i.icon-hand-right
+                    |&nbsp;Ocupación en el consultorio
 
         .control-group
             label.control-label(for="inputPassword") Contraseña
             .controls
                 input#password.xlarge(type="password", size="30", name="password",ng-model='form.password')
-                p.help-block Contraseña para entrar al sistema
+                span.help-block
+                    i.icon-hand-right
+                    |&nbsp;Contraseña para entrar al sistema
 
         .control-group
             label.control-label(for="inputFirstName") Nombres
@@ -59,46 +65,8 @@ form.form-horizontal(name='formUser')
                 .input-prepend
                     span.add-on
                         i.icon-envelope
-                    input#email.xlarge(type="email", size="30", name="email",ng-model='form.email')
+                    input#email.xlarge(type="email", size="30", name="birth",ng-model='form.email')
 
         .control-group
             .controls
-                button(type="submit", class="btn-success", ng-click='submitUser()') Agregar
-
-    script(type="text/javascript")
-        new FormValidator('formUser', [{
-                name: 'username',
-                display: 'Necesario',
-                rules: 'required'
-            }, {
-                name: 'password',
-                rules: 'required'
-            }, {
-                name: 'password_confirm',
-                display: 'password confirmation',
-                rules: 'required|matches[password]'
-            }, {
-                name: 'email',
-                display: 'Ingresa un email valido',
-                rules: 'valid_email'
-            }], function(errors, event) {
-                var SELECTOR_ERRORS = $('.error_box'), SELECTOR_SUCCESS = $('.success_box');
-                if (errors.length > 0) {
-                  SELECTOR_ERRORS.empty();
-                  {{Errores}}
-                  for (var i = 0, errorLength = errors.length; i < errorLength; i++) {
-                      SELECTOR_ERRORS.append(errors[i].message + '<br />');
-                      }
-                      SELECTOR_SUCCESS.css({ display: 'none' });
-                      SELECTOR_ERRORS.fadeIn(200);
-                } else {
-                  {{Hola}}
-                  SELECTOR_ERRORS.css({ display: 'none' });
-                  SELECTOR_SUCCESS.fadeIn(200);
-                }
-                if (event && event.preventDefault) {
-                  event.preventDefault();
-                } else if (event) {
-                  event.returnValue = false;
-                }
-            });
+                button(type="submit", class="btn-primary", ng-click='modifyUser()') Modificar

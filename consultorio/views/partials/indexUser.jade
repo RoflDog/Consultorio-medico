@@ -1,28 +1,44 @@
+.row-fluid
+    .span10
+        h3 Cantidad de usuarios: {{users.length}}
+    .span2
+        br
+        a(class="btn-success btn-large", href='/addUser')
+            i(class="icon-plus icon-white")
+            |&nbsp; Nuevo
+.row-fluid Buscar
+    input(ng-model="query", type="text", class="input-medium search-query")
 br
-
-
-h3 Cantidad de usuarios: {{users.length}}
-a(class="btn-success btn-large", href='/addUser')
-    i(class="icon-plus icon-white")
-    |&nbsp; Nuevo
-br
-br
-div(ng-repeat='user in users')
-    h4 {{user.username}}, {{user.rol}}
-    strong Nombre:
-    | {{user.lastname}}, {{user.firstname}}
-    br
-    strong Nacimiento:
-    | {{user.birthdate}}
-    br
-    strong Telefonos:
-    br {{user.phone}}
-    br
-    strong Email:
-    | {{user.email}}
-    br
-    a(class="btn btn-warning", href="#") <i class="icon-pencil icon-white"></i>
-
-
-
-//&nbsp;
+.row-fluid
+    table#tableUser(class="table table-striped", cellpaddin="0", cellspacing="0")
+        thead
+            th
+                strong Usuario
+            th
+                strong Rol
+            th
+                strong Nombre
+            th
+                strong Apellido
+            th
+                strong Telefono
+            th
+                strong Email
+            th
+                strong Nacimiento
+            tr
+        tbody(ng-repeat='user in users | filter:query')
+            tr
+                td {{user.username}}
+                td {{user.rol}}
+                td {{user.firstname}}
+                td {{user.lastname}}
+                td {{user.phone}}
+                td {{user.email}}
+                td {{user.birthdate}}
+                td
+                    a(class="btn btn-warning", href="/modifyUser/{{user._id}}")
+                        i(class="icon-pencil icon-white")
+                td
+                    a(href="#",class="btn btn-danger",bs-popover="/partials/deleteUser",data-title="{{user.username}}",data-placement="left")
+                        i(class="icon-remove-circle icon-white")
