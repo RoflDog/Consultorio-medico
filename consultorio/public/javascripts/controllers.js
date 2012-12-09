@@ -29,10 +29,18 @@ function AddUserCtrl($scope,$http,$location){
 }
 
 function IndexPatient($scope,$http,$location){
+    $scope.patients={};
     $http.get('/api/patients').
         success(function(data){
             $scope.patients=data.patients;
-        })
+        });
+
+    $scope.deletePatient=function(id){
+        $http.delete('/api/patient/'+id).
+            success(function(){
+                $location.path('/indexPatient');
+            });
+    };
 }
 
 function AddPatientCtrl($scope,$http,$location){

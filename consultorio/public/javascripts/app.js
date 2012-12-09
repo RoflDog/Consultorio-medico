@@ -1,4 +1,4 @@
-var app=angular.module('Consultorio',[]).
+var app=angular.module('Consultorio',['Consultorio.directives']).
     config(['$routeProvider','$locationProvider',function($routeProvider,$locationProvider){
     $routeProvider.
         when('/',{
