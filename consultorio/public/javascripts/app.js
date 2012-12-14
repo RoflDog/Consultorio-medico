@@ -2,12 +2,10 @@ var app=angular.module('Consultorio',['Consultorio.directives']).
     config(['$routeProvider','$locationProvider',function($routes,$location){
     //$location.hashPrefix('#');
     $routes.
+        /*when('/',{
+            templateUrl:'/login'
+        }).*/
         when('/',{
-            templateUrl:'/login',
-            controller: LoginCtrl
-        }).
-        when('/index',{
-
             templateUrl:'/partials/index',
             controller: IndexCtrl
         }).

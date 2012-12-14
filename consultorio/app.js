@@ -87,10 +87,10 @@ passport.use(new LocalStrategy(
   }
 ));
 
-//app.get('/', ensureAuthenticated, routes.index);
+app.get('/', ensureAuthenticated, routes.index);
 
 //Para desarrollo
-app.get('/', routes.index);
+//app.get('/', routes.index);
 
 app.get('/partials/:name' , routes.partials);
 
