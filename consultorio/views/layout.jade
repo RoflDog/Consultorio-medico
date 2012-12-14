@@ -9,6 +9,7 @@ html(ng-app="Consultorio")
     script(type="text/javascript",src='/lib/jquery/jquery.js')
     //Seguir investigando por que no funciona...
     script(type="text/javascript",src='/lib/validate.js')
+    //
     script(type="text/javascript",src='lib/angular/angular.min.js')
     script(type="text/javascript",src='lib/bootstrap/js/bootstrap.min.js')
     script(type="text/javascript",src='lib/jquery/underscore.js')
@@ -18,25 +19,26 @@ html(ng-app="Consultorio")
     script(type="text/javascript",src='javascripts/services.js')
     script(type="text/javascript",src='javascripts/filters.js')
     script(type="text/javascript",src='javascripts/directives.js')
+
     body(style='padding-top:50px;padding-left:50px')
         div.row
             .navbar.navbar-fixed-top.navbar-inverse#barra
                 .brand
-                    a(href='/') Consultorio medico
+                    a(href='#') Consultorio medico
                 .navbar-inner
                     ul.nav
                         li.divider-vertical
                         li#Usuarios
-                            a(href='/indexUser') Usuarios
+                            a(href='#/indexUser') Usuarios
                         li.divider-vertical
                         li#Pacientes
-                            a(href='/indexPatient') Pacientes
+                            a(href='#/indexPatient') Pacientes
                         li.divider-vertical
                         li#Citas
-                            a(href='#o_o') Citas
+                            a(href='#/pruebaCalendario') Citas
                         li.divider-vertical
                         li#Pagos
-                            a(href='#u_u') Pagos
+                            a(href='#/u_u') Pagos
                     .pull-right
                         ul(class='nav pull-right')
                             li.dropdown

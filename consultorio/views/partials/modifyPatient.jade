@@ -50,4 +50,5 @@ form.form-horizontal
                     input#address.xlarge(type="text",size="50",name="addressPatient",ng-model='form.note.detail')
                 .input-prepend
                     nput#address.xlarge(type="text",size="50",name="addressPatient",ng-model='form.note.date')
-        input.btn.primary(type="button",value="Modificar",ng-click='modifyPatient()')&nbsp;
+        button(type="submit", class="btn-success", ng-click='modifyPatient()') Agregar &nbsp;
+        button(class="btn-warning",onclick="location.href='#/indexPatient'") Cancelar

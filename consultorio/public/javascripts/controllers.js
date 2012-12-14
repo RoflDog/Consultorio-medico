@@ -8,13 +8,36 @@ function IndexCtrl($scope,$http){
         success(function(data){
             $scope.patients=data.patients;
         });
+
 }
 
-function IndexUserCtrl($scope,$http){
+function LoginCtrl($scope,$http){
+
+    $scope.user={};
+    $scope.submitLogin=function(){
+        http.post('/login',$scope.user);
+    };
+}
+
+function IndexUserCtrl($scope,$http,$location){
     $http.get('/api/users').
         success(function(data,status,headers,config){
             $scope.users=data.users;
         });
+    $scope.deleteUser=function(id){
+        $http.delete('/api/user/'+id).
+            success(function(){
+                $location.path('/indexUser');
+                $http.get('/api/users').
+                    success(function(data){
+                        $scope.users=data.users;
+                    });
+                if(!$scope.$$phase) { //this is used to prevent an overlap of scope digestion
+                    $scope.$apply(); //this will kickstart angular to recognize the change
+                }
+            });
+
+    };
 }
 
 function AddUserCtrl($scope,$http,$location){
@@ -39,7 +62,15 @@ function IndexPatient($scope,$http,$location){
         $http.delete('/api/patient/'+id).
             success(function(){
                 $location.path('/indexPatient');
+                $http.get('/api/patients').
+                    success(function(data){
+                        $scope.patients=data.patients;
+                    });
+                if(!$scope.$$phase) { //this is used to prevent an overlap of scope digestion
+                    $scope.$apply(); //this will kickstart angular to recognize the change
+                }
             });
+
     };
 }
 
@@ -85,3 +116,9 @@ function ModifyUserCtrl($scope,$http,$location,$routeParams){
             });
     };
 }
+
+/*function IndexAppointment($scope,$http){
+    $http.get('cita.json').success(function(data){
+        $scope.appointment=data;
+    });
+}*/

@@ -1,25 +1,20 @@
-extends layout
-block contenido
-    .navbar.navbar-fixed-top.navbar-inverse#barra
-        .brand Consultorio
-        .navbar-inner
-    .row-fluid
-        - if (error)
-            .alert.alert-error
-                button(type='button' , class='close' , data-dismiss='alert')
-                strong ¡Error!
-                |   Usuario o Contraseña Incorrectos
-    .container
-        form.form-horizontal( name='auth', method='post', action='/login')
-            legend Necesitas Iniciar Sesión
-                .control-group
-                    label.control-label(for='username') Usuario
-                    .controls
-                        input(type='text' , name='username', id = 'username', placeholder='Nombre de Usuario' , data-ideal='required username')
-                .control-group
-                    label.control-label(for='password') Contraseña
-                    .controls
-                        input(type='password' , name='password', id = 'password', placeholder='Contraseña' , data-ideal='required password')
-                .control-group
-                    .controls
-                        input.btn.btn-primary(type='submit', value='Iniciar Sesión')
+.row-fluid
+    - if (error)
+        .alert.alert-error
+            button(type='button' , class='close' , data-dismiss='alert')
+            strong ¡Error!
+            |   Usuario o Contraseña Incorrectos
+.container
+    form.form-horizontal( name='auth')
+        legend Necesitas Iniciar Sesión
+            .control-group
+                label.control-label(for='username') Usuario
+                .controls
+                    input(type='text' , name='username', id = 'username', placeholder='Nombre de Usuario' , data-ideal='required username',ng-model='user.username')
+            .control-group
+                label.control-label(for='password') Contraseña
+                .controls
+                    input(type='password' , name='password', id = 'password', placeholder='Contraseña' , data-ideal='required password',ng-model='user.password')
+            .control-group
+                .controls
+                    input.btn.btn-primary(type='submit', value='Iniciar Sesión',ng-click='submitLogin()')

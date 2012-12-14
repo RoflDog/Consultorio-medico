@@ -3,7 +3,7 @@
         h3 Cantidad de usuarios: {{users.length}}
     .span2
         br
-        a(class="btn-success btn-large", href='/addUser')
+        a(class="btn-success btn-large", href='#/addUser')
             i(class="icon-plus icon-white")
             |&nbsp; Nuevo
 .row-fluid Buscar
@@ -37,8 +37,8 @@ br
                 td {{user.email}}
                 td {{user.birthdate}}
                 td
-                    a(class="btn btn-warning", href="/modifyUser/{{user._id}}")
+                    a(class="btn btn-warning", href="#/modifyUser/{{user._id}}")
                         i(class="icon-pencil icon-white")
                 td
-                    a(href="#",class="btn btn-danger",bs-popover="/partials/deleteUser",data-title="{{user.username}}",data-placement="left")
+                    a(class="btn btn-danger",bs-popover="/partials/deleteUser",data-title="{{user.username}}",data-placement="left")
                         i(class="icon-remove-circle icon-white")

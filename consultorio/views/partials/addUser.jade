@@ -63,7 +63,8 @@ form.form-horizontal(name='formUser')
 
         .control-group
             .controls
-                button(type="submit", class="btn-success", ng-click='submitUser()') Agregar
+                button(type="submit", class="btn-success", ng-click='submitUser()') Agregar &nbsp;
+                button(class="btn-warning",onclick="location.href='#/indexUser'") Cancelar
 
     script(type="text/javascript")
         new FormValidator('formUser', [{

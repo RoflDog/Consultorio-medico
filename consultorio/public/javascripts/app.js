@@ -1,24 +1,30 @@
 var app=angular.module('Consultorio',['Consultorio.directives']).
-    config(['$routeProvider','$locationProvider',function($routeProvider,$locationProvider){
-    $routeProvider.
+    config(['$routeProvider','$locationProvider',function($routes,$location){
+    //$location.hashPrefix('#');
+    $routes.
         when('/',{
-            templateUrl:'partials/index',
+            templateUrl:'/login',
+            controller: LoginCtrl
+        }).
+        when('/index',{
+
+            templateUrl:'/partials/index',
             controller: IndexCtrl
         }).
         when('/indexUser',{
-            templateUrl:'partials/indexUser',
+            templateUrl:'/partials/indexUser',
             controller: IndexUserCtrl
         }).
         when('/addUser',{
-            templateUrl:'partials/addUser',
+            templateUrl:'/partials/addUser',
             controller: AddUserCtrl
         }).
         when('/indexPatient',{
-            templateUrl:'partials/indexPatient',
+            templateUrl:'/partials/indexPatient',
             controller: IndexPatient
         }).
         when('/addPatient',{
-            templateUrl:'partials/addPatient',
+            templateUrl:'/partials/addPatient',
             controller:AddPatientCtrl
         }).
         when('/modifyPatient/:_id',{
@@ -29,8 +35,16 @@ var app=angular.module('Consultorio',['Consultorio.directives']).
             templateUrl:'/partials/modifyUser',
             controller:ModifyUserCtrl
         }).
+        /*when('/pruebaCalendario',{
+            templateUrl:'/partials/indexAppoint',
+            controller:IndexAppointment
+        }).*/
         otherwise({
             redirectTo:'/'
         });
-    $locationProvider.html5Mode(true);
+
+    //$locationProvider.html5Mode(false).hashPrefix('#');
+}])
+.run(['$route',function($route){
+    $route.reload();
 }]);

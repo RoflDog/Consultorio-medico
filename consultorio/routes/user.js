@@ -88,7 +88,7 @@ exports.update = function(req,res){
 };
 
 exports.delete = function(req,res){
-	var id = req.params;
+	var id = req.params.id;
 	userModel.findOne({ _id : new ObjectId(id) }, function(err,user){
 		if(user){
 			userModel.remove({ _id : new ObjectId(id)}, function(err){
