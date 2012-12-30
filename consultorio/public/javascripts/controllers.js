@@ -38,17 +38,40 @@ function IndexUserCtrl($scope,$http,$location){
             });
 
     };
+
+
+    $scope.avanzada = "false";
+    $scope.simple = "true";
+
+    $scope.avanzadaFncn=function(){
+        $scope.avanzada = "true";
+        $scope.simple = "false";
+        $scope.query = "";
+
+    };
+
+    $scope.simpleFncn=function(){
+        $scope.avanzada = "false";
+        $scope.simple = "true";
+        $scope.query = "";
+    };
 }
 
 function AddUserCtrl($scope,$http,$location){
-    $scope.form={};
+//    $scope.formUser.phone = {num:'123'};
+//    $scope.formUser.phone.push({num:'456'});
     $scope.submitUser=function(){
-        $scope.form.active=true;
-        $http.post('/api/user',$scope.form).
-            success(function(data){
-                $location.path('/indexUser');
-            });
+        if($scope.form.$valid){
+            $http.post('/api/user',$scope.formUser).
+                success(function(data){
+                    $location.path('/indexUser');
+                });
+        }
     };
+
+//    $scope.addContact = function() {
+//        $scope.form.phone.push({num:''});
+//    };
 }
 
 function IndexPatient($scope,$http,$location){
@@ -102,18 +125,26 @@ function ModifyPatientCtrl($scope,$http,$location,$routeParams){
 }
 
 function ModifyUserCtrl($scope,$http,$location,$routeParams){
-    $scope.form={};
 
     $http.get('/api/user/'+$routeParams._id).
         success(function(data){
-            $scope.form=data.user;
+            $scope.formUser=data.user;
         });
 
     $scope.modifyUser=function(data){
-        $http.put('/api/user/'+$routeParams._id,$scope.form).
-            success(function(){
-                $location.path('/indexUser');
-            });
+        if($scope.form.$valid){
+            $http.put('/api/user/'+$routeParams._id,$scope.formUser).
+                success(function(){
+                    $location.path('/indexUser');
+                });
+        }
+    };
+
+    $scope.checkPass=function(){
+        if($scope.formUser.password==$scope.confirmPassword)
+            $scope.confirmPassword.addClass('form-horizontal','input.ng-valid.ng-dirty');
+        else
+            $scope.confirmPassword.addClass('form-horizontal','input.ng-invalid.ng-dirty');
     };
 }
 

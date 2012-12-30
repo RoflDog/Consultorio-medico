@@ -87,10 +87,11 @@ passport.use(new LocalStrategy(
   }
 ));
 
-app.get('/', ensureAuthenticated, routes.index);
+//Para clientes
+// app.get('/', ensureAuthenticated, routes.index);
 
 //Para desarrollo
-//app.get('/', routes.index);
+app.get('/', routes.index);
 
 app.get('/partials/:name' , routes.partials);
 
@@ -102,7 +103,7 @@ app.post('/login',
     passport.authenticate('local', {
         successRedirect: '/',
         failureRedirect: '/login?error=true'
-        })
+    })
 );
 
 app.get('/logout', function(req, res){

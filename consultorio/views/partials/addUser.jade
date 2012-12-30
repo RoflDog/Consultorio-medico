@@ -1,6 +1,6 @@
-form.form-horizontal(name='formUser')
+form.form-horizontal(name="form")
     fieldset
-        legend Agregar nuevo usuario
+        legend Nuevo usuario
 
         .control-group
             label.control-label(for="username") Nombre de usuario
@@ -8,37 +8,49 @@ form.form-horizontal(name='formUser')
                 .input-prepend
                     span.add-on
                         i.icon-user
-                    input#username.xlarge(type="text", size="30", name="username",ng-model='form.username')
+                    input#username.xlarge(type="text", size="30", name="username",ng-model='formUser.username',required)
                 p.help-block Nombre con el que aparecera en el sistema
 
         .control-group
             label.control-label(for="inputTitle") Puesto
             .controls
-                .input-prepend
-                    span.add-on
-                        i.icon-th-list
-                    select#title(name="roles",ng-model='form.roles' )
-                        option(value="secretary") Secretaria
-                        option(value="doctor") Doctor
-                        option(value="administrator") Administrador
+                label
+                    input(type="radio", name="roles", id="secretary", value="secretary", ng-model='formUser.roles', checked, required)
+                    |&nbsp;Secretaria
+                label
+                    input(type="radio", name="roles", id="doctor", value="doctor", ng-model='formUser.roles')
+                    |&nbsp;Doctor
+                label
+                    input(type="radio", name="roles", id="admin", value="admin", ng-model='formUser.roles')
+                    |&nbsp;Administrador
                 p.help-block Ocupación en el consultorio
 
         .control-group
             label.control-label(for="inputPassword") Contraseña
             .controls
-                input#password.xlarge(type="password", size="30", name="password",ng-model='form.password')
+                input#password.xlarge(type="password", size="30", name="password",ng-model='formUser.password',required)
                 p.help-block Contraseña para entrar al sistema
+
+        .control-group
+            label.control-label(for="inputPassword") Confirmar contraseña
+            .controls
+                input#password.xlarge(type="password", size="30", name="confirmPassword",ng-model='confirmPassword',required,ui-validate-equals="formUser.password")
+
+        div(class="alert alert-error", ng-show='form.confirmPassword.$error.equal')
+            button(type="button", class="close", data-dismiss="alert")
+                &times;
+            |Contraseñas no coinciden
 
         .control-group
             label.control-label(for="inputFirstName") Nombres
             .controls
-                input#firstname.xlarge(type="text", size="30", name="firstname",ng-model='form.firstname')
+                input#firstname.xlarge(type="text", size="30", name="firstname",ng-model='formUser.firstname',required)
                 //span.help-block Nombre con el que aparecera en el sistema
 
         .control-group
             label.control-label(for="inputLastName") Apellidos
             .controls
-                input#lastname.xlarge(type="text", size="30", name="lastname",ng-model='form.lastname')
+                input#lastname.xlarge(type="text", size="30", name="lastname",ng-model='formUser.lastname',required)
 
         .control-group
             label.control-label(for="inputBirth") Fecha de nacimiento
@@ -46,60 +58,44 @@ form.form-horizontal(name='formUser')
                 .input-prepend
                     span.add-on
                         i.icon-calendar
-                    input#birthdate.xlarge(type="date", size="30", name="birth",ng-model='form.birthdate')
+                    input#birthdate.xlarge(type="date", size="30", name="birth",ng-model='formUser.birthdate',required)
 
+        //ENCONTRAR FORMA DE PODER AGREGAR TELEFONOS EN FORMA DE LISTA, O PONERLOS COMO NO REQUIRED...
         .control-group
             label.control-label(for="inputTel") Telefono
             .controls
-                input#phone.xlarge(type="tel", size="30", name="tel",ng-model='form.phone')
+                ul.unstyled
+                    //li(ng-repeat="tel in formUser.phone")
+                    li
+                        input#phone.xlarge(type="tel", size="30", name="tel",ng-model='formUser.phone',required)
+                    //li
+                        a(ng-click="addContact()") +
 
+        //QUIZAS SEA BUENO PONER ESTO OPCIONAL...
         .control-group
             label.control-label(for="inputMail") email
             .controls
                 .input-prepend
                     span.add-on
                         i.icon-envelope
-                    input#email.xlarge(type="email", size="30", name="email",ng-model='form.email')
+                    input#email.xlarge(type="email", size="30", name="email",ng-model='formUser.email',required)
 
         .control-group
             .controls
-                button(type="submit", class="btn-success", ng-click='submitUser()') Agregar &nbsp;
+                button(class="btn-success", ng-click='submitUser()') Agregar
+                //,ng-disabled="form.$invalid || isUnchanged(formUser)"
                 button(class="btn-warning",onclick="location.href='#/indexUser'") Cancelar
+//Para  ver estado de los datos
+//pre
+//    |form = {{formUser | json}}
+//    |Invalido? = {{form.$invalid}}
 
-    script(type="text/javascript")
-        new FormValidator('formUser', [{
-                name: 'username',
-                display: 'Necesario',
-                rules: 'required'
-            }, {
-                name: 'password',
-                rules: 'required'
-            }, {
-                name: 'password_confirm',
-                display: 'password confirmation',
-                rules: 'required|matches[password]'
-            }, {
-                name: 'email',
-                display: 'Ingresa un email valido',
-                rules: 'valid_email'
-            }], function(errors, event) {
-                var SELECTOR_ERRORS = $('.error_box'), SELECTOR_SUCCESS = $('.success_box');
-                if (errors.length > 0) {
-                  SELECTOR_ERRORS.empty();
-                  {{Errores}}
-                  for (var i = 0, errorLength = errors.length; i < errorLength; i++) {
-                      SELECTOR_ERRORS.append(errors[i].message + '<br />');
-                      }
-                      SELECTOR_SUCCESS.css({ display: 'none' });
-                      SELECTOR_ERRORS.fadeIn(200);
-                } else {
-                  {{Hola}}
-                  SELECTOR_ERRORS.css({ display: 'none' });
-                  SELECTOR_SUCCESS.fadeIn(200);
-                }
-                if (event && event.preventDefault) {
-                  event.preventDefault();
-                } else if (event) {
-                  event.returnValue = false;
-                }
-            });
+
+style(type="text/css")
+    .form-horizontal input.ng-invalid.ng-dirty {
+        background-color: #FA787E;
+    }
+
+    .form-horizontal input.ng-valid.ng-dirty {
+        background-color: #a3c9fa;
+    }

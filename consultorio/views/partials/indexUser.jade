@@ -1,13 +1,73 @@
+.row
+    legend
+        h1 Usuarios
 .row-fluid
     .span10
-        h3 Cantidad de usuarios: {{users.length}}
+        p.muted
+            |Cantidad de usuarios: {{users.length}}
     .span2
         br
         a(class="btn-success btn-large", href='#/addUser')
             i(class="icon-plus icon-white")
             |&nbsp; Nuevo
-.row-fluid Buscar
-    input(ng-model="query", type="text", class="input-medium search-query")
+
+//Busqueda simple
+.row
+    .input-prepend(ng-hide='avanzada')
+        span.add-on
+            i.icon-search
+        input(type="text",class="input-xlarge",ng-model="query", placeholder="Buscar" )
+
+//Busqueda avanzada
+.row
+    .input-prepend(ng-hide='simple')
+        span.add-on
+            i.icon-search
+        input(type="text",class="input-xlarge",ng-model="query.username", placeholder="Usuario")
+.row
+    .input-prepend(ng-hide='simple')
+        span.add-on
+            i.icon-search
+        input(type="text",class="input-xlarge",ng-model="query.roles", placeholder="Perfil")
+.row
+    .input-prepend(ng-hide='simple')
+        span.add-on
+            i.icon-search
+        input(type="text",class="input-xlarge",ng-model="query.firstname", placeholder="Nombre")
+.row
+    .input-prepend(ng-hide='simple')
+        span.add-on
+            i.icon-search
+        input(type="text",class="input-xlarge",ng-model="query.lastname", placeholder="Apellido")
+.row
+    .input-prepend(ng-hide='simple')
+        span.add-on
+            i.icon-search
+        input(type="text",class="input-xlarge",ng-model="query.phone", placeholder="Telefono")
+.row
+    .input-prepend(ng-hide='simple')
+        span.add-on
+            i.icon-search
+        input(type="text",class="input-xlarge",ng-model="query.email", placeholder="Email")
+.row
+    .input-prepend(ng-hide='simple')
+        span.add-on
+            i.icon-search
+        input(type="text",class="input-xlarge",ng-model="query.birthdate", placeholder="Fecha de nacimiento")
+
+
+
+    button(class="btn btn-info",ng-click='avanzadaFncn()',ng-hide='avanzada') B&#250;squeda avanzada
+    button(class="btn",ng-click='simpleFncn()',ng-hide='simple') B&#250;squeda simple
+
+//br
+//
+//.row-fluid
+//    pre
+//        |avanzada = {{avanzada}}
+//        |simple = {{simple}}
+//        |simpletxt = {{query}}
+
 br
 .row-fluid
     table#tableUser(class="table table-striped", cellpaddin="0", cellspacing="0")
@@ -15,7 +75,7 @@ br
             th
                 strong Usuario
             th
-                strong Rol
+                strong Perfil
             th
                 strong Nombre
             th
@@ -25,17 +85,23 @@ br
             th
                 strong Email
             th
-                strong Nacimiento
-            tr
-        tbody(ng-repeat='user in users | filter:query')
-            tr
+                strong Fecha de nacimiento
+
+        tbody
+            tr(ng-repeat='user in users | filter:query')
                 td {{user.username}}
-                td {{user.rol}}
+                td
+                    ul.unstyled
+                        li(ng-repeat='rol in user.roles')
+                            |{{rol}}
                 td {{user.firstname}}
                 td {{user.lastname}}
-                td {{user.phone}}
+                td
+                    ul.unstyled
+                        li(ng-repeat='tel in user.phone')
+                            |{{tel}}
                 td {{user.email}}
-                td {{user.birthdate}}
+                td {{user.birthdate | date:'dd-MM-yyyy'}}
                 td
                     a(class="btn btn-warning", href="#/modifyUser/{{user._id}}")
                         i(class="icon-pencil icon-white")
