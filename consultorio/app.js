@@ -53,6 +53,7 @@ app.get('/api/user/:id', users.get);
 app.post('/api/user', users.add);
 app.put('/api/user/:id', users.update);
 app.delete('/api/user/:id', users.delete);
+
 //API for patients
 app.get('/api/patients', patients.list);
 app.get('/api/patient/:id', patients.get);
@@ -123,4 +124,4 @@ function ensureAuthenticated(req, res, next) {
     if (req.isAuthenticated()) { return next(); }
         res.redirect('/login')
 }
-
+	
