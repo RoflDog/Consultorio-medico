@@ -9,6 +9,7 @@ var express = require('express')
   , routes = require('./routes')
   , users = require('./routes/user.js')
   , patients = require('./routes/patient.js')
+  , session = require('./routes/session.js')
   , http = require('http')
   , path = require('path')
   , mongoose = require ('mongoose')
@@ -58,6 +59,8 @@ app.get('/api/patient/:id', patients.get);
 app.post('/api/patient', patients.add);
 app.put('/api/patient/:id', patients.update);
 app.delete('/api/patient/:id', patients.delete);
+//API for session
+app.get('/api/session', session.getSessionInformation);
 
 
 //Provide login sessions
