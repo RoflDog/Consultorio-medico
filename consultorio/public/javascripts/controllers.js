@@ -62,13 +62,27 @@ function AddUserCtrl($scope,$http,$location){
 //    $scope.formUser.phone.push({num:'456'});
     $scope.submitUser=function(){
         if($scope.form.$valid){
+            $scope.formUser.phone=$scope.tels;
             $http.post('/api/user',$scope.formUser).
                 success(function(data){
                     $location.path('/indexUser');
                 });
         }
+     };
+
+    $scope.tels = [];
+
+    $scope.add=function(){
+//        $scope.formUser.phone=$scope.tels;
+        $scope.tels.push({format:""});
     };
 
+    $scope.remove=function(tel){
+        $scope.tels.pop(tel);
+        if(!$scope.$$phase) { //this is used to prevent an overlap of scope digestion
+            $scope.$apply(); //this will kickstart angular to recognize the change
+        }
+    };
 //    $scope.addContact = function() {
 //        $scope.form.phone.push({num:''});
 //    };

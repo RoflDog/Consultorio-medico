@@ -64,12 +64,22 @@ form.form-horizontal(name="form")
         .control-group
             label.control-label(for="inputTel") Telefono
             .controls
-                ul.unstyled
-                    //li(ng-repeat="tel in formUser.phone")
+                .btn(ng-click="add()") Agregar
+                div(class="", ng-repeat="tel in tels")
+                    button(type="button",class="btn btn-link", data-dismiss="alert",ng-click="remove(tel)")
+                        &times;
+                    input#phone.xlarge(type="tel", size="30", name="tel",ng-model='tel.format',required, ui-tel)
+
+                pre
+                    |formUser.phone = {{formUser.phone | json}}
+                    |tel = {{tels | json}}
+
+                //ul.unstyled
                     li
-                        input#phone.xlarge(type="tel", size="30", name="tel",ng-model='formUser.phone',required)
-                    //li
-                        a(ng-click="addContact()") +
+                        input#phone.xlarge(type="tel", size="30", name="tel",ng-model='formUser.phone',required, ui-tel)
+
+
+
 
         //QUIZAS SEA BUENO PONER ESTO OPCIONAL...
         .control-group
@@ -99,3 +109,20 @@ style(type="text/css")
     .form-horizontal input.ng-valid.ng-dirty {
         background-color: #a3c9fa;
     }
+
+    /*li.ui-cosa {*/
+        /*transition: all 0.5s ease;*/
+        /*-o-transition: all 0.5s ease;*/
+        /*-moz-transition: all 0.5s ease;*/
+        /*-webkit-transition: all 0.5s ease;*/
+        /*background: lightblue;*/
+        /*max-height: 50px; *//* 1000px works too */
+        /*overflow: hidden;*/
+        /*padding: 5px;*/
+        /*}*/
+        /* The 'hidden' state to transition from & to */
+    /*li.ui-animate {*/
+        /*opacity: 0;*/
+        /*max-height: 0;*/
+        /*padding: 0 5px;*/
+    /*}*/
