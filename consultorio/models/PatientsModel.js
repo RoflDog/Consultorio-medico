@@ -14,10 +14,10 @@ var patientSchema = new Schema({
 	firstname : String,
 	lastname : String,
 	birthdate : Date,
-	email : String,
-	phone : [{type : String, format : "phone"}],
+	email : [String],
+	phone : [String],
 	address : String,
-	notes : { detail: { type : String } , date: { type : Date } },
+	notes : { detail: { type : String } , date: { type : Date , default : Date.now } },
 	balance : { type : "number" } 
 });
 
