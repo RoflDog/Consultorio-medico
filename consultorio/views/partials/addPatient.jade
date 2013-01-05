@@ -4,7 +4,7 @@
    Date: 8/11/12
    Time: 10:01 PM
    To change this template use File | Settings | File Templates.
-form.form-horizontal
+form.form-horizontal(name="form")
     fieldset
         legend Agregar nuevo paciente
         legend Datod personales
@@ -12,19 +12,19 @@ form.form-horizontal
             label.control-label(for="inputPatientame") Nombre del paciente
             .controls
                 .input-prepend
-                    input#firstname.xlarge(type="text", size="30", name="patientName",ng-model='form.firstname')
+                    input#firstname.xlarge(type="text", size="30", name="patientName",ng-model='form.firstname',required)
         .control-group
             label.control-label(for="inputPatientlastname") Apellido del paciente
             .controls
                 .input-prepend
-                    input#lastname.xlarge(type="text", size="30", name="patientLastname",ng-model='form.lastname')
+                    input#lastname.xlarge(type="text", size="30", name="patientLastname",ng-model='form.lastname',required)
         .control-group
             label.control-label(for="inputPatientbirthdate") Fecha de nacimiento
             .controls
                 .input-prepend
                     span.add-on
                         i.icon-calendar
-                    input#date.xlarge(type="text", name="patientBirth",ng-model='form.birthdate')
+                    input#date.xlarge(type="date", name="patientBirth",ng-model='form.birthdate',required)
         legend  Datos de contacto
         .control-group
             label.control-label(for="inputPatientemail") Email
@@ -32,17 +32,17 @@ form.form-horizontal
                 .input-prepend
                     span.add-on
                         i.icon-envelope
-                    input#email.xlarge(type="text",size="30",name="patientEmail",ng-model='form.email')
+                    input#email.xlarge(type="email",size="30",name="patientEmail",ng-model='form.email',required)
         .control-group
             label.control-label(for="inputPatienttel") Teléfono
             .controls
                 .input-prepend
-                    input#phone.xlarge(type="text",,size="30",name="patientPhone",ng-model='form.phone')
+                    input#phone.xlarge(type="tel",,size="30",name="patientPhone",ng-model='form.phone',required,ui-tel)
         .control-group
             label.control-label(for="inputPatientaddress") Dirección
             .controls
                 .input-prepend
-                    input#address.xlarge(type="text",size="30",name="addressPatient",ng-model='form.address')
+                    input#address.xlarge(type="text",size="30",name="addressPatient",ng-model='form.address',required)
         legend Notas
         .control-group
             label.control-label(for="inputPatientnotes") Notas
@@ -65,3 +65,11 @@ form.form-horizontal
                                     input#details.xlarge(type="text",size="30",name="detailNotePatient")
                                 td
                                     input#date.xlarge(type="date",name="dateNotePatient")
+style(type="text/css")
+    .form-horizontal input.ng-invalid.ng-dirty {
+        background-color: #FA787E;
+    }
+
+    .form-horizontal input.ng-valid.ng-dirty {
+        background-color: #a3c9fa;
+    }

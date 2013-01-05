@@ -168,6 +168,22 @@ function IndexPatient($scope,$http,$location){
             });
 
     };
+
+    $scope.avanzada = "false";
+    $scope.simple = "true";
+
+    $scope.avanzadaFncn=function(){
+        $scope.avanzada = "true";
+        $scope.simple = "false";
+        $scope.query = "";
+
+    };
+
+    $scope.simpleFncn=function(){
+        $scope.avanzada = "false";
+        $scope.simple = "true";
+        $scope.query = "";
+    };
 }
 
 function AddPatientCtrl($scope,$http,$location){
