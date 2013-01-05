@@ -9,6 +9,7 @@ var express = require('express')
   , routes = require('./routes')
   , users = require('./routes/user.js')
   , patients = require('./routes/patient.js')
+  , session = require('./routes/session.js')
   , http = require('http')
   , path = require('path')
   , mongoose = require ('mongoose')
@@ -52,12 +53,15 @@ app.get('/api/user/:id', users.get);
 app.post('/api/user', users.add);
 app.put('/api/user/:id', users.update);
 app.delete('/api/user/:id', users.delete);
+
 //API for patients
 app.get('/api/patients', patients.list);
 app.get('/api/patient/:id', patients.get);
 app.post('/api/patient', patients.add);
 app.put('/api/patient/:id', patients.update);
 app.delete('/api/patient/:id', patients.delete);
+//API for session
+app.get('/api/session', session.getSessionInformation);
 
 
 //Provide login sessions
@@ -87,10 +91,11 @@ passport.use(new LocalStrategy(
   }
 ));
 
-//app.get('/', ensureAuthenticated, routes.index);
+//Para clientes
+app.get('/', ensureAuthenticated, routes.index);
 
 //Para desarrollo
-app.get('/', routes.index);
+//app.get('/', routes.index);
 
 app.get('/partials/:name' , routes.partials);
 
@@ -102,7 +107,7 @@ app.post('/login',
     passport.authenticate('local', {
         successRedirect: '/',
         failureRedirect: '/login?error=true'
-        })
+    })
 );
 
 app.get('/logout', function(req, res){
@@ -119,4 +124,4 @@ function ensureAuthenticated(req, res, next) {
     if (req.isAuthenticated()) { return next(); }
         res.redirect('/login')
 }
-
+	

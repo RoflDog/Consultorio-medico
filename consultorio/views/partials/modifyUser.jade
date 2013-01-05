@@ -1,72 +1,93 @@
-form.form-horizontal
+form.form-horizontal(name="form")
     fieldset
-        legend Agregar nuevo usuario
+        legend Modifcar usuario
 
         .control-group
-            label.control-label(for="inputUsername") Nombre de usuario
+            label.control-label(for="username") Nombre de usuario
             .controls
                 .input-prepend
                     span.add-on
                         i.icon-user
-                    input#username.xlarge(type="text", size="30", name="username",ng-model='form.username')
-                span.help-block
-                    i.icon-hand-right
-                    |&nbsp;Nombre con el que aparecera en el sistema
-
+                    input#username.xlarge(type="text", size="30", name="username",ng-model='formUser.username',required)
+                p.help-block Nombre con el que aparecera en el sistema
         .control-group
             label.control-label(for="inputTitle") Puesto
             .controls
-                .input-prepend
-                    span.add-on
-                        i.icon-th-list
-                    select#title(name="roles")
-                        option(value="secretary") Secretaria
-                        option(value="doctor") Doctor
-                        option(value="administrator") Administrador
-                span.help-block
-                    i.icon-hand-right
-                    |&nbsp;Ocupación en el consultorio
-
+                label
+                    input(type="radio", name="roles", id="secretary", value="secretary", ng-model='formUser.roles', checked, required)
+                    | &nbsp;Secretaria
+                label
+                    input(type="radio", name="roles", id="doctor", value="doctor", ng-model='formUser.roles')
+                    | &nbsp;Doctor
+                label
+                    input(type="radio", name="roles", id="admin", value="admin", ng-model='formUser.roles')
+                    | &nbsp;Administrador
+                p.help-block Ocupación en el consultorio
         .control-group
             label.control-label(for="inputPassword") Contraseña
             .controls
-                input#password.xlarge(type="password", size="30", name="password",ng-model='form.password')
-                span.help-block
-                    i.icon-hand-right
-                    |&nbsp;Contraseña para entrar al sistema
+                input#password.xlarge(type="password", size="30", name="password",ng-model='formUser.password',required)
+                p.help-block Contraseña para entrar al sistema
 
+        .control-group
+            label.control-label(for="inputPassword") Confirmar contraseña
+            .controls
+                input#password.xlarge(type="password", size="30", name="confirmPassword",ng-model='confirmPassword',required,ui-validate-equals="formUser.password")
+
+        div(class="alert alert-error", ng-show='form.confirmPassword.$error.equal')
+            button(type="button", class="close", data-dismiss="alert")
+                &times;
+            |Contraseñas no coinciden
         .control-group
             label.control-label(for="inputFirstName") Nombres
             .controls
-                input#firstname.xlarge(type="text", size="30", name="firstname",ng-model='form.firstname')
+                input#firstname.xlarge(type="text", size="30", name="firstname",ng-model='formUser.firstname',required)
                 //span.help-block Nombre con el que aparecera en el sistema
-
         .control-group
             label.control-label(for="inputLastName") Apellidos
             .controls
-                input#lastname.xlarge(type="text", size="30", name="lastname",ng-model='form.lastname')
+                input#lastname.xlarge(type="text", size="30", name="lastname",ng-model='formUser.lastname',required)
 
+        //NO SE VE LA FECHA PERO FUNCIONA BIEN!!
         .control-group
             label.control-label(for="inputBirth") Fecha de nacimiento
             .controls
                 .input-prepend
                     span.add-on
                         i.icon-calendar
-                    input#birthdate.xlarge(type="date", size="30", name="birth",ng-model='form.birthdate')
-
+                    input#birthdate.xlarge(type="date", size="30", name="birth",ng-model='formUser.birthdate',required)
         .control-group
             label.control-label(for="inputTel") Telefono
             .controls
-                input#phone.xlarge(type="tel", size="30", name="tel",ng-model='form.phone')
-
+                ul.unstyled
+                    //li(ng-repeat="tel in formUser.phone")
+                    li
+                        input#phone.xlarge(type="tel", size="30", name="tel",ng-model='formUser.phone',required)
+                    //li
+                        a(ng-click="addContact()") +
         .control-group
             label.control-label(for="inputMail") email
             .controls
                 .input-prepend
                     span.add-on
                         i.icon-envelope
-                    input#email.xlarge(type="email", size="30", name="birth",ng-model='form.email')
+                    input#email.xlarge(type="email", size="30", name="email",ng-model='formUser.email',required)
+
 
         .control-group
             .controls
-                button(type="submit", class="btn-primary", ng-click='modifyUser()') Modificar
+                button(type="submit", class="btn-success", ng-click='modifyUser()') Modificar &nbsp;
+                button(class="btn-warning",onclick="location.href='#/indexUser'") Cancelar
+
+//Para  ver estado de los datos
+//pre
+//    |form = {{formUser | json}}
+
+style(type="text/css")
+    .form-horizontal input.ng-invalid.ng-dirty {
+        background-color: #FA787E;
+    }
+
+    .form-horizontal input.ng-valid.ng-dirty {
+        background-color: #a3c9fa;
+    }

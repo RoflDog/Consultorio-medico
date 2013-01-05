@@ -5,7 +5,7 @@
    Time: 04:47 PM
    To change this template use File | Settings | File Templates.
 form.form-horizontal
-        legend Seguro que desea eliminar al paciente {{patient.firstname}} Aleg {{patient._id}}
+        legend Seguro que desea eliminar al paciente {{patient.firstname}}
         .control-group
-            input.btn.primary(type="button",value="Eliminar",ng-click='deletePatient(patient._id)')&nbsp;
+            input.btn.primary(type="button",value="Eliminar",ng-click='deletePatient(patient._id);dismiss();')&nbsp;
             input.btn.primary(type="button" ,class="btn",value="Cancelar", ng-click="dismiss()")
