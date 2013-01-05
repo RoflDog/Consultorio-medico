@@ -13,8 +13,7 @@ var userModel = require('../models/UsersModel'),
 
 
 exports.list = function(req, res){
-	console.log(req.query);
-    userModel.find({},function(err, rawUsers){
+	userModel.find({},function(err, rawUsers){
     	var users = [];
     	var blackList = ['password' , 'salt'];
     	_.each(rawUsers , function(user){

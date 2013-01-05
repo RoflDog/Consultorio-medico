@@ -12,15 +12,15 @@ var mongoose = require('mongoose')
 
 var userSchema = new Schema({
 	_id : ObjectId,
-	username : String,
+	username : {type: String , unique: true},
 	password : String,
 	salt : String,
 	active : Boolean,
 	firstname : String,
 	lastname : String,
 	birthdate : Date,
-	email : String,
-	phone : [{type : String, format : "phone"}],
+	email : [String],
+	phone : [String],
 	address : String,
 	roles : [{type : String, enum: ['doctor', 'secretary', 'administrator']}],
 	schedule : { start: {type : "number"}, end: {type : "number"} }
