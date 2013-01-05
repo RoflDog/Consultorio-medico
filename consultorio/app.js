@@ -9,6 +9,7 @@ var express = require('express')
   , routes = require('./routes')
   , users = require('./routes/user.js')
   , patients = require('./routes/patient.js')
+  , payments = require('./routes/payment.js')
   , session = require('./routes/session.js')
   , appointment = require("./routes/appointment")
   , http = require('http')
@@ -61,6 +62,13 @@ app.get('/api/patient/:id', patients.get);
 app.post('/api/patient', patients.add);
 app.put('/api/patient/:id', patients.update);
 app.delete('/api/patient/:id', patients.delete);
+
+//API for payments and charges
+app.post('/api/payments', payments.addPayment);
+app.get('/api/payments/:id',payments.getPayment);
+app.post('/api/charges', payments.addCharge);
+app.get('/api/charges/:id', payments.getCharge);
+
 //API for session
 app.get('/api/session', session.getSessionInformation);
 
