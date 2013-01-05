@@ -10,11 +10,11 @@ var mongoose = require('mongoose')
 
 var appointmentSchema = new Schema({
 	_id : ObjectId,
-	date : {type : Date , required : true},
-	duration : { type : Number , required : true},
+	date : {type : Date , required : true , unique : true},
+	duration : { type : Number , default : 30},
 	service : String,
 	notes : [String],
-	treatmentId : ObjectId,
+	TreatmentId : ObjectId,
 	UserId : ObjectId,
 	DoctorId : ObjectId,
 	PatientId : ObjectId,

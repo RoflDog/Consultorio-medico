@@ -73,6 +73,11 @@ app.get('/api/charges/:id', payments.getCharge);
 app.get('/api/session', session.getSessionInformation);
 
 //API for appointments
+app.get('/api/appointment', appointment.list);
+app.get('/api/appointment/:id', appointment.get);
+app.post('/api/appointment', appointment.add);
+app.put('/api/appointment/:id', appointment.update);
+app.delete('/api/appointment/:id', appointment.delete);
 app.get('/api/appointment/searchFree/:doctorId/:date/:duration?', appointment.searchFree );
 app.get('/api/appointment/searchBusy/:doctorId/:date', appointment.searchBusy );
 

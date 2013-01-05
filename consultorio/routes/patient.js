@@ -5,7 +5,6 @@
  
  // loads model file and engine
 var patientModel = require('../models/PatientsModel'),
-    utils = require('../models/utils'),
 	ObjectId = require('mongoose').Types.ObjectId
 	_ = require('underscore');
 
