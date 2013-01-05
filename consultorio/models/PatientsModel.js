@@ -18,7 +18,7 @@ var patientSchema = new Schema({
 	phone : [String],
 	address : String,
 	notes : { detail: { type : String } , date: { type : Date , default : Date.now } },
-	balance : { type : "number" } 
+	balance : { type : "number", default : 0 }
 });
 
 module.exports = mongoose.model('PatientModel', patientSchema , 'Patient');
