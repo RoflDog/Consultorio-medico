@@ -1,0 +1,33 @@
+{
+	_id : ObjectId,
+	date : {type : Date , required : true},
+	duration : { type : Number , required : true},
+	service : String,
+	notes : [String],
+	treatmentId : ObjectId,
+	UserId : ObjectId,
+	DoctorId : ObjectId,
+	PatientId : ObjectId,
+	freeTime : String
+});
+
+[
+	{
+		date : new Date(2013, 0, 6, 15,0,0),
+		duration : 60,
+		service : "Limpieza de muelas",
+		notes : ["LLega 5 minutos tarde"],
+		UserId : 508de731934421e819000001,
+		DoctorId : 508de731934421e819000001,
+		PatientId : 50e4f16ffb950fcc0e000001
+	},
+	{
+		date : new Date(2013, 0, 6, 17,0,0),
+		duration : 30,
+		service : "Chequeo",
+		notes : ["Preparar maquina", "Blabla"],
+		UserId : 508de731934421e819000001,
+		DoctorId : 508de731934421e819000001,
+		PatientId : 50e4f16ffb950fcc0e000001
+	}	
+]
