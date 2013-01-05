@@ -64,17 +64,17 @@ form.form-horizontal(name="form")
         .control-group
             label.control-label(for="inputTel") Telefono
             .controls
-                .btn(ng-click="add()") Agregar
-                div(class="", ng-repeat="tel in tels")
+                //.btn(ng-click="add()") Agregar
+                //div(class="", ng-repeat="tel in tels")
                     button(type="button",class="btn btn-link", data-dismiss="alert",ng-click="remove(tel)")
                         &times;
                     input#phone.xlarge(type="tel", size="30", name="tel",ng-model='tel.format',required, ui-tel)
 
-                pre
+                //pre
                     |formUser.phone = {{formUser.phone | json}}
                     |tel = {{tels | json}}
 
-                //ul.unstyled
+                ul.unstyled
                     li
                         input#phone.xlarge(type="tel", size="30", name="tel",ng-model='formUser.phone',required, ui-tel)
 

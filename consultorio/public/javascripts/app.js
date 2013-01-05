@@ -33,6 +33,18 @@ var app=angular.module('Consultorio',['Consultorio.directives']).
             templateUrl:'/partials/modifyUser',
             controller:ModifyUserCtrl
         }).
+        when('/indexPayment',{
+            templateUrl:'/partials/indexPayment',
+            controller:IndexPaymentCrtl
+        }).
+        when('/addDebt',{
+            templateUrl:'/partials/addDebt',
+            controller:AddDebtCrtl
+        }).
+        when('/addPayment',{
+            templateUrl:'/partials/addPayment',
+            controller:AddPaymentCrtl
+        }).
         /*when('/pruebaCalendario',{
             templateUrl:'/partials/indexAppoint',
             controller:IndexAppointment
@@ -42,10 +54,11 @@ var app=angular.module('Consultorio',['Consultorio.directives']).
         });
 
     //$locationProvider.html5Mode(false).hashPrefix('#');
-}])
-.run(['$route',function($route){
-    $route.reload();
-}]).directive('uiValidateEquals', function() {
+    }])
+    .run(['$route',function($route){
+        $route.reload();
+    }])
+    .directive('uiValidateEquals', function() {
 
         return {
             restrict: 'A',
@@ -76,3 +89,15 @@ var app=angular.module('Consultorio',['Consultorio.directives']).
             }
         };
     });
+
+//function UserLoggedCtrl($scope,$http){
+//    $scope.login = "algo!";
+//    $http.get('/api/session').
+//        success(function(data,status,headers,config){
+//            $scope.login=data.username;
+//        })
+//        .fail(function(){
+//            $scope.login = "No jalo";
+//        });
+//}
+//UserLoggedCtrl.$inject = ['$scope'];

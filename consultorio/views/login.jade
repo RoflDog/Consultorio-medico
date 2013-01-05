@@ -14,27 +14,60 @@ html
         script(type="text/javascript",src='lib/bootstrap/js/bootstrap.min.js')
         script(type="text/javascript",src='lib/jquery/underscore.js')
         script(type="text/javascript",src='lib/jquery/less-1.3.0.min.js')
+
+        .row
+            .span9
+                .navbar.navbar-fixed-top.navbar-inverse#barra
+                    .brand Consultorio
+                    .navbar-inner
+                        .pull-right
+                        ul(class='nav pull-right')
+                            li.dropdown
+                                a(href="#", class="dropdown-toggle", data-toggle="dropdown") Usuario
+                                    b.caret
+                                ul.dropdown-menu
+                                    li
+                                        a(href="#/user/preferences")
+                                            i.icon-cog
+                                            | Preferencias
+                                    li
+                                        a(href="#/help/support")
+                                            i.icon-envelope
+                                            | Contactar soporte
+                                    li.divider
+                                    li
+                                        a(href="#/auth/logout")
+                                            i.icon-off
+                                            | Cerrar sesión
+
     body
-        .navbar.navbar-fixed-top.navbar-inverse#barra
-            .brand Consultorio
-            .navbar-inner
-        .row-fluid
+        p
+        br
+        p
+        br
+        p
+        br
+        .container-fluid
             - if (error)
                 .alert.alert-error
-                    button(type='button' , class='close' , data-dismiss='alert')
-                        strong ¡Error!
+                    button(type="button", class="close", data-dismiss="alert")
+                        &times;
+                    strong ¡Error!
                         |   Usuario o Contraseña Incorrectos
-        .container
-            form.form-horizontal( name='auth', method='post', action='/login')
-                legend Necesitas Iniciar Sesión
-                    .control-group
-                        label.control-label(for='username') Usuario
-                        .controls
-                            input(type='text' , name='username', id = 'username', placeholder='Nombre de Usuario' , data-ideal='required username')
-                    .control-group
-                        label.control-label(for='password') Contraseña
-                        .controls
-                            input(type='password' , name='password', id = 'password', placeholder='Contraseña' , data-ideal='required password')
-                    .control-group
-                        .controls
-                            input.btn.btn-primary(type='submit', value='Iniciar Sesión')
+
+            .row-fluid
+                form.form-horizontal( name='auth', method='POST', action='/login')
+                    fieldset
+                        legend
+                            |Inicia Sesión
+                        .control-group
+                            label.control-label(for='username') Usuario
+                            .controls
+                                input(type='text' , name='username', id = 'username', placeholder='Nombre de Usuario' , data-ideal='username', required)
+                        .control-group
+                            label.control-label(for='password') Contraseña
+                            .controls
+                                input(type='password' , name='password', id = 'password', placeholder='Contraseña' , data-ideal='required password')
+                        .control-group
+                            .controls
+                                input.btn.btn-primary(type='submit', value='Iniciar Sesión')

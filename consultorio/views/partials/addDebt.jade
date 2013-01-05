@@ -1,0 +1,45 @@
+//
+   User: Tovar
+   Date: 4/01/13
+   Time: 09:16 PM
+
+form.form-horizontal(name="form")
+    fieldset
+        legend Nuevo adeudo
+
+        .control-group
+            label.control-label(for="inputDetails") Detalles
+            .controls
+                input#detail.xlarge(type="text", size="30", name="details",ng-model='formDebt.details',required)
+
+        .control-group
+            label.control-label(for="inputPatient") Deudor
+            .controls
+                select(name="patient",ng-model='formDebt.patient',required)
+                    option(ng-repeat='patient in patients', value='{{patient._id}}') {{patient.firstname}} {{patient.lastname}}
+                //p.help-block Persona a deber
+
+        //pre
+            |{{formDebt.patient}}
+            |Fecha = {{dateNow | date:'dd/MM/yyyy'}}
+
+        .control-group
+            label.control-label(for="date") Fecha
+            .controls
+                input#date.xlarge(type="date", size="30", name="date",ng-model='formDebt.date', required)
+
+
+        .control-group
+            label.control-label(for="inputAmount") Monto
+            .controls
+                .input-prepend
+                    span.add-on
+                        |$
+                    input#amount.xlarge(type="number", size="30", name="amount",ng-model='formUser.amount',required)
+
+
+        .control-group
+            .controls
+                button(class="btn-success", ng-click='submitDebt()') Agregar
+//Para  ver estado de los datos
+//pre

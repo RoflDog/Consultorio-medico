@@ -1,0 +1,43 @@
+//
+   User: Tovar
+   Date: 5/01/13
+   Time: 01:27 AM
+form.form-horizontal(name="form")
+    fieldset
+        legend Nuevo pago
+
+        .control-group
+            label.control-label(for="inputDetails") Detalles
+            .controls
+                input#detail.xlarge(type="text", size="30", name="details",ng-model='formPayment.details',required)
+
+        .control-group
+            label.control-label(for="inputPatient") Deudor
+            .controls
+                select(name="patient",ng-model='formPayment.patient',required)
+                    option(ng-repeat='patient in patients', value='{{patient._id}}') {{patient.firstname}} {{patient.lastname}}
+
+        //pre
+            |{{formPayment.patient}}
+            |Fecha = {{dateNow | date:'dd/MM/yyyy'}}
+
+        .control-group
+            label.control-label(for="date") Fecha
+            .controls
+                input#date.xlarge(type="date", size="30", name="date",ng-model='formPayment.date', required)
+
+
+        .control-group
+            label.control-label(for="inputAmount") Monto
+            .controls
+                .input-prepend
+                    span.add-on
+                        |$
+                    input#amount.xlarge(type="number", size="30", name="amount",ng-model='formPayment.amount',required)
+
+
+        .control-group
+            .controls
+                button(class="btn-success", ng-click='submitPayment()') Agregar
+//Para  ver estado de los datos
+//pre

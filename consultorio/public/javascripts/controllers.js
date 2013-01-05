@@ -9,6 +9,68 @@ function IndexCtrl($scope,$http){
             $scope.patients=data.patients;
         });
 
+    $http.get('/api/session').
+        success(function(data,status,headers,config){
+            $scope.login=data.username;
+        });
+}
+
+function IndexPaymentCrtl($scope,$http,$location){
+
+    $scope.avanzada = "false";
+    $scope.simple = "true";
+
+    $scope.avanzadaFncn=function(){
+        $scope.avanzada = "true";
+        $scope.simple = "false";
+        $scope.query = "";
+
+    };
+
+    $scope.simpleFncn=function(){
+        $scope.avanzada = "false";
+        $scope.simple = "true";
+        $scope.query = "";
+    };
+}
+
+function AddDebtCrtl($scope,$http,$location){
+    $http.get('/api/patients').
+        success(function(data){
+            $scope.patients=data.patients;
+        });
+
+    $scope.dateNow = new Date();
+
+    $scope.submitDebt=function(){
+        if($scope.form.$valid){
+            $http.post('/api/debt',$scope.formDebt).
+                success(function(data){
+                    $location.path('/indexUser');
+                });
+        }
+    };
+}
+
+function AddPaymentCrtl($scope,$http,$location){
+    $http.get('/api/patients').
+        success(function(data){
+            $scope.patients=data.patients;
+        });
+
+    $scope.submitPayment=function(){
+        if($scope.form.$valid){
+            $http.post('/api/debt',$scope.formPayment).
+                success(function(data){
+                    $location.path('/indexUser');
+                });
+        }
+    };
+
+    $http.get('/api/session').
+        success(function(data,status,headers,config){
+            $scope.login=data.username;
+        });
 }
 
 function LoginCtrl($scope,$http){
@@ -58,11 +120,8 @@ function IndexUserCtrl($scope,$http,$location){
 }
 
 function AddUserCtrl($scope,$http,$location){
-//    $scope.formUser.phone = {num:'123'};
-//    $scope.formUser.phone.push({num:'456'});
     $scope.submitUser=function(){
         if($scope.form.$valid){
-            $scope.formUser.phone=$scope.tels;
             $http.post('/api/user',$scope.formUser).
                 success(function(data){
                     $location.path('/indexUser');
@@ -79,9 +138,9 @@ function AddUserCtrl($scope,$http,$location){
 
     $scope.remove=function(tel){
         $scope.tels.pop(tel);
-        if(!$scope.$$phase) { //this is used to prevent an overlap of scope digestion
-            $scope.$apply(); //this will kickstart angular to recognize the change
-        }
+//        if(!$scope.$$phase) { //this is used to prevent an overlap of scope digestion
+//            $scope.$apply(); //this will kickstart angular to recognize the change
+//        }
     };
 //    $scope.addContact = function() {
 //        $scope.form.phone.push({num:''});

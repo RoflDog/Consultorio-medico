@@ -1,0 +1,88 @@
+//
+   Created with JetBrains WebStorm.
+   User: Tovar
+   Date: 4/01/13
+   Time: 08:15 PM
+   To change this template use File | Settings | File Templates.
+
+.row-fluid
+    legend
+        h1 Pagos
+.row-fluid
+    .span2.offset7
+        a(class="btn-warning btn-large", href='#/addDebt')
+            i(class="icon-plus icon-white")
+            |&nbsp; Adeudo
+
+    .span2.offset1
+        a(class="btn-success btn-large", href='#/addPayment')
+            i(class="icon-plus icon-white")
+            |&nbsp; Pago
+
+
+//Busqueda simple
+.row
+    .input-prepend(ng-hide='avanzada')
+        span.add-on
+            i.icon-search
+        input(type="text",class="input-xlarge",ng-model="query", placeholder="Buscar" )
+
+//Busqueda avanzada
+.row
+    .input-prepend(ng-hide='simple')
+        span.add-on
+            i.icon-search
+        input(type="text",class="input-xlarge",ng-model="query.patient", placeholder="Paciente")
+.row
+    .input-prepend(ng-hide='simple')
+        span.add-on
+            i.icon-search
+        input(type="text",class="input-xlarge",ng-model="query.details", placeholder="Detalle")
+.row
+    .input-prepend(ng-hide='simple')
+        span.add-on
+            i.icon-search
+        input(type="text",class="input-xlarge",ng-model="query.date", placeholder="Fecha")
+
+    button(class="btn btn-info",ng-click='avanzadaFncn()',ng-hide='avanzada') B&#250;squeda avanzada
+    button(class="btn",ng-click='simpleFncn()',ng-hide='simple') B&#250;squeda simple
+
+
+
+br
+.row-fluid
+    table#tableUser(class="table table-striped", cellpaddin="0", cellspacing="0")
+        thead
+            th
+                strong Paciente
+            th
+                strong Detalle
+            th
+                strong Fecha
+            th
+                strong Monto
+            th
+                strong Total
+
+        tbody
+            tr(ng-repeat='debt in debts | filter:query')
+                td
+                    b {{debt.username}}
+                td
+                    ul.unstyled
+                        li(ng-repeat='rol in user.roles')
+                            |{{rol}}
+                td {{user.firstname}}
+                td {{user.lastname}}
+                td
+                    ul.unstyled
+                        li(ng-repeat='tel in user.phone')
+                            |{{tel}}
+                td {{user.email}}
+                td {{user.birthdate | date:'dd-MM-yyyy'}}
+                td
+                    a(class="btn btn-warning", href="#/modifyUser/{{user._id}}")
+                        i(class="icon-pencil icon-white")
+                td
+                    a(class="btn btn-danger",bs-popover="/partials/deleteUser",data-title="{{user.username}}",data-placement="left")
+                        i(class="icon-remove-circle icon-white")

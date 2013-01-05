@@ -20,8 +20,10 @@ html(ng-app="Consultorio")
     script(type="text/javascript",src='javascripts/filters.js')
     script(type="text/javascript",src='javascripts/directives.js')
 
+
+
     body(style='padding-top:50px;padding-left:50px')
-        div.row
+        .row
             .navbar.navbar-fixed-top.navbar-inverse#barra
                 .brand
                     a(href='#/index') Consultorio medico
@@ -38,32 +40,35 @@ html(ng-app="Consultorio")
                             a(href='#/pruebaCalendario') Citas
                         li.divider-vertical
                         li#Pagos
-                            a(href='#/u_u') Pagos
+                            a(href='#/indexPayment') Pagos
                     .pull-right
                         ul(class='nav pull-right')
+
                             li.dropdown
                                 a(href="#", class="dropdown-toggle", data-toggle="dropdown") Usuario
                                     b.caret
                                 ul.dropdown-menu
                                     li
-                                        a(href="/user/preferences")
+                                        a(href="#/user/preferences")
                                             i.icon-cog
                                             | Preferencias
                                     li
-                                        a(href="/help/support")
+                                        a(href="#/help/support")
                                             i.icon-envelope
                                             | Contactar soporte
                                     li.divider
                                     li
-                                        a(href="/auth/logout")
+                                        a(href="#/auth/logout")
                                             i.icon-off
                                             | Cerrar sesión
-
         div.container-fluid
-            div.row-fluid
-                block contenido
+            block contenido
 
 
     footer
-        block foot
-            p &copy; 2012 RoflDog Studios
+        .row-fluid
+            .span12
+                p
+                block foot
+                    pre
+                        p &copy; 2012 RoflDog Studios
