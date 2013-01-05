@@ -10,6 +10,7 @@ var express = require('express')
   , users = require('./routes/user.js')
   , patients = require('./routes/patient.js')
   , session = require('./routes/session.js')
+  , appointment = require("./routes/appointment")
   , http = require('http')
   , path = require('path')
   , mongoose = require ('mongoose')
@@ -63,6 +64,10 @@ app.delete('/api/patient/:id', patients.delete);
 //API for session
 app.get('/api/session', session.getSessionInformation);
 
+//API for appointments
+app.get('/api/appointment/searchFree/:doctorId/:date/:duration?', appointment.searchFree );
+app.get('/api/appointment/searchBusy/:doctorId/:date', appointment.searchBusy );
+
 
 //Provide login sessions
 passport.serializeUser(function (user, done){
@@ -115,6 +120,11 @@ app.get('/logout', function(req, res){
   res.redirect('/login?logout=true');
 });
 
+app.get('/api/test', function(req,res){
+	var test = require('./routes/test');
+	test.appointment(req,res);	
+});
+
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
 });
@@ -124,4 +134,4 @@ function ensureAuthenticated(req, res, next) {
     if (req.isAuthenticated()) { return next(); }
         res.redirect('/login')
 }
-	
+
