@@ -15,7 +15,6 @@ var paymentSchema = new Schema({
 	amount: Number,
 	patientId: ObjectId,
 	userId : ObjectId
-
 });
 
 module.exports = mongoose.model('PaymentModel', paymentSchema , 'Payment');

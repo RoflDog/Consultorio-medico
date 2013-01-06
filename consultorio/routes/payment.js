@@ -149,7 +149,7 @@ exports.getCharge = function(req,res){
 exports.getChargeByUser = function(req,res){
 	var id = req.params.id;
 	chargeModel.find({patientId : new ObjectId(id)} , function(err , charges){
-		if (!charges)
+		if (err || !charges)
 			res.json({
 				error : true,
 				message : "Patient Not Found"
