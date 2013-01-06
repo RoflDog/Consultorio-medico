@@ -65,9 +65,11 @@ app.delete('/api/patient/:id', patients.delete);
 
 //API for payments and charges
 app.post('/api/payments', payments.addPayment);
-app.get('/api/payments/:id',payments.getPayment);
+app.get('/api/payments/:id',payments.getPayment)
+app.get('/api/payments/byUser/:id',payments.getPaymentByUser);
 app.post('/api/charges', payments.addCharge);
-app.get('/api/charges/:id', payments.getCharge);
+app.get('/api/charges/:id',payments.getCharge);
+app.get('/api/charges/byUser/:id', payments.getChargeByUser);
 
 //API for session
 app.get('/api/session', session.getSessionInformation);
