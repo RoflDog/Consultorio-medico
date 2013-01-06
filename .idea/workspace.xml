@@ -2,19 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b76405ba-af08-498a-94db-aec776b6c2d7" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/consultorio/public/lib/bootstrap/img/Thumbs.db" afterPath="$PROJECT_DIR$/consultorio/public/lib/bootstrap/img/Thumbs.db" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/consultorio/public/javascripts/controllers.js" afterPath="$PROJECT_DIR$/consultorio/public/javascripts/controllers.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/consultorio/views/layout.jade" afterPath="$PROJECT_DIR$/consultorio/views/layout.jade" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/consultorio/views/partials/addDebt.jade" afterPath="$PROJECT_DIR$/consultorio/views/partials/addDebt.jade" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/consultorio/views/partials/addPayment.jade" afterPath="$PROJECT_DIR$/consultorio/views/partials/addPayment.jade" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/consultorio/views/partials/addUser.jade" afterPath="$PROJECT_DIR$/consultorio/views/partials/addUser.jade" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/consultorio/views/partials/detailAccount.jade" afterPath="$PROJECT_DIR$/consultorio/views/partials/detailAccount.jade" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/consultorio/views/partials/detailCharge.jade" afterPath="$PROJECT_DIR$/consultorio/views/partials/detailCharge.jade" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/consultorio/views/partials/index.jade" afterPath="$PROJECT_DIR$/consultorio/views/partials/index.jade" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/consultorio/views/partials/indexPatient.jade" afterPath="$PROJECT_DIR$/consultorio/views/partials/indexPatient.jade" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/consultorio/views/partials/indexAppointment.jade" afterPath="$PROJECT_DIR$/consultorio/views/partials/indexAppointment.jade" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/consultorio/views/partials/indexPayment.jade" afterPath="$PROJECT_DIR$/consultorio/views/partials/indexPayment.jade" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/consultorio/views/partials/indexUser.jade" afterPath="$PROJECT_DIR$/consultorio/views/partials/indexUser.jade" />
     </list>
     <ignored path="Consultorio-medico.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -34,19 +29,10 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="addUser.jade" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/consultorio/views/partials/addUser.jade">
+      <file leaf-file-name="addDebt.jade" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/consultorio/views/partials/addDebt.jade">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="110" column="46" selection-start="4904" selection-end="4904" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="indexUser.jade" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/consultorio/views/partials/indexUser.jade">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="85" column="24" selection-start="2497" selection-end="2497" vertical-scroll-proportion="0.3884007">
+            <state line="29" column="18" selection-start="1148" selection-end="1148" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -55,7 +41,16 @@
       <file leaf-file-name="detailAccount.jade" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/consultorio/views/partials/detailAccount.jade">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="46" column="47" selection-start="1786" selection-end="1797" vertical-scroll-proportion="0.0">
+            <state line="71" column="41" selection-start="3411" selection-end="3411" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="detailCharge.jade" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/consultorio/views/partials/detailCharge.jade">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="17" column="14" selection-start="286" selection-end="286" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -64,52 +59,43 @@
       <file leaf-file-name="layout.jade" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/consultorio/views/layout.jade">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="5" selection-start="124" selection-end="124" vertical-scroll-proportion="0.0">
+            <state line="22" column="51" selection-start="1275" selection-end="1275" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.jade" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/consultorio/views/partials/index.jade">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="0" selection-start="49" selection-end="49" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="bootstrapUbuntu.min.css" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/consultorio/public/lib/bootstrap/css/bootstrapUbuntu.min.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="0" selection-start="2592" selection-end="2592" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="indexAppoint.jade" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/consultorio/views/partials/indexAppoint.jade">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="indexPayment.jade" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="indexPayment.jade" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/consultorio/views/partials/indexPayment.jade">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="54" column="17" selection-start="1637" selection-end="1643" vertical-scroll-proportion="0.0">
+            <state line="9" column="16" selection-start="193" selection-end="193" vertical-scroll-proportion="0.2688928">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/consultorio/app.js">
+      <file leaf-file-name="AppointmentModel.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/consultorio/models/AppointmentModel.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="54" column="33" selection-start="1606" selection-end="1606" vertical-scroll-proportion="0.0">
+            <state line="14" column="11" selection-start="314" selection-end="321" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ChargeModel.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/consultorio/models/ChargeModel.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="16" column="10" selection-start="327" selection-end="333" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="controllers.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/consultorio/public/javascripts/controllers.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="31" column="26" selection-start="794" selection-end="794" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -128,22 +114,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/consultorio/public/stylesheets/tovar.css" />
         <option value="$PROJECT_DIR$/consultorio/public/javascripts/app.js" />
         <option value="$PROJECT_DIR$/consultorio/views/partials/detailPayment.jade" />
         <option value="$PROJECT_DIR$/consultorio/views/partials/modifyUser.jade" />
-        <option value="$PROJECT_DIR$/consultorio/views/partials/addDebt.jade" />
         <option value="$PROJECT_DIR$/consultorio/views/partials/addPayment.jade" />
+        <option value="$PROJECT_DIR$/consultorio/views/partials/addUser.jade" />
+        <option value="$PROJECT_DIR$/consultorio/views/partials/indexPatient.jade" />
+        <option value="$PROJECT_DIR$/consultorio/public/lib/bootstrap/css/bootstrapUbuntu.min.css" />
+        <option value="$PROJECT_DIR$/consultorio/views/partials/index.jade" />
+        <option value="$PROJECT_DIR$/consultorio/views/partials/indexUser.jade" />
+        <option value="$PROJECT_DIR$/consultorio/views/partials/indexAppointment.jade" />
+        <option value="$PROJECT_DIR$/consultorio/views/partials/addDebt.jade" />
         <option value="$PROJECT_DIR$/consultorio/public/javascripts/controllers.js" />
         <option value="$PROJECT_DIR$/consultorio/views/partials/detailCharge.jade" />
         <option value="$PROJECT_DIR$/consultorio/views/partials/detailAccount.jade" />
-        <option value="$PROJECT_DIR$/consultorio/views/partials/addUser.jade" />
-        <option value="$PROJECT_DIR$/consultorio/views/partials/indexPatient.jade" />
-        <option value="$PROJECT_DIR$/consultorio/views/partials/indexPayment.jade" />
-        <option value="$PROJECT_DIR$/consultorio/public/lib/bootstrap/css/bootstrapUbuntu.min.css" />
         <option value="$PROJECT_DIR$/consultorio/views/layout.jade" />
-        <option value="$PROJECT_DIR$/consultorio/views/partials/index.jade" />
-        <option value="$PROJECT_DIR$/consultorio/views/partials/indexUser.jade" />
+        <option value="$PROJECT_DIR$/consultorio/views/partials/indexPayment.jade" />
       </list>
     </option>
   </component>
@@ -266,7 +252,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="754" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32996634" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -340,76 +326,9 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/consultorio/views/partials/addDebt.jade">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="46" column="8" selection-start="1659" selection-end="1850" vertical-scroll-proportion="0.6492537">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/consultorio/models/ChargeModel.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="13" selection-start="374" selection-end="383" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/consultorio/views/partials/detailCharge.jade">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="22" selection-start="267" selection-end="267" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/consultorio/public/javascripts/controllers.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="26" selection-start="794" selection-end="794" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="n#!!block;n#AddDebtCrtl#0" expanded="false" />
-            <element signature="n#!!block;n#AddPaymentCrtl#0" expanded="false" />
-            <element signature="n#!!block;n#LoginCtrl#0" expanded="false" />
-            <element signature="n#!!block;n#IndexUserCtrl#0" expanded="false" />
-            <element signature="n#!!block;n#AddUserCtrl#0" expanded="false" />
-            <element signature="n#!!block;n#IndexPatient#0" expanded="false" />
-            <element signature="e#10756#10822#0" expanded="false" />
-            <element signature="e#11013#11151#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/consultorio/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="54" column="33" selection-start="1606" selection-end="1606" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/consultorio/public/stylesheets/tovar.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1519" column="0" selection-start="56" selection-end="34186" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/consultorio/views/partials/detailAccount.jade">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="46" column="47" selection-start="1786" selection-end="1797" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/consultorio/views/partials/addUser.jade">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="110" column="46" selection-start="4904" selection-end="4904" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/consultorio/views/partials/indexPatient.jade">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="30" selection-start="1568" selection-end="1568" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="48" column="30" selection-start="1568" selection-end="1568" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/consultorio/public/lib/bootstrap/css/bootstrapUbuntu.min.css">
@@ -419,44 +338,90 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/consultorio/views/index.jade">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/consultorio/views/partials/index.jade">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="0" selection-start="49" selection-end="49" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/consultorio/views/partials/indexUser.jade">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="85" column="24" selection-start="2497" selection-end="2497" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/consultorio/views/partials/indexAppoint.jade">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/consultorio/views/partials/indexAppointment.jade">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="43" column="2" selection-start="1328" selection-end="1328" vertical-scroll-proportion="-0.22302158" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/consultorio/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="77" column="26" selection-start="2390" selection-end="2402" vertical-scroll-proportion="0.03057554">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/consultorio/views/partials/indexPayment.jade">
+    <entry file="file://$PROJECT_DIR$/consultorio/views/partials/addDebt.jade">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="54" column="17" selection-start="1637" selection-end="1643" vertical-scroll-proportion="0.0">
+        <state line="29" column="18" selection-start="1148" selection-end="1148" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/consultorio/models/AppointmentModel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="11" selection-start="314" selection-end="321" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/consultorio/models/ChargeModel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="10" selection-start="327" selection-end="333" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/consultorio/public/javascripts/controllers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="31" column="26" selection-start="794" selection-end="794" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/consultorio/views/partials/detailAccount.jade">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="71" column="41" selection-start="3411" selection-end="3411" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/consultorio/views/partials/detailCharge.jade">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="14" selection-start="286" selection-end="286" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/consultorio/views/layout.jade">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="5" selection-start="124" selection-end="124" vertical-scroll-proportion="0.0">
+        <state line="22" column="51" selection-start="1275" selection-end="1275" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/consultorio/views/index.jade">
+    <entry file="file://$PROJECT_DIR$/consultorio/views/partials/indexPayment.jade">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/consultorio/views/partials/index.jade">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="0" selection-start="49" selection-end="49" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/consultorio/views/partials/indexUser.jade">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="85" column="24" selection-start="2497" selection-end="2497" vertical-scroll-proportion="0.3884007">
+        <state line="9" column="16" selection-start="193" selection-end="193" vertical-scroll-proportion="0.2688928">
           <folding />
         </state>
       </provider>

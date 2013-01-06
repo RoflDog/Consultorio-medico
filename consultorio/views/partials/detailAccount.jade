@@ -62,14 +62,14 @@
                                             i(class="icon-eye-open icon-white")
                                     td {{charge.detail}}
                                     td {{charge.date | date:'dd-MM-yyyy'}}
-                                    td $ {{charge.total}}
+                                    td + $ {{charge.total}}
                                 tr.success(ng-repeat='payment in payments')
                                     td
                                         a(class="btn btn-info",bs-popover="/partials/detailPayment",data-title="Detalle de pago",data-placement="right", ng-click="getPayment('r'+{{payment.firstname}})")
                                             i(class="icon-eye-open icon-white")
                                     td {{payment.detail}}
                                     td {{payment.date | date:'dd-MM-yyyy'}}
-                                    td $ {{payment.amount}}
+                                    td - $ {{payment.amount}}
 
                     .row-fluid
                         .span1
@@ -93,240 +93,6 @@ style
         text-decoration: none;
     }
 
-    /* Header */
-    #header {
-        height: 77px;
-        position: relative;
-        width: 100%;
-        z-index: -9;
-    }
-
-    #header h1 {
-        background: url("../img/logo.png") no-repeat scroll 0 0 transparent;
-        height: 31px;
-        left: 15px;
-        line-height: 600px;
-        overflow: hidden;
-        position: relative;
-        top: 24px;
-        width: 191px;
-    }
-
-    #header h1 a {
-        display: block;
-    }
-
-    /* Search input */
-    #search {
-        position: absolute;
-        z-index: 25;
-        top: 6px;
-        left: 230px;
-    }
-    #search input[type=text] {
-        border-radius: 4px 0 0 4px;
-        padding: 4px 10px 5px;
-        border: 0;
-        box-shadow: 2px 2px 3px rgba(0,0,0,0.7) inset, 0 1px 0 rgba(255,255,255,0.2);
-        width: 100px;
-    }
-
-    #search button {
-        border: 0;
-        margin-top: -11px;
-        padding: 5px 10px 4px;
-        border-radius: 0 4px 4px 0;
-        box-shadow: -2px 2px 3px rgba(0,0,0,0.7) inset, 0 1px 0 rgba(255,255,255,0.2);
-    }
-    #search button i {
-        opacity: 0.5;
-    }
-    #search button:hover i, #search button:active i {
-        opacity: 0.9;
-    }
-    /* Top user navigation */
-    #user-nav {
-        position: absolute;
-        right: 30px;
-        top: 5px;
-        z-index: 20;
-        margin: 0;
-    }
-    #user-nav > ul {
-        margin: 0;
-        padding: 0;
-        list-style: none;
-    }
-
-    #user-nav > ul > li {
-        float: left;
-        list-style-type: none;
-        margin: 0;
-        position: relative;
-        padding: 0;
-    }
-
-    #user-nav > ul > li > a {
-        padding: 5px 10px;
-        display: block;
-        font-size: 10px;
-    }
-
-    #user-nav > ul > li > a:hover, #user-nav > ul > li.open > a {
-        color: #ffffff;
-    }
-    #user-nav > ul > li > a > i, #sidebar li a i {
-        vertical-align: top;
-        background-image: url('../img/glyphicons-halflings-white.png');
-        opacity: .5;
-        margin-top: 2px;
-    }
-    #user-nav > ul > li > a:hover > i, #user-nav > ul > li.open > a > i {
-        opacity: 1;
-    }
-
-    #user-nav > ul > li > a > .label {
-        vertical-align: middle;
-        padding: 1px 4px 1px;
-        margin: -2px 4px 0;
-        display: inline-block;
-    }
-
-
-    #user-nav > ul ul > li > a {
-        text-align: left;
-        text-shadow: 0 1px 0 #ffffff;
-    }
-    #user-nav > ul ul > li > a:hover {
-        text-shadow: 0 1px 0 rgba(0,0,0,0.5);
-    }
-
-
-    /* Sidebar Navigation */
-    #sidebar {
-        display: block;
-        float: left;
-        position: relative;
-        width: 220px;
-        z-index: 16;
-    }
-
-    #sidebar > ul {
-        list-style: none;
-        margin: 10px 0 0;
-        padding: 0;
-        position: absolute;
-        width: 220px;
-    }
-    #sidebar > ul > li {
-        display: block;
-        position: relative;
-    }
-
-    #sidebar > ul > li.active {
-        box-shadow: 0 2px 4px rgba(0,0,0,0.2) inset;
-    }
-
-    #sidebar > ul > li > a {
-        padding: 10px 0 10px 15px;
-        display: block;
-        color: #AAAAAA;
-    }
-
-    #sidebar > ul > li > a > i {
-        margin-right: 10px;
-    }
-
-    #sidebar > ul > li.active > a {
-        background: url("../img/menu-active.png") no-repeat scroll right center transparent !important;
-    }
-
-    #sidebar > ul > li > a > .label {
-        margin: 0 20px 0 0;
-        float: right;
-        padding: 3px 5px 2px;
-        box-shadow: 0 1px 2px rgba(0,0,0,0.5) inset, 0 1px 0 rgba(255,255,255,0.2);
-    }
-
-    #sidebar > ul ul {
-        display: none;
-        margin: 0;
-        padding: 0;
-        box-shadow: 0 0 3px rgba(0,0,0,0.5) inset;
-    }
-    #sidebar > ul li.open ul {
-        display: block;
-    }
-    #sidebar > ul ul li a{
-        padding: 10px 0 10px 25px;
-        display: block;
-        color: #777777;
-    }
-
-    #sidebar > ul ul li:first-child a {
-        border-top: 0;
-    }
-    #sidebar > ul ul li:last-child a {
-        border-bottom: 0;
-    }
-
-
-
-    /* Content */
-    #content {
-        background: none repeat scroll 0 0 #eeeeee;
-        margin-left: 220px;
-        margin-right: 0;
-        padding-bottom: 25px;
-        position: relative;
-        min-height: 500px;
-        width: auto;
-
-        border-top-left-radius: 8px;
-    }
-
-    #content-header {
-        background-image: -webkit-gradient(linear, 0 0%, 0 100%, from(#FFFFFF), to(#EEEEEE));
-        background-image: -webkit-linear-gradient(top, #FFFFFF 0%, #EEEEEE 100%);
-        background-image: -moz-linear-gradient(top, #FFFFFF 0%, #EEEEEE 100%);
-        background-image: -ms-linear-gradient(top, #FFFFFF 0%, #EEEEEE 100%);
-        background-image: -o-linear-gradient(top, #FFFFFF 0%, #EEEEEE 100%);
-        background-image: linear-gradient(top, #FFFFFF 0%, #EEEEEE 100%);
-        border-top-left-radius: 8px;
-        height: 80px;
-        position: abslute;
-        width: 100%;
-        margin-top: -38px;
-        z-index: 20;
-        }
-
-        #content-header h1 {
-        color: #555555;
-        font-size: 28px;
-        font-weight: normal;
-        float: left;
-        text-shadow: 0 1px 0 #ffffff;
-        margin-left: 20px;
-        position: absolute;
-        }
-
-        #content-header .btn-group {
-        float: right;
-        right: 20px;
-        position: absolute;
-        }
-
-        #content-header h1, #content-header .btn-group {
-        margin-top: 20px;
-        }
-        #content-header .btn-group .btn {
-        padding: 11px 14px 9px;
-        }
-        #content-header .btn-group .btn .label {
-        position: absolute;
-        top: -7px;
-        }
-
         .container-fluid .row-fluid:first-child {
         margin-top: 20px;
         }
@@ -338,15 +104,7 @@ style
         border-bottom: 1px solid #d6d6d6;
         padding-left: 10px;
         }
-        #breadcrumb a {
-        padding: 8px 20px 8px 10px;
-        display: inline-block;
-        background-image: url('../img/breadcrumb.png');
-        background-position: center right;
-        background-repeat: no-repeat;
-        font-size: 11px;
-        color: #666666;
-    }
+
     #breadcrumb a:hover {
         color: #333333;
     }
@@ -401,283 +159,7 @@ style
         border-width: 1px;
         border-color: transparent;
     }
-    /* Footer */
-    #footer {
-        text-align: center;
-        color: #777777;
-    }
-    /* Stat boxes and quick actions */
-    .stat-boxes, .quick-actions, .quick-actions-horizontal, .stats-plain {
-        display: inline-block;
-        list-style: none outside none;
-        margin: 20px 0 10px;
-        text-align: center;
-    }
-    .stats-plain {
-        width: 100%;
-    }
-    .stat-boxes li, .quick-actions li, .quick-actions-horizontal li {
-        background-color: #F6F6F6;
-        background-image: -webkit-gradient(linear, 0 0%, 0 100%, from(#F9F9F9), to(#EDEDED));
-        background-image: -webkit-linear-gradient(top, #F9F9F9 0%, #EDEDED 100%);
-        background-image: -moz-linear-gradient(top, #F9F9F9 0%, #EDEDED 100%);
-        background-image: -ms-linear-gradient(top, #F9F9F9 0%, #EDEDED 100%);
-        background-image: -o-linear-gradient(top, #F9F9F9 0%, #EDEDED 100%);
-        background-image: linear-gradient(top, #F9F9F9 0%, #EDEDED 100%);
-        border: 1px solid #d5d5d5;
-        border-radius: 4px 4px 4px 4px;
-        box-shadow: 0 1px 0 0 #FFFFFF inset, 0 1px 0 rgba(255,255,255,0.4);
-        display: inline-block;
-        line-height: 18px;
-        margin: 0 10px 10px;
-        padding: 0 10px;
-        }
-        .quick-actions li {
-        min-width: 120px;
-        }
-        .quick-actions li, .quick-actions-horizontal li {
-        padding: 0;
-        }
-        .stats-plain li {
-        padding: 0 30px;
-        display: inline-block;
-        margin: 0 10px 20px;
-        }
-        .quick-actions li a {
-        padding: 10px 30px;
-        }
-        .stats-plain li h4 {
-        font-size: 40px;
-        margin-bottom: 15px;
-        }
-        .stats-plain li span {
-        font-size: 14px;
-        color: #555555;
-        }
-        .quick-actions-horizontal li a span {
-        padding: 10px 12px 10px 10px;
-        display: inline-block;
-        }
-        .quick-actions li a, .quick-actions-horizontal li a {
-        text-align: center !important;
-        display: block;
-        color: #666666;
-        text-shadow: 0 1px 0 #ffffff;
-        }
-        .quick-actions li a i[class^="icon-"], .quick-actions li a i[class*=" icon-"] {
-        background-repeat: no-repeat;
-        background-attachment: scroll;
-        background-position: 0 0;
-        background-color: transparent;
-        width: 32px;
-        height: 32px;
-        display: block;
-        margin: 0 auto 5px;
-        }
-        .quick-actions-horizontal li a i[class^="icon-"], .quick-actions-horizontal li a i[class*=" icon-"] {
-        background-repeat: no-repeat;
-        background-attachment: scroll;
-        background-position: center;
-        background-color: transparent;
-        width: 16px;
-        height: 16px;
-        display: inline-block;
-        margin: -2px 0 0 !important;
-        border-right: 1px solid #dddddd;
-        margin-right: 10px;
-        padding: 10px;
-        vertical-align: middle;
-        }
 
-        .quick-actions i.icon-book {
-        background-image: url('../img/icons/32/book.png');
-    }
-    .quick-actions i.icon-cabinet {
-        background-image: url('../img/icons/32/cabinet.png');
-    }
-    .quick-actions i.icon-calendar {
-        background-image: url('../img/icons/32/calendar.png');
-    }
-    .quick-actions i.icon-client {
-        background-image: url('../img/icons/32/client.png');
-    }
-    .quick-actions i.icon-database {
-        background-image: url('../img/icons/32/database.png');
-    }
-    .quick-actions i.icon-download {
-        background-image: url('../img/icons/32/download.png');
-    }
-    .quick-actions i.icon-graph {
-        background-image: url('../img/icons/32/graph.png');
-    }
-    .quick-actions i.icon-home {
-        background-image: url('../img/icons/32/home.png');
-    }
-    .quick-actions i.icon-lock {
-        background-image: url('../img/icons/32/lock.png');
-    }
-    .quick-actions i.icon-mail {
-        background-image: url('../img/icons/32/mail.png');
-    }
-    .quick-actions i.icon-pdf {
-        background-image: url('../img/icons/32/pdf.png');
-    }
-    .quick-actions i.icon-people {
-        background-image: url('../img/icons/32/people.png');
-    }
-    .quick-actions i.icon-piechart {
-        background-image: url('../img/icons/32/piechart.png');
-    }
-    .quick-actions i.icon-search {
-        background-image: url('../img/icons/32/search.png');
-    }
-    .quick-actions i.icon-shopping-bag {
-        background-image: url('../img/icons/32/shopping-bag.png');
-    }
-    .quick-actions i.icon-survey {
-        background-image: url('../img/icons/32/survey.png');
-    }
-    .quick-actions i.icon-tag {
-        background-image: url('../img/icons/32/tag.png');
-    }
-    .quick-actions i.icon-user {
-        background-image: url('../img/icons/32/user.png');
-    }
-    .quick-actions i.icon-wallet {
-        background-image: url('../img/icons/32/wallet.png');
-    }
-    .quick-actions i.icon-web {
-        background-image: url('../img/icons/32/web.png');
-    }
-
-    .quick-actions-horizontal i.icon-book {
-        background-image: url('../img/icons/16/book.png');
-    }
-    .quick-actions-horizontal i.icon-cabinet {
-        background-image: url('../img/icons/16/cabinet.png');
-    }
-    .quick-actions-horizontal i.icon-calendar {
-        background-image: url('../img/icons/16/calendar.png');
-    }
-    .quick-actions-horizontal i.icon-client {
-        background-image: url('../img/icons/16/client.png');
-    }
-    .quick-actions-horizontal i.icon-database {
-        background-image: url('../img/icons/16/database.png');
-    }
-    .quick-actions-horizontal i.icon-download {
-        background-image: url('../img/icons/16/download.png');
-    }
-    .quick-actions-horizontal i.icon-graph {
-        background-image: url('../img/icons/16/graph.png');
-    }
-    .quick-actions-horizontal i.icon-home {
-        background-image: url('../img/icons/16/home.png');
-    }
-    .quick-actions-horizontal i.icon-lock {
-        background-image: url('../img/icons/16/lock.png');
-    }
-    .quick-actions-horizontal i.icon-mail {
-        background-image: url('../img/icons/16/mail.png');
-    }
-    .quick-actions-horizontal i.icon-pdf {
-        background-image: url('../img/icons/16/pdf.png');
-    }
-    .quick-actions-horizontal i.icon-people {
-        background-image: url('../img/icons/16/people.png');
-    }
-    .quick-actions-horizontal i.icon-piechart {
-        background-image: url('../img/icons/16/piechart.png');
-    }
-    .quick-actions-horizontal i.icon-search {
-        background-image: url('../img/icons/16/search.png');
-    }
-    .quick-actions-horizontal i.icon-shopping-bag {
-        background-image: url('../img/icons/16/shopping-bag.png');
-    }
-    .quick-actions-horizontal i.icon-survey {
-        background-image: url('../img/icons/16/survey.png');
-    }
-    .quick-actions-horizontal i.icon-tag {
-        background-image: url('../img/icons/16/tag.png');
-    }
-    .quick-actions-horizontal i.icon-user {
-        background-image: url('../img/icons/16/user.png');
-    }
-    .quick-actions-horizontal i.icon-wallet {
-        background-image: url('../img/icons/16/wallet.png');
-    }
-    .quick-actions-horizontal i.icon-web {
-        background-image: url('../img/icons/16/web.png');
-    }
-
-    .stat-boxes li:hover, .quick-actions li:hover, .quick-actions-horizontal li:hover  {
-        background-color: #fcfcfc;
-        background-image: -webkit-gradient(linear, 0 0%, 0 100%, from(#FCFCFC), to(#F1F1F1));
-        background-image: -webkit-linear-gradient(top, #FCFCFC 0%, #F1F1F1 100%);
-        background-image: -moz-linear-gradient(top, #FCFCFC 0%, #F1F1F1 100%);
-        background-image: -ms-linear-gradient(top, #FCFCFC 0%, #F1F1F1 100%);
-        background-image: -o-linear-gradient(top, #FCFCFC 0%, #F1F1F1 100%);
-        background-image: linear-gradient(top, #FCFCFC 0%, #F1F1F1 100%);
-        }
-        .quick-actions li:active, .quick-actions-horizontal li:active  {
-        background-image: -webkit-gradient(linear, 0 0%, 0 100%, from(#EEEEEE), to(#F4F4F4));
-        background-image: -webkit-linear-gradient(top, #EEEEEE 0%, #F4F4F4 100%);
-        background-image: -moz-linear-gradient(top, #EEEEEE 0%, #F4F4F4 100%);
-        background-image: -ms-linear-gradient(top, #EEEEEE 0%, #F4F4F4 100%);
-        background-image: -o-linear-gradient(top, #EEEEEE 0%, #F4F4F4 100%);
-        background-image: linear-gradient(top, #EEEEEE 0%, #F4F4F4 100%);
-        box-shadow: 0 1px 4px 0 rgba(0,0,0,0.2) inset, 0 1px 0 rgba(255,255,255,0.4);
-        }
-
-
-        .stat-boxes .left, .stat-boxes .right {
-        text-shadow: 0 1px 0 #ffffff;
-        float: left;
-        }
-        .stat-boxes .left {
-        border-right: 1px solid #DCDCDC;
-        box-shadow: 1px 0 0 0 #FFFFFF;
-        margin-right: 12px;
-        padding: 10px 14px 6px 4px;
-        font-size: 10px;
-        font-weight: bold;
-        }
-
-        .stat-boxes .right {
-        font-size: 12px;
-        padding: 9px 10px 7px 0;
-        text-align: center;
-        width: 70px;
-        color: #666666;
-        }
-        .stat-boxes .left span, .stat-boxes .right strong {
-        display: block;
-        }
-        .stat-boxes .right strong {
-        font-size: 26px;
-        margin-bottom: 3px;
-        margin-top: 6px;
-        }
-        .stat-boxes .peity_bar_good, .stat-boxes .peity_line_good  {
-        color: #459D1C;
-        }
-        .stat-boxes .peity_bar_neutral, .stat-boxes .peity_line_neutral  {
-        color: #757575;
-        }
-        .stat-boxes .peity_bar_bad, .stat-boxes .peity_line_bad  {
-        color: #BA1E20;
-        }
-
-        .stats-plain {
-
-        }
-
-        /* Charts & graphs **/
-        .chart, .pie, .bars {
-        height: 300px;
-        max-width: 100%;
-        }
         #tooltip {
         position: absolute;
         display:none;
@@ -723,7 +205,6 @@ style
         background-image: -moz-linear-gradient(top, #fdfdfd 0%, #eaeaea 100%);
         background-image: -ms-linear-gradient(top, #fdfdfd 0%, #eaeaea 100%);
         background-image: -o-linear-gradient(top, #fdfdfd 0%, #eaeaea 100%);
-        background-image: -linear-gradient(top, #fdfdfd 0%, #eaeaea 100%);
         filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fdfdfd', endColorstr='#eaeaea',GradientType=0 ); /* IE6-9 */
         border-bottom: 1px solid #CDCDCD;
         height: 36px;
@@ -1332,8 +813,7 @@ style
         opacity: 1;
     }
     .line {
-        background: url("../img/line.png") repeat-x scroll 0 0 transparent;
-        display: block;
+       display: block;
         height: 8px;
     }
     .modal {
@@ -1446,35 +926,8 @@ style
             margin-right: 0;
             left: 30%;
         }
-        #sidebar {
-            float: none;
-            width: 100% !important;
-        }
-        #sidebar > a {
-            padding: 7px 20px 7px 15px;
-            box-shadow: 0 1px 0 #666666;
-            margin-bottom: 1px;
-            display: block !important;
-            text-transform: uppercase;
-            color: #eeeeee;
-            font-size: 10px;
-        }
-        #sidebar > a > i {
-            margin-right: 10px;
-            background-image: url('../img/glyphicons-halflings-white.png');
-        }
-        #sidebar > ul {
-            display: none;
-            margin: -2px 0 0 !important;
-            width: 100% !important;
-            box-shadow: 0 6px 6px rgba(0,0,0,0.4);
-        }
-        #sidebar > ul > li.active > a {
-            background: none !important;
-        }
-        #sidebar > ul > li > a > span {
-            display: inline !important;
-        }
+
+
         .widget-title .buttons > .btn {
             width: 11px;
             white-space: nowrap;

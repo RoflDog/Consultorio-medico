@@ -62,6 +62,13 @@ function AddDebtCrtl($scope,$http,$location){
     $http.get('/api/patients').
         success(function(data){
             $scope.patients=data.patients;
+
+        });
+
+    $http.get('/api/appointments').
+        success(function(data){
+            $scope.appointments=data.appointments;
+
         });
 
     $http.get('/api/session').
@@ -75,7 +82,6 @@ function AddDebtCrtl($scope,$http,$location){
 
     $scope.submitDebt=function(){
         if($scope.form.$valid){
-            $scope.formDebt.itemId=$scope.formDebt.userId;
             if($scope.formDebt.total>0){
                 $http.post('/api/charges',$scope.formDebt).
                     success(function(data){
@@ -334,6 +340,18 @@ function DetailAccountCrtl($scope,$http,$location,$routeParams){
                         for(var j=0;j<$scope.userstmp.length;j++){
                             if($scope.charges[i].userId.localeCompare($scope.userstmp[j]._id)==0){
                                 $scope.charges[i].username = $scope.userstmp[j].username;
+                                break;
+                            }
+                        }
+                    }
+                });
+            $http.get('/api/appointments').
+                success(function(data1){
+                    $scope.appointmentstmp=data1.appointments;
+                    for(var i=0;i<$scope.charges.length;i++){
+                        for(var j=0;j<$scope.appointmentstmp.length;j++){
+                            if($scope.charges[i].itemId.localeCompare($scope.appointmentstmp[j]._id)==0){
+                                $scope.charges[i].itemService = $scope.appointmentstmp[j].service;
                                 break;
                             }
                         }

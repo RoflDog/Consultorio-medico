@@ -25,8 +25,9 @@ form.form-horizontal(name="form")
         .control-group
             label.control-label(for="date") Concepto de cobro:
             .controls
-                input#itemId.xlarge(type="text", size="30", name="date",ng-model='formDebt.itemId', required)
-                p.help-block
+                select#itemId(name="itemId",ng-model='formDebt.itemId', required)
+                    option(ng-repeat='appointment in appointments', value='{{appointment._id}}') {{appointment.service}}
+                //p.help-block
                     |Lo que sea, de mientras que esta el modulo de citas
 
 
