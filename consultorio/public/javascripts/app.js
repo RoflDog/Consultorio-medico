@@ -49,6 +49,18 @@ var app=angular.module('Consultorio',['Consultorio.directives']).
             templateUrl:'/partials/detailAccount',
             controller:DetailAccountCrtl
         }).
+        when('/indexAppointment',{
+            templateUrl:'/partials/indexAppointment',
+            controller:IndexAppointmentCtrl
+        }).
+        when('/addAppointment',{
+            templateUrl:'partials/addAppointment',
+            controller:AddAppointmentCtrl
+        }).
+        when('/modifyAppointment/:_id',{
+            templateUrl:'/partials/modifyAppointment',
+            controller:ModifyAppointmentCtrl
+        }).
 //        when('/detailPayment/:_id',{
 //            templateUrl:'/partials/detailPayment/:_id',
 //            controller:DetailPaymentCrtl

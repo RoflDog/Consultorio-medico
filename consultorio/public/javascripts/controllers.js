@@ -357,6 +357,217 @@ function DetailAccountCrtl($scope,$http,$location,$routeParams){
     }
 }
 
+function IndexAppointmentCtrl($scope,$http,$filter){
+
+    $scope.avanzada = "false";
+    $scope.simple = "true";
+
+    $scope.avanzadaFncn=function(){
+        $scope.avanzada = "true";
+        $scope.simple = "false";
+        $scope.query.patient="";
+        $scope.query.doctor="";
+        $scope.query.service="";
+
+    };
+
+    $scope.simpleFncn=function(){
+        $scope.avanzada = "false";
+        $scope.simple = "true";
+        $scope.query.patient="";
+        $scope.query.doctor="";
+        $scope.query.service="";
+    };
+
+    /*$scope.isDoctor="false"
+
+     $http.get('/api/session').
+     success(function(data,status,headers,config){
+     $scope.type=data.role.toString();
+     if($scope.type.localeCompare("doctor")==0){
+     $scope.isDoctor="false" //por ahora no incluiremos tratamientos (isDoctor=false)
+     }
+     });*/
+
+    $scope.appointments="";
+    $scope.doctors={};
+
+    $http.get('/api/appointments').
+        success(function(data){
+            //var filtroFecha=$filter('filter');
+            //var dateNow=new Date().toISOString();
+            $scope.appointments=data.appointments;
+            //$scope.appointments=filtroFecha($scope.appointments,dateNow);
+            $http.get('/api/users').
+                success(function(data1){
+                    $scope.users=data1.users;
+                    $http.get('/api/patients').
+                        success(function(data){
+                            $scope.patients=data.patients;
+                            for(var j=0;j<$scope.appointments.length;j++){
+                                for(var i=0;i<$scope.users.length;i++){
+                                    if($scope.appointments[j].DoctorId.localeCompare($scope.users[i]._id)==0){
+                                        /*$scope.appointments[j].firstnameDoc=$scope.users[i].firstname;
+                                         $scope.appointments[j].lastnameDoc=$scope.users[i].lastname;*/
+                                        $scope.appointments[j].nameDoc=$scope.users[i].firstname+" "+$scope.users[i].lastname;
+                                        break;
+                                    }
+                                }
+                            }
+
+                            for(var j=0;j<$scope.appointments.length;j++){
+                                for(var i=0;i<$scope.patients.length;i++){
+                                    if($scope.appointments[j].PatientId.localeCompare($scope.patients[i]._id)==0){
+                                        /*$scope.appointments[j].firstnamePat=$scope.patients[i].firstname;
+                                         $scope.appointments[j].lastnamePat=$scope.patients[i].lastname;*/
+                                        $scope.appointments[j].namePat=$scope.patients[i].firstname+" "+$scope.patients[i].lastname;
+                                        break;
+                                    }
+                                }
+
+                            }
+
+                        });
+
+                });
+        });
+
+    $scope.deleteAppoint=function(id){
+        $http.delete('/api/appointment/'+id).
+            success(function(){
+                $location.path('/indexAppointment');
+            });
+        $http.get('/api/appointments').
+            success(function(data){
+                //var filtroFecha=$filter('filter');
+                //var dateNow=new Date().toISOString();
+                $scope.appointments=data.appointments;
+                //$scope.appointments=filtroFecha($scope.appointments,dateNow);
+                $http.get('/api/users').
+                    success(function(data1){
+                        $scope.users=data1.users;
+                        $http.get('/api/patients').
+                            success(function(data){
+                                $scope.patients=data.patients;
+                                for(var j=0;j<$scope.appointments.length;j++){
+                                    for(var i=0;i<$scope.users.length;i++){
+                                        if($scope.appointments[j].DoctorId.localeCompare($scope.users[i]._id)==0){
+                                            /*$scope.appointments[j].firstnameDoc=$scope.users[i].firstname;
+                                             $scope.appointments[j].lastnameDoc=$scope.users[i].lastname;*/
+                                            $scope.appointments[j].nameDoc=$scope.users[i].firstname+" "+$scope.users[i].lastname;
+                                            break;
+                                        }
+                                    }
+                                }
+
+                                for(var j=0;j<$scope.appointments.length;j++){
+                                    for(var i=0;i<$scope.patients.length;i++){
+                                        if($scope.appointments[j].PatientId.localeCompare($scope.patients[i]._id)==0){
+                                            /*$scope.appointments[j].firstnamePat=$scope.patients[i].firstname;
+                                             $scope.appointments[j].lastnamePat=$scope.patients[i].lastname;*/
+                                            $scope.appointments[j].namePat=$scope.patients[i].firstname+" "+$scope.patients[i].lastname;
+                                            break;
+                                        }
+                                    }
+
+                                }
+
+                            });
+
+                    });
+            });
+        if(!$scope.$$phase) { //this is used to prevent an overlap of scope digestion
+            $scope.$apply(); //this will kickstart angular to recognize the change
+        }
+
+    };
+}
+
+function AddAppointmentCtrl($scope,$http,$location,$filter){
+    var filtroDoctor = $filter('filter');
+    $http.get('/api/users').
+        success(function(data,status,headers,config){
+            $scope.users=data.users;
+            /*for(var i=0;i<$scope.users.length;i++){
+                if($scope.users[i].roles)
+            }*/
+            $scope.doctors=filtroDoctor($scope.users,'Doctor');
+        });
+
+    $http.get('/api/patients').
+        success(function(data){
+            $scope.patients=data.patients;
+        });
+
+    $scope.form={};
+
+
+    /*    var id=$scope.form.DoctorId || 0;
+     var dateUsed=new Date($scope.form.date).toISOString() || "";*/
+
+
+    $scope.obtainFree=function(id,date){
+        var dateUsed=new Date(date).toISOString();
+        $http.get('/api/appointment/searchFree/'+id+'/'+dateUsed).
+            success(function(data,status,headers,config){
+                $scope.fechasBien =  _.map(data , function(item){
+                    return new Date(item)
+                });
+            })
+    }
+
+    ///api/appointment/searchFree/508de731934421e819000001/2013-01-06T06%3A00%3A00.000Z
+
+    $scope.submitAppoint=function(){
+        $http.post('/api/appointment',$scope.form).
+            success(function(){
+                $location.path('/indexAppointment');
+            });
+    };
+
+}
+
+function ModifyAppointmentCtrl($scope,$http,$location,$routeParams,$filter){
+
+    var filtroDoctor = $filter('filter');
+    $http.get('/api/users').
+        success(function(data,status,headers,config){
+            $scope.users=data.users;
+            /*for(var i=0;i<$scope.users.length;i++){
+             if($scope.users[i].roles)
+             }*/
+            $scope.doctors=filtroDoctor($scope.users,'Doctor');
+        });
+
+    $http.get('/api/patients').
+        success(function(data){
+            $scope.patients=data.patients;
+        });
+
+    $scope.form={};
+
+    $http.get('/api/appointment/'+$routeParams._id).
+        success(function(data){
+            $scope.form=data.appointment;
+            $http.get('/api/user/'+$scope.form.DoctorId).
+                success(function(data){
+                    $scope.user=data.user;
+                    $http.get('/api/patient/'+$scope.form.PatientId).
+                        success(function(data){
+                            $scope.patient=data.patient;
+                            $scope.form.nameDoc=$scope.user.firstname+" "+$scope.user.lastname;
+                            $scope.form.namePat=$scope.patient.firstname+" "+$scope.patient.lastname;
+                        })
+                })
+        });
+
+    $scope.modifyAppoint=function(data){
+        $http.put('/api/appointment/'+$routeParams._id,$scope.form).
+            success(function(){
+                $location.path('/indexAppointment');
+            });
+    };
+}
 //function DetailPaymentCrtl($scope,$http,$location,$routeParams){
 //
 //    $http.get('/api/payments/'+$routeParams._id).
