@@ -52,6 +52,22 @@ exports.addPayment = function(req,res){
 
 exports.getPayment = function(req,res){
 	var id = req.params.id;
+	paymentModel.find({_id : new ObjectId(id)} , function(err , payment){
+		if (!payment)
+			res.json({
+				error : true,
+				message : "Payment Not Found"
+			});
+		else{
+			res.json({
+				payment : payment
+			})
+		}
+	});
+};
+
+exports.getPaymentByUser = function(req,res){
+	var id = req.params.id;
 	paymentModel.find({patientId : new ObjectId(id)} , function(err , payments){
 		if (!payments)
 			res.json({
@@ -109,6 +125,22 @@ exports.addCharge = function(req,res){
 };
 
 exports.getCharge = function(req,res){
+	var id = req.params.id;
+	chargeModel.findOne({_id : new ObjectId(id)} , function(err , charge){
+		if (!charge)
+			res.json({
+				error : true,
+				message : "Charge Not Found"
+			});
+		else{
+			res.json({
+				charge : charge
+			})
+		}
+	});
+};
+
+exports.getChargeByUser = function(req,res){
 	var id = req.params.id;
 	chargeModel.find({patientId : new ObjectId(id)} , function(err , charges){
 		if (!charges)
