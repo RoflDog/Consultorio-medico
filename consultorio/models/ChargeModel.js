@@ -11,7 +11,7 @@ var mongoose = require('mongoose')
 var chargeSchema = new Schema({
 	_id : ObjectId,
 	detail : String,
-	date : Date,
+	date : { type : Date, default: Date.now},
 	total : Number,
 	userId : { type: ObjectId , required : true},
 	itemId : { type: ObjectId , required : true},
