@@ -13,24 +13,27 @@ var userModel = require('../models/UsersModel'),
 
 
 exports.list = function(req, res){
-	userModel.find({},function(err, rawUsers){
-    	var users = [];
-    	var blackList = ['password' , 'salt'];
-    	_.each(rawUsers , function(user){
-    		var currentUser = user.toObject();
-    		var role = req.query["role"];
-    		if(role){
-	    		if (_.contains(currentUser.roles, role))
-	    			users.push(_.omit(currentUser, blackList));
+	query = userModel.find({});
+	if (req.query)
+		_.each(req.query , function (value, key){
+			query.where(key).equals(value);
+		});
+	query.exec(function(err, rawUsers){
+		if (!err){
+	    	var blackList = ['password' , 'salt'];
+	    	var users = [];
+	    	_.each(rawUsers,function(currentUser){
+	    		users.push(_.omit(currentUser, blackList));
+	    	}); 	
+	        res.json({
+	        	users : users
+	        });
+        }else{
+    		res.json({
+    			success : false,
+  				message : "Couldn't retrieve user's list"
+    		});
     		}
-    		else {
-    			users.push(_.omit(currentUser, blackList));
-    		}	
-    	}); 
-    	
-        res.json({
-        	users : users
-        });
     });
 };
 

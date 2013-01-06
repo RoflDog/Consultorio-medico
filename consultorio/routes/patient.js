@@ -11,7 +11,12 @@ var patientModel = require('../models/PatientsModel'),
 
 
 exports.list = function(req, res){
-    patientModel.find({},function(err, patients){
+	query = patientModel.find({});
+	if (req.query)
+		_.each(req.query , function (value, key){
+			query.where(key).equals(value);
+		});
+    query.exec(function(err, patients){
         res.json({
         	patients : patients
         });

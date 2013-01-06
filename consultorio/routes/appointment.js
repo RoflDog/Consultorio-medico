@@ -26,7 +26,12 @@ exports.searchBusy = function(req,res){
 
 
 exports.list = function(req, res){
-    Appointment.model.find({},function(err, apps){
+	query = Appointment.model.find({});
+	if (req.query)
+		_.each(req.query , function (value, key){
+			query.where(key).equals(value);
+		});
+    query.exec(function(err, apps){
         res.json({
         	appointments : apps
         });
