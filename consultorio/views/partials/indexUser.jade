@@ -81,6 +81,10 @@ br
             th
                 strong Apellido
             th
+                strong Hora de entrada
+            th
+                strong Hora de salida
+            th
                 strong Telefono
             th
                 strong Email
@@ -96,11 +100,16 @@ br
                             |{{rol}}
                 td {{user.firstname}}
                 td {{user.lastname}}
+                td {{user.schedule.start}}
+                td {{user.schedule.end}}
                 td
                     ul.unstyled
                         li(ng-repeat='tel in user.phone')
                             |{{tel}}
-                td {{user.email}}
+                td
+                    ul.unstyled
+                        li(ng-repeat='email in user.email')
+                            |{{email}}
                 td {{user.birthdate | date:'dd-MM-yyyy'}}
                 td
                     a(class="btn btn-warning", href="#/modifyUser/{{user._id}}")

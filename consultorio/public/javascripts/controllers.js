@@ -15,7 +15,7 @@ function IndexCtrl($scope,$http){
         });
 }
 
-function IndexPaymentCrtl($scope,$http,$location){
+function IndexPaymentCrtl($scope,$http){
 
     $scope.avanzada = "false";
     $scope.simple = "true";
@@ -26,12 +26,18 @@ function IndexPaymentCrtl($scope,$http,$location){
         $scope.query = "";
 
     };
-
     $scope.simpleFncn=function(){
         $scope.avanzada = "false";
         $scope.simple = "true";
         $scope.query = "";
     };
+
+
+    $http.get('/api/patients').
+        success(function(data){
+            $scope.patients=data.patients;
+        });
+
 }
 
 function AddDebtCrtl($scope,$http,$location){
@@ -40,13 +46,19 @@ function AddDebtCrtl($scope,$http,$location){
             $scope.patients=data.patients;
         });
 
-    $scope.dateNow = new Date();
+    $http.get('/api/session').
+        success(function(data,status,headers,config){
+            $scope.userId=data._id;
+        });
+
+    //$scope.dateNow = new Date();
 
     $scope.submitDebt=function(){
         if($scope.form.$valid){
-            $http.post('/api/debt',$scope.formDebt).
+            $scope.formDebt.userId=$scope.userId;
+            $http.post('/api/charges',$scope.formDebt).
                 success(function(data){
-                    $location.path('/indexUser');
+                    $location.path('/indexPayment');
                 });
         }
     };
@@ -60,16 +72,17 @@ function AddPaymentCrtl($scope,$http,$location){
 
     $scope.submitPayment=function(){
         if($scope.form.$valid){
-            $http.post('/api/debt',$scope.formPayment).
+            $scope.formPayment.userId=$scope.userId;
+            $http.post('/api/payments',$scope.formPayment).
                 success(function(data){
-                    $location.path('/indexUser');
+                    $location.path('/indexPayment');
                 });
         }
     };
 
     $http.get('/api/session').
         success(function(data,status,headers,config){
-            $scope.login=data.username;
+            $scope.userId=data._id;
         });
 }
 
@@ -122,12 +135,25 @@ function IndexUserCtrl($scope,$http,$location){
 function AddUserCtrl($scope,$http,$location){
     $scope.submitUser=function(){
         if($scope.form.$valid){
-            $http.post('/api/user',$scope.formUser).
-                success(function(data){
-                    $location.path('/indexUser');
-                });
+            if($scope.formUser.schedule.start<24 & $scope.formUser.schedule.start>=0){
+                if($scope.formUser.schedule.end<24 & $scope.formUser.schedule.end>=0){
+                    if($scope.formUser.schedule.end>$scope.formUser.schedule.start){
+                        $http.post('/api/user',$scope.formUser).
+                            success(function(data){
+                                $location.path('/indexUser');
+                            });
+                    }else{
+                        $scope.relStartEnd = 'true';
+                    }
+                }else{
+                    $scope.end = 'true';
+                }
+            }else{
+                    $scope.start = 'true';
+                }
+            }
+
         }
-     };
 
     $scope.tels = [];
 
@@ -145,6 +171,7 @@ function AddUserCtrl($scope,$http,$location){
 //    $scope.addContact = function() {
 //        $scope.form.phone.push({num:''});
 //    };
+
 }
 
 function IndexPatient($scope,$http,$location){
@@ -222,10 +249,22 @@ function ModifyUserCtrl($scope,$http,$location,$routeParams){
 
     $scope.modifyUser=function(data){
         if($scope.form.$valid){
-            $http.put('/api/user/'+$routeParams._id,$scope.formUser).
-                success(function(){
-                    $location.path('/indexUser');
-                });
+            if($scope.formUser.schedule.start<24 & $scope.formUser.schedule.start>=0){
+                if($scope.formUser.schedule.end<24 & $scope.formUser.schedule.end>=0){
+                    if($scope.formUser.schedule.end>$scope.formUser.schedule.start){
+                        $http.put('/api/user/'+$routeParams._id,$scope.formUser).
+                            success(function(){
+                                $location.path('/indexUser');
+                            });
+                    }else{
+                        $scope.relStartEnd = 'true';
+                    }
+                }else{
+                    $scope.end = 'true';
+                }
+            }else{
+                $scope.start = 'true';
+            }
         }
     };
 
@@ -237,8 +276,60 @@ function ModifyUserCtrl($scope,$http,$location,$routeParams){
     };
 }
 
+function DetailAccountCrtl($scope,$http,$location,$routeParams){
+
+    $http.get('/api/payments/byUser/'+$routeParams._id).
+        success(function(data){
+            $scope.payments=data.payments;
+            $http.get('/api/users/').
+                success(function(data1){
+                    $scope.userstmp=data1.users;
+                    for(var i=0;i<$scope.payments.length;i++){
+                        for(var j=0;j<$scope.userstmp.length;j++){
+                            if($scope.payments[i].userId.localeCompare($scope.userstmp[j]._id)==0){
+                                $scope.payments[i].username = $scope.userstmp[j].username;
+                                break;
+                            }
+                        }
+                    }
+                });
+        });
+
+
+    $http.get('/api/charges/byUser/'+$routeParams._id).
+        success(function(data){
+            $scope.charges=data.charges;
+        });
+
+    $http.get('/api/patient/'+$routeParams._id).
+        success(function(data){
+            $scope.patient=data.patient;
+        });
+
+    $scope.date = new Date();
+
+    $scope.getPayment = function(id){
+//        $http.get('/api/payments/byUser/'+$routeParams._id).
+//            success(function(data){
+//                $scope.payments=data.payments;
+//            });
+        console.log("ID: "+id);
+    }
+}
+
+//function DetailPaymentCrtl($scope,$http,$location,$routeParams){
+//
+//    $http.get('/api/payments/'+$routeParams._id).
+//        success(function(data){
+//            $scope.payments=data.payments;
+//        });
+//
+//
+//    $scope.date = new Date();
+//}
 /*function IndexAppointment($scope,$http){
     $http.get('cita.json').success(function(data){
         $scope.appointment=data;
     });
 }*/
+

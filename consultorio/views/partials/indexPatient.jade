@@ -67,8 +67,14 @@ br
             tr
                 td {{patient.firstname}}
                 td {{patient.lastname}}
-                td {{patient.phone}}
-                td {{patient.email}}
+                td
+                    ul.unstyled
+                        li(ng-repeat='tel in patient.phone')
+                            |{{tel}}
+                td
+                    ul.unstyled
+                        li(ng-repeat='email in patient.email')
+                            |{{email}}
                 td {{patient.birthdate}}
                 td
                     a(class="btn btn-warning", href="#/modifyPatient/{{patient._id}}")

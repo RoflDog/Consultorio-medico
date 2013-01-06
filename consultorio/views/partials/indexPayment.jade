@@ -51,38 +51,25 @@
 
 br
 .row-fluid
-    table#tableUser(class="table table-striped", cellpaddin="0", cellspacing="0")
+    table#tableUser(class="table table-hover", cellpaddin="0", cellspacing="0")
         thead
             th
                 strong Paciente
             th
-                strong Detalle
-            th
-                strong Fecha
-            th
-                strong Monto
-            th
-                strong Total
+                strong Balance
+            //th
+                strong Detalles
+
+
 
         tbody
-            tr(ng-repeat='debt in debts | filter:query')
+            tr(ng-repeat='patient in patients | filter:query')
                 td
-                    b {{debt.username}}
+                    b {{patient.firstname}} {{patient.lastname}}
+
                 td
-                    ul.unstyled
-                        li(ng-repeat='rol in user.roles')
-                            |{{rol}}
-                td {{user.firstname}}
-                td {{user.lastname}}
+                    |$ {{patient.balance}}
                 td
-                    ul.unstyled
-                        li(ng-repeat='tel in user.phone')
-                            |{{tel}}
-                td {{user.email}}
-                td {{user.birthdate | date:'dd-MM-yyyy'}}
-                td
-                    a(class="btn btn-warning", href="#/modifyUser/{{user._id}}")
-                        i(class="icon-pencil icon-white")
-                td
-                    a(class="btn btn-danger",bs-popover="/partials/deleteUser",data-title="{{user.username}}",data-placement="left")
-                        i(class="icon-remove-circle icon-white")
+                    a(class="btn btn-info", href="#/detailAccount/{{patient._id}}")
+                        i(class="icon-eye-open icon-white")
+

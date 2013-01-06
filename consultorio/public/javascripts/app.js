@@ -45,6 +45,14 @@ var app=angular.module('Consultorio',['Consultorio.directives']).
             templateUrl:'/partials/addPayment',
             controller:AddPaymentCrtl
         }).
+        when('/detailAccount/:_id',{
+            templateUrl:'/partials/detailAccount',
+            controller:DetailAccountCrtl
+        }).
+//        when('/detailPayment/:_id',{
+//            templateUrl:'/partials/detailPayment/:_id',
+//            controller:DetailPaymentCrtl
+//        }).
         /*when('/pruebaCalendario',{
             templateUrl:'/partials/indexAppoint',
             controller:IndexAppointment

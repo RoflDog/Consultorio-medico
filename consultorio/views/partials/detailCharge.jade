@@ -1,0 +1,21 @@
+//
+   User: Tovar
+   Date: 6/01/13
+   Time: 03:26 AM
+p
+    b Detalle:&nbsp;
+    |{{charge.detail}}
+p
+    b Fecha:&nbsp;
+    |{{charge.date | date:'dd-MM-yyyy'}}
+p
+    b Cantidad:&nbsp;
+    |$ {{charge.total}}
+p
+    b Usuario que registró:&nbsp;
+    |{{charge.patientId}}
+//
+//pre
+//    |{{payment}}
+
+button.close(ng-click="dismiss()") &times;

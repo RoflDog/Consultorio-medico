@@ -1,0 +1,21 @@
+//
+   User: Tovar
+   Date: 6/01/13
+   Time: 03:26 AM
+p
+    b Detalle:&nbsp;
+    |{{payment.detail}}
+p
+    b Fecha:&nbsp;
+    |{{payment.date | date:'dd-MM-yyyy'}}
+p
+    b Cantidad:&nbsp;
+    |$ {{payment.amount}}
+p
+    b Usuario que registró:&nbsp;
+    |{{payment.username}}
+//
+//pre
+//    |{{payment}}
+
+button.close(ng-click="dismiss()") &times;

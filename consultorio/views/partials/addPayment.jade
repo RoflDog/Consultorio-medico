@@ -9,12 +9,12 @@ form.form-horizontal(name="form")
         .control-group
             label.control-label(for="inputDetails") Detalles
             .controls
-                input#detail.xlarge(type="text", size="30", name="details",ng-model='formPayment.details',required)
+                input#detail.xlarge(type="text", size="30", name="details",ng-model='formPayment.detail',required)
 
         .control-group
             label.control-label(for="inputPatient") Deudor
             .controls
-                select(name="patient",ng-model='formPayment.patient',required)
+                select(name="patient",ng-model='formPayment.patientId',required)
                     option(ng-repeat='patient in patients', value='{{patient._id}}') {{patient.firstname}} {{patient.lastname}}
 
         //pre

@@ -21,7 +21,7 @@ form.form-horizontal(name="form")
                     input(type="radio", name="roles", id="doctor", value="doctor", ng-model='formUser.roles')
                     |&nbsp;Doctor
                 label
-                    input(type="radio", name="roles", id="admin", value="admin", ng-model='formUser.roles')
+                    input(type="radio", name="roles", id="admin", value="administrator", ng-model='formUser.roles')
                     |&nbsp;Administrador
                 p.help-block Ocupación en el consultorio
 
@@ -90,6 +90,34 @@ form.form-horizontal(name="form")
                         i.icon-envelope
                     input#email.xlarge(type="email", size="30", name="email",ng-model='formUser.email',required)
 
+
+        .control-group
+            label.control-label(for="inputMail") Hora de entrada
+            .controls
+                input#start.xlarge(type="number", size="30", name="start",ng-model='formUser.schedule.start',required)
+                p.help-block Número desde 0 a 23 (Horas)
+
+        div(class="alert alert-error", ng-show='start')
+            button(type="button", class="close", data-dismiss="alert")
+                &times;
+            |Por favor ingresa un número desde 0 a 23
+
+        .control-group
+            label.control-label(for="inputMail") Hora de salida
+            .controls
+                input#end.xlarge(type="number", size="30", name="end",ng-model='formUser.schedule.end',required)
+                p.help-block Número desde 0 a 23 (Horas)
+
+        div(class="alert alert-error", ng-show='end')
+            button(type="button", class="close", data-dismiss="alert")
+                &times;
+            |Por favor ingresa un número desde 0 a 23
+
+        div(class="alert alert-error", ng-show='relStartEnd')
+            button(type="button", class="close", data-dismiss="alert")
+                &times;
+            |La hora de salida debe ser mayor que la de entrada
+
         .control-group
             .controls
                 button(class="btn-success", ng-click='submitUser()') Agregar
@@ -97,7 +125,8 @@ form.form-horizontal(name="form")
                 button(class="btn-warning",onclick="location.href='#/indexUser'") Cancelar
 //Para  ver estado de los datos
 //pre
-//    |form = {{formUser | json}}
+    |form = {{formUser | json}}
+    |{{formUser.schedule.start | date:'H'}}
 //    |Invalido? = {{form.$invalid}}
 
 

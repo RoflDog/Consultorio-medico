@@ -1,0 +1,81 @@
+//
+   User: Tovar
+   Date: 6/01/13
+   Time: 12:01 AM
+//pre
+    |Cargos = {{charges}}
+    |Pagos = {{payments}}
+    |Paciente = {{patient}}
+
+.row-fluid
+    .span12
+        .widget-box
+            .widget-title
+                span.icon
+                    i.icon-th-list
+                h5 Detalles
+                .buttons
+                    //a.btn.btn-mini
+                        i.icon-shopping-cart
+                    a.btn.btn-mini
+                        i.icon-print
+            .widget-content
+                .invoice-content
+                    .invoice-head
+                        .invoice-meta
+                            |Desgloce de cuenta
+                            span.invoice-date
+                                |Fecha: {{date | date:'dd-MM-yyyy'}}
+                        .invoice-to
+                            ul
+                                li
+                                    span
+                                        strong Paciente:&nbsp;
+                                        | {{patient.firstname}} {{patient.lastname}}
+                                    span Fecha de nacimiento: {{patient.birthdate | date:'dd-MM-yyyy'}}
+                                    span Telefonos:
+                                        ul.unstyled
+                                            li(ng-repeat='tel in patient.phone')
+                                                |{{tel}}
+                                    span Emails:
+                                        ul.unstyled
+                                            li(ng-repeat='email in patient.email')
+                                                |{{email}}
+                                    span Direccion: {{patient.address}}
+
+                    div
+                        table.table.table-hover
+                            thead
+                                tr
+                                    th &nbsp;
+                                    th Detalle
+                                    th Fecha
+                                    th Monto
+                            tfoot
+                                tr
+                                    th.total-label(colspan="3") Balance:
+                                    th.total-amount $ {{patient.balance}}
+                            tbody
+                                tr.error(ng-repeat='charge in charges')
+                                    td
+                                        a(class="btn btn-info", bs-popover="/partials/detailCharge",data-title="Detalle de deuda",data-placement="right")
+                                            i(class="icon-eye-open icon-white")
+                                    td {{charge.detail}}
+                                    td {{charge.date | date:'dd-MM-yyyy'}}
+                                    td $ {{charge.total}}
+                                tr.success(ng-repeat='payment in payments')
+                                    td
+                                        a(class="btn btn-info",bs-popover="/partials/detailPayment",data-title="Detalle de pago",data-placement="right", ng-click="getPayment('r'+{{payment.firstname}})")
+                                            i(class="icon-eye-open icon-white")
+                                    td {{payment.detail}}
+                                    td {{payment.date | date:'dd-MM-yyyy'}}
+                                    td $ {{payment.amount}}
+
+                    .row-fluid
+                        .span1
+                            table.table
+                                tr.error
+                                    td Cargos
+                                tr.success
+                                    td Abonos
+
