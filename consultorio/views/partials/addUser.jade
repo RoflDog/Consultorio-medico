@@ -121,13 +121,7 @@ form.form-horizontal(name="form")
         .control-group
             .controls
                 button(class="btn-success", ng-click='submitUser()') Agregar
-                //,ng-disabled="form.$invalid || isUnchanged(formUser)"
                 button(class="btn-warning",onclick="location.href='#/indexUser'") Cancelar
-//Para  ver estado de los datos
-//pre
-    |form = {{formUser | json}}
-    |{{formUser.schedule.start | date:'H'}}
-//    |Invalido? = {{form.$invalid}}
 
 
 style(type="text/css")
@@ -138,20 +132,3 @@ style(type="text/css")
     .form-horizontal input.ng-valid.ng-dirty {
         background-color: #a3c9fa;
     }
-
-    /*li.ui-cosa {*/
-        /*transition: all 0.5s ease;*/
-        /*-o-transition: all 0.5s ease;*/
-        /*-moz-transition: all 0.5s ease;*/
-        /*-webkit-transition: all 0.5s ease;*/
-        /*background: lightblue;*/
-        /*max-height: 50px; *//* 1000px works too */
-        /*overflow: hidden;*/
-        /*padding: 5px;*/
-        /*}*/
-        /* The 'hidden' state to transition from & to */
-    /*li.ui-animate {*/
-        /*opacity: 0;*/
-        /*max-height: 0;*/
-        /*padding: 0 5px;*/
-    /*}*/

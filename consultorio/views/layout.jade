@@ -2,11 +2,13 @@ doctype 5
 html(ng-app="Consultorio")
   head
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(rel="icon", type="image/gif", href="/stylesheets/krankenwagen.gif")
+    link(rel="shortcut icon", href="/stylesheets/favicon.ico")
     title Consultorio Medico
     link(rel='stylesheet', href='/lib/bootstrap/css/bootstrap.css')
     link(rel='stylesheet', href='/lib/bootstrap/css/bootstrap-responsive.css')
     link(rel='stylesheet/less',href='/stylesheets/app.less')
-    link(rel='stylesheet/less',href='/stylesheets/tovar.css')
+    link(rel='stylesheet',href='/lib/bootstrap/css/bootstrapUbuntu.min.css')
     script(type="text/javascript",src='/lib/jquery/jquery.js')
     //Seguir investigando por que no funciona...
     script(type="text/javascript",src='/lib/validate.js')
@@ -20,13 +22,14 @@ html(ng-app="Consultorio")
     script(type="text/javascript",src='javascripts/services.js')
     script(type="text/javascript",src='javascripts/filters.js')
     script(type="text/javascript",src='javascripts/directives.js')
-
+    block head
 
 
     body(style='padding-top:50px;padding-left:50px')
         .row
             .navbar.navbar-fixed-top.navbar-inverse#barra
                 .brand
+                    |&nbsp;&nbsp;
                     a(href='#/index') Consultorio medico
                 .navbar-inner
                     ul.nav

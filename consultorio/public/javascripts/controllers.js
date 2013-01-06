@@ -36,8 +36,26 @@ function IndexPaymentCrtl($scope,$http){
     $http.get('/api/patients').
         success(function(data){
             $scope.patients=data.patients;
+            $scope.showFlag=false;
+            for(var i=0;i<$scope.patients.length;i++){
+                $scope.patients[i].show=true;
+                if($scope.patients[i].balance<0){
+                    $scope.patients[i].style ="success";
+                    $scope.patients[i].balance *= -1;
+                }else{
+                    $scope.patients[i].style ="error";
+                }
+            }
         });
 
+    $scope.show=function(){
+        for(var i=0;i<$scope.patients.length;i++){
+            if($scope.patients[i].style=="success"){
+                $scope.patients[i].show=!$scope.showFlag;
+            }
+
+        }
+    }
 }
 
 function AddDebtCrtl($scope,$http,$location){
@@ -48,18 +66,24 @@ function AddDebtCrtl($scope,$http,$location){
 
     $http.get('/api/session').
         success(function(data,status,headers,config){
-            $scope.userId=data._id;
+            //$scope.userId=data._id;
+            $scope.formDebt = {};
+            $scope.formDebt.userId=data._id;
         });
 
     //$scope.dateNow = new Date();
 
     $scope.submitDebt=function(){
         if($scope.form.$valid){
-            $scope.formDebt.userId=$scope.userId;
-            $http.post('/api/charges',$scope.formDebt).
-                success(function(data){
-                    $location.path('/indexPayment');
-                });
+            $scope.formDebt.itemId=$scope.formDebt.userId;
+            if($scope.formDebt.total>0){
+                $http.post('/api/charges',$scope.formDebt).
+                    success(function(data){
+                        $location.path('/indexPayment');
+                    });
+            }else{
+                $scope.upZero = 'true';
+            }
         }
     };
 }
@@ -73,10 +97,14 @@ function AddPaymentCrtl($scope,$http,$location){
     $scope.submitPayment=function(){
         if($scope.form.$valid){
             $scope.formPayment.userId=$scope.userId;
-            $http.post('/api/payments',$scope.formPayment).
+            if($scope.formPayment.amount>0){
+                $http.post('/api/payments',$scope.formPayment).
                 success(function(data){
                     $location.path('/indexPayment');
                 });
+            }else{
+                $scope.upZero = 'true';
+            }
         }
     };
 
@@ -299,6 +327,18 @@ function DetailAccountCrtl($scope,$http,$location,$routeParams){
     $http.get('/api/charges/byUser/'+$routeParams._id).
         success(function(data){
             $scope.charges=data.charges;
+            $http.get('/api/users/').
+                success(function(data1){
+                    $scope.userstmp=data1.users;
+                    for(var i=0;i<$scope.charges.length;i++){
+                        for(var j=0;j<$scope.userstmp.length;j++){
+                            if($scope.charges[i].userId.localeCompare($scope.userstmp[j]._id)==0){
+                                $scope.charges[i].username = $scope.userstmp[j].username;
+                                break;
+                            }
+                        }
+                    }
+                });
         });
 
     $http.get('/api/patient/'+$routeParams._id).

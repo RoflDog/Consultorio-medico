@@ -10,12 +10,12 @@ form.form-horizontal(name="form")
         .control-group
             label.control-label(for="inputDetails") Detalles
             .controls
-                input#detail.xlarge(type="text", size="30", name="details",ng-model='formDebt.detail',required)
+                input#details.xlarge(type="text", size="30", name="details",ng-model='formDebt.detail',required)
 
         .control-group
             label.control-label(for="inputPatient") Deudor
             .controls
-                select(name="patient",ng-model='formDebt.patientId',required)
+                select#patientId(name="patient",ng-model='formDebt.patientId',required)
                     option(ng-repeat='patient in patients', value='{{patient._id}}') {{patient.firstname}} {{patient.lastname}}
                 //p.help-block Persona a deber
 
@@ -25,7 +25,9 @@ form.form-horizontal(name="form")
         .control-group
             label.control-label(for="date") Concepto de cobro:
             .controls
-                input#date.xlarge(type="text", size="30", name="date",ng-model='formDebt.itemId', required)
+                input#itemId.xlarge(type="text", size="30", name="date",ng-model='formDebt.itemId', required)
+                p.help-block
+                    |Lo que sea, de mientras que esta el modulo de citas
 
 
         .control-group
@@ -42,12 +44,16 @@ form.form-horizontal(name="form")
                         |$
                     input#total.xlarge(type="number", size="30", name="total",ng-model='formDebt.total',required)
 
+        div(class="alert alert-error", ng-show='upZero')
+            button(type="button", class="close", data-dismiss="alert")
+                &times;
+            |El monto debe de ser mayor a cero.
+
 
         .control-group
             .controls
                 button(class="btn-success", ng-click='submitDebt()') Agregar
 //Para  ver estado de los datos
-pre
-    |Formulario = {{formDebt}}
+//pre
+    |Formulario = {{formDebt | json}}
     |valido? = {{form.$valid}}
-    |UserId = {{userId}}

@@ -45,9 +45,18 @@
         input(type="text",class="input-xlarge",ng-model="query.date", placeholder="Fecha")
 
     button(class="btn btn-info",ng-click='avanzadaFncn()',ng-hide='avanzada') B&#250;squeda avanzada
-    button(class="btn",ng-click='simpleFncn()',ng-hide='simple') B&#250;squeda simple
+    button(class="btn btn-info",ng-click='simpleFncn()',ng-hide='simple') B&#250;squeda simple
 
 
+    .control-group
+        .controls
+            label
+                input(type="checkbox", ng-model="showFlag", ng-click="show()", name="radios")
+                |&nbsp;Mostrar solo pacientes con adeudo
+
+//.row
+    pre
+        |{{showFlag}}
 
 br
 .row-fluid
@@ -63,7 +72,7 @@ br
 
 
         tbody
-            tr(ng-repeat='patient in patients | filter:query')
+            tr(ng-repeat='patient in patients | filter:query', class='{{patient.style}}', ng-show="patient.show")
                 td
                     b {{patient.firstname}} {{patient.lastname}}
 
@@ -73,3 +82,12 @@ br
                     a(class="btn btn-info", href="#/detailAccount/{{patient._id}}")
                         i(class="icon-eye-open icon-white")
 
+.row-fluid
+    .span3
+        table.table
+            tr.error
+                td Paciente con adeudo
+            tr.success
+                td Pacienteal corriente
+//pre
+    |{{patients | json}}
