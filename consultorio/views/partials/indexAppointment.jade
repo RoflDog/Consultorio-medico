@@ -1,0 +1,78 @@
+//
+   Created with JetBrains WebStorm.
+   User: Alex64
+   Date: 5/01/13
+   Time: 01:50 PM
+   To change this template use File | Settings | File Templates.
+
+.row-fluid
+    legend
+        h1 Citas
+.row-fluid
+    .span2.offset7
+        a(class="btn-success btn-large",href="#/addAppointment")
+            i(class="icon-plus icon-white")
+            |&nbsp; Nueva Cita
+
+//Busqueda simple
+//.row
+    .input-prepend(ng-hide='avanzada')
+        span.add-on
+            i.icon-search
+        input(type="text",class="input-xlarge",ng-model='query', placeholder="Buscar")
+
+//Busqueda avanzada
+.row
+    .input-prepend(ng-hide='simple')
+        span.add-on
+            i.icon-search
+        input(type="text",class="input-xlarge",ng-model="query.namePat", placeholder="Paciente")
+.row
+    .input-prepend(ng-hide='simple')
+        span.add-on
+            i.icon-search
+        input(type="text",class="input-xlarge",ng-model="query.nameDoc", placeholder="Doctor")
+.row
+    .input-prepend(ng-hide='simple')
+        span.add-on
+            i.icon-search
+        input(type="text",class="input-xlarge",ng-model="query.service", placeholder="Servicio")
+
+    button(class="btn btn-info",ng-click='avanzadaFncn()',ng-hide='avanzada') B&#250;squeda avanzada
+    button(class="btn",ng-click='simpleFncn()',ng-hide='simple') B&#250;squeda simple
+
+br
+input#datePicker(type="date",ng-model='query.date')
+br
+.row-fluid
+   table#tableAppoint(class="table table-hover",cellpaddin="0",cellspacing="0")
+    thead
+        th
+            strong Paciente
+        th
+            strong Doctor
+        th
+            string Servicio
+        th
+            string Fecha
+        th
+            string Hora
+        th
+            string Nota
+    tbody
+        tr(ng-repeat='app in appointments|filter:query')
+            td {{app.namePat}}
+            td {{app.nameDoc}}
+            td {{app.service}}
+            td {{app.date}}
+            td Hora
+            td {{app.notes}}
+            //td(data-ng-show="isDoctor")
+                a(class="btn btn-success",href="#/recipe")
+                    i()
+            td
+                a(class="btn btn-warning", href="#/modifyAppointment/{{app._id}}")
+                    i(class="icon-pencil icon-white")
+            td
+                a(class="btn btn-danger",bs-popover="/partials/deleteAppointment",data-placement="left")
+                    i(class="icon-remove-circle icon-white")

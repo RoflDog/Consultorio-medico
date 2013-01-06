@@ -1,0 +1,55 @@
+//
+   Created with JetBrains WebStorm.
+   User: Alex64
+   Date: 5/01/13
+   Time: 04:14 PM
+   To change this template use File | Settings | File Templates.
+
+form.form-horizontal(name="form")
+    fieldset
+        legend Nueva cita
+        .control-group
+            label.control-label(for="inputDoctor") Doctor
+            .controls
+                select(name="appointDoctor",ng-model='form.DoctorId',required)
+                    option(ng-repeat='doctor in doctors', value='{{doctor._id}}') {{doctor.firstname}} {{doctor.lastname}}
+        .control-group
+            label.control-label(for="inputPatient") Paciente
+            .controls
+                select(name="appointPatient",ng-model='form.PatientId',required)
+                    option(ng-repeat='patient in patients',selected="selected", value='{{patient._id}}') {{patient.firstname}} {{patient.lastname}}
+
+        .control-group
+            label.control-label(for="inputDate") Fecha
+            .controls
+                input#date.xlarge(type="date", size="30", name="appointDate",ng-model='form.date', required)
+        .control-group
+            label.control-label(for="inputHour") Hora
+            .controls
+                select(ng-click='obtainFree(form.DoctorId,form.date)',name="appointHours",ng-model='form.freeTime',required)
+                    option(ng-repeat='fe in fechasBien', value='{{free}}') {{fe}}
+        .control-group
+            label.control-label(for="inputService") Servicio
+            .controls
+                input#service.xlarge(type="text",size="30",name="appointService",ng-model='form.service',required)
+        .control-group
+            label.control-label(for="inputNote") Nota
+            .controls
+                input#service.xlarge(height="100",type="text",size="50",name="appointNote",ng-model='form.notes')
+        .control-group
+            .controls
+                button(class="btn-success", ng-click='submitAppoint()') Agregar
+                button(class="btn-warning",onclick="location.href='#/indexAppointment'") Cancelar
+//Para  ver estado de los datos
+//pre
+
+
+
+style(type="text/css")
+    .form-horizontal input.ng-invalid.ng-dirty {
+        background-color: #FA787E;
+    }
+
+    .form-horizontal input.ng-valid.ng-dirty {
+        background-color: #a3c9fa;
+    }
