@@ -13,40 +13,40 @@ form.form-horizontal(name="form")
             .controls
                 label {{form.nameDoc}}
             .controls
-                select(name="appointDoctor",ng-model='form.DoctorId')
+                select(name="appointDoctor",ng-model='form2.DoctorId')
                     option(ng-repeat='doctor in doctors', value='{{doctor._id}}') {{doctor.firstname}} {{doctor.lastname}}
         .control-group
             label.control-label(for="inputPatient") Paciente
             .controls
                 label {{form.namePat}}
             .controls
-                select(name="appointPatient",ng-model='form.PatientId',required)
+                select(name="appointPatient",ng-model='form2.PatientId')
                     option(ng-repeat='patient in patients',selected="selected", value='{{patient._id}}') {{patient.firstname}} {{patient.lastname}}
         .control-group
             label.control-label(for="inputDate") Fecha
             .controls
                 label {{form.date}}
             .controls
-                input#date.xlarge(type="date", size="30", name="appointDate",ng-model='form.date', required)
+                input#date.xlarge(type="date", size="30", name="appointDate",ng-model='form2.date')
         .control-group
             label.control-label(for="inputHour") Hora
             .controls
                 //label {{form.freeTime}}
             .controls
-                select(ng-click='obtainFree(form.DoctorId,form.date)',name="appointHours",ng-model='form.freeTime',required)
+                select(ng-click='obtainFree(form.DoctorId,form.date)',name="appointHours",ng-model='form2.freeTime')
                     option(ng-repeat='fe in fechasBien', value='{{free}}') {{fe}}
         .control-group
             label.control-label(for="inputService") Servicio
             .controls
                 label {{form.service}}
             .controls
-                input#service.xlarge(type="text",size="30",name="appointService",ng-model='form.service',required)
+                input#service.xlarge(type="text",size="30",name="appointService",ng-model='form2.service')
         .control-group
             label.control-label(for="inputNote") Nota
             .controls
-                label {{form.note}}
+                label {{form.notes}}
             .controls
-                input#service.xlarge(height="100",type="text",size="50",name="appointNote",ng-model='form.note')
+                input#service.xlarge(height="100",type="text",size="50",name="appointNote",ng-model='form2.notes')
         .control-group
             .controls
                 button(class="btn-success", ng-click='modifyAppoint()') Agregar

@@ -507,8 +507,8 @@ function AddAppointmentCtrl($scope,$http,$location,$filter){
         success(function(data,status,headers,config){
             $scope.users=data.users;
             /*for(var i=0;i<$scope.users.length;i++){
-                if($scope.users[i].roles)
-            }*/
+             if($scope.users[i].roles)
+             }*/
             $scope.doctors=filtroDoctor($scope.users,'Doctor');
         });
 
@@ -518,7 +518,7 @@ function AddAppointmentCtrl($scope,$http,$location,$filter){
         });
 
     $scope.form={};
-
+    //$scope.horaM="";
 
     /*    var id=$scope.form.DoctorId || 0;
      var dateUsed=new Date($scope.form.date).toISOString() || "";*/
@@ -526,17 +526,48 @@ function AddAppointmentCtrl($scope,$http,$location,$filter){
 
     $scope.obtainFree=function(id,date){
         var dateUsed=new Date(date).toISOString();
-        $http.get('/api/appointment/searchFree/'+id+'/'+dateUsed).
+        $http.get('/api/appointment/searchFree/'+id+'/'+escape(dateUsed)).
             success(function(data,status,headers,config){
-                $scope.fechasBien =  _.map(data , function(item){
-                    return new Date(item)
+                $scope.horas =  _.map(data , function(item){
+                    return new Date(item);
                 });
+                /* $scope.horas= _.map($scope.fechasBien,function(item){
+                 var hora="";
+                 hora=item.getHours().toString()+":"+item.getMinutes().toString();
+                 return hora;
+                 });*/
+                /*$scope.minutos= _.map($scope.fechasBien,function(item){
+                 return item.getMinutes();
+                 });
+                 $*/
             })
     }
 
     ///api/appointment/searchFree/508de731934421e819000001/2013-01-06T06%3A00%3A00.000Z
 
     $scope.submitAppoint=function(){
+        $scope.hora="";
+        $scope.minute="";
+        alert("algo");
+        for(var i=0;i<$scope.form.horaM.length;i++){
+            if($scope.form.horaM[i]=='T'){
+                for(var j=0;j<2;j++){
+                    i++;
+                    $scope.hora=$scope.hora+$scope.form.horaM[i];
+                }
+                for(var j=0;j<2;j++){
+                    i++;
+                    $scope.minute=$scope.minute+$scope.form.horaM[i];
+                }
+                break;
+            }
+        }
+        $scope.minute=$scope.minute+"0";
+        $scope.algo=new Date($scope.form.date);
+        var fechaNueva=$scope.algo.getUTCFullYear().toString()+"-"+($scope.algo.getUTCMonth()+1).toString()+"-"+$scope.algo.getUTCDate().toString()+" "+$scope.hora+""+$scope.minute+":00"
+        $scope.form.date=new Date(fechaNueva);//"2013-01-09 15:30:00")
+
+        //$scope.form.service=$scope.hora+$scope.minute;
         $http.post('/api/appointment',$scope.form).
             success(function(){
                 $location.path('/indexAppointment');
@@ -563,6 +594,7 @@ function ModifyAppointmentCtrl($scope,$http,$location,$routeParams,$filter){
         });
 
     $scope.form={};
+    $scope.form2={};
 
     $http.get('/api/appointment/'+$routeParams._id).
         success(function(data){
@@ -580,7 +612,8 @@ function ModifyAppointmentCtrl($scope,$http,$location,$routeParams,$filter){
         });
 
     $scope.modifyAppoint=function(data){
-        $http.put('/api/appointment/'+$routeParams._id,$scope.form).
+        //$scope.form2.date=$scope.form2.date.toISOString();
+        $http.put('/api/appointment/'+$routeParams._id,$scope.form2).
             success(function(){
                 $location.path('/indexAppointment');
             });

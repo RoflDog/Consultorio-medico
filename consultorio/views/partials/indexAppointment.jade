@@ -9,7 +9,7 @@
     legend
         h1 Citas
 .row-fluid
-    .span3.offset7
+    .span2.offset7
         a(class="btn-success btn-large",href="#/addAppointment")
             i(class="icon-plus icon-white")
             |&nbsp; Nueva Cita
@@ -43,6 +43,8 @@
 
 br
 input#datePicker(type="date",ng-model='query.date')
+
+p.help-block Número desde 0 a 23 (Horas)
 br
 .row-fluid
    table#tableAppoint(class="table table-hover",cellpaddin="0",cellspacing="0")
@@ -56,8 +58,6 @@ br
         th
             string Fecha
         th
-            string Hora
-        th
             string Nota
     tbody
         tr(ng-repeat='app in appointments|filter:query')
@@ -65,7 +65,6 @@ br
             td {{app.nameDoc}}
             td {{app.service}}
             td {{app.date}}
-            td Hora
             td {{app.notes}}
             //td(data-ng-show="isDoctor")
                 a(class="btn btn-success",href="#/recipe")
