@@ -28,8 +28,8 @@ form.form-horizontal(name="form")
             .controls
                 button(ng-click='obtainFree(form.DoctorId,form.date)') Ver horas
             .controls
-                select(name="appointHour",ng-model='form.horaM',required)
-                    option(ng-repeat='ho in horas', value='{{ho}}') {{ho}}
+                select(name="appointHour",ng-model='form.horaM',ng-options="h | date:'HH:mm' for h in horas",required)
+                    option(value='') Elige un Horario
         .control-group
             label.control-label(for="inputService") Servicio
             .controls

@@ -64,7 +64,7 @@ br
             td {{app.namePat}}
             td {{app.nameDoc}}
             td {{app.service}}
-            td {{app.date}}
+            td {{app.date | date:"yyyy-MM-dd HH:mm" }}
             td {{app.notes}}
             //td(data-ng-show="isDoctor")
                 a(class="btn btn-success",href="#/recipe")

@@ -414,7 +414,10 @@ function IndexAppointmentCtrl($scope,$http,$filter){
         success(function(data){
             //var filtroFecha=$filter('filter');
             //var dateNow=new Date().toISOString();
-            $scope.appointments=data.appointments;
+            $scope.appointments = $.map(data.appointments , function (item){
+            	item.date = new Date(item.date);
+            	return item;
+            });
             //$scope.appointments=filtroFecha($scope.appointments,dateNow);
             $http.get('/api/users').
                 success(function(data1){
@@ -531,41 +534,14 @@ function AddAppointmentCtrl($scope,$http,$location,$filter){
                 $scope.horas =  _.map(data , function(item){
                     return new Date(item);
                 });
-                /* $scope.horas= _.map($scope.fechasBien,function(item){
-                 var hora="";
-                 hora=item.getHours().toString()+":"+item.getMinutes().toString();
-                 return hora;
-                 });*/
-                /*$scope.minutos= _.map($scope.fechasBien,function(item){
-                 return item.getMinutes();
-                 });
-                 $*/
             })
     }
 
     ///api/appointment/searchFree/508de731934421e819000001/2013-01-06T06%3A00%3A00.000Z
 
     $scope.submitAppoint=function(){
-        $scope.hora="";
-        $scope.minute="";
-        alert("algo");
-        for(var i=0;i<$scope.form.horaM.length;i++){
-            if($scope.form.horaM[i]=='T'){
-                for(var j=0;j<2;j++){
-                    i++;
-                    $scope.hora=$scope.hora+$scope.form.horaM[i];
-                }
-                for(var j=0;j<2;j++){
-                    i++;
-                    $scope.minute=$scope.minute+$scope.form.horaM[i];
-                }
-                break;
-            }
-        }
-        $scope.minute=$scope.minute+"0";
-        $scope.algo=new Date($scope.form.date);
-        var fechaNueva=$scope.algo.getUTCFullYear().toString()+"-"+($scope.algo.getUTCMonth()+1).toString()+"-"+$scope.algo.getUTCDate().toString()+" "+$scope.hora+""+$scope.minute+":00"
-        $scope.form.date=new Date(fechaNueva);//"2013-01-09 15:30:00")
+    	console.log($scope.form);
+        $scope.form.date=new Date($scope.form.horaM);//"2013-01-09 15:30:00")
 
         //$scope.form.service=$scope.hora+$scope.minute;
         $http.post('/api/appointment',$scope.form).
