@@ -9,12 +9,29 @@ form.form-horizontal(name="form")
     fieldset
         legend Modificar cita
         .control-group
+            br
+            label.control-label(for="inputDoctor") Doctor
+            .controls
+                label(class="label label-info") {{form.nameDoc}}
+        .control-group
+            br
+            label.control-label(for="inputPatient") Paciente
+            .controls
+                label(class="label label-info") {{form.namePat}}
+        .control-group
+            br
+            label.control-label(for="inputDate") Fecha
+            .controls
+                label(class="label label-info") {{form.date| date:"yyyy-MM-dd HH:mm"}}
+        .control-group
+            br
             label.control-label(for="inputService") Servicio
             .controls
                 label {{form.service}}
             .controls
                 input#service.xlarge(type="text",size="30",name="appointService",ng-model='form2.service')
         .control-group
+            br
             label.control-label(for="inputNote") Nota
             .controls
                 label {{form.notes}}

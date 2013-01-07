@@ -576,6 +576,13 @@ function ModifyAppointmentCtrl($scope,$http,$location,$routeParams,$filter){
     $http.get('/api/appointment/'+$routeParams._id).
         success(function(data){
             $scope.form=data.appointment;
+            $scope.form.date=new Date($scope.form.date);
+            $scope.form.date.setUTCDate($scope.form.date.getUTCDate()+1);
+            /*$scope.form = $.map(data.appointment , function (item){
+                item.date = new Date(item.date);
+                item.date.setUTCDate(item.date.getUTCDate()+1);
+                return item;
+            });*/
             $http.get('/api/user/'+$scope.form.DoctorId).
                 success(function(data){
                     $scope.user=data.user;
@@ -584,6 +591,8 @@ function ModifyAppointmentCtrl($scope,$http,$location,$routeParams,$filter){
                             $scope.patient=data.patient;
                             $scope.form.nameDoc=$scope.user.firstname+" "+$scope.user.lastname;
                             $scope.form.namePat=$scope.patient.firstname+" "+$scope.patient.lastname;
+                            //$scope.form.date.setUTCDate($scope.form.date.getUTCDate()+1);
+
                         })
                 })
         });
