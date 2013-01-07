@@ -407,7 +407,7 @@ function IndexAppointmentCtrl($scope,$http,$filter){
      }
      });*/
 
-    $scope.appointments="";
+    //$scope.appointments="";
     $scope.doctors={};
 
     $http.get('/api/appointments').
@@ -416,6 +416,7 @@ function IndexAppointmentCtrl($scope,$http,$filter){
             //var dateNow=new Date().toISOString();
             $scope.appointments = $.map(data.appointments , function (item){
             	item.date = new Date(item.date);
+                item.date.setUTCDate(item.date.getUTCDate()+1);
             	return item;
             });
             //$scope.appointments=filtroFecha($scope.appointments,dateNow);
@@ -542,7 +543,7 @@ function AddAppointmentCtrl($scope,$http,$location,$filter){
     $scope.submitAppoint=function(){
     	console.log($scope.form);
         $scope.form.date=new Date($scope.form.horaM);//"2013-01-09 15:30:00")
-
+        //$scope.form.date.setUTCDate($scope.form.date.getUTCDate()+1);
         //$scope.form.service=$scope.hora+$scope.minute;
         $http.post('/api/appointment',$scope.form).
             success(function(){

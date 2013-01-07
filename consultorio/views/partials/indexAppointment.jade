@@ -5,7 +5,7 @@
    Time: 01:50 PM
    To change this template use File | Settings | File Templates.
 
-.row-fluid
+.row
     legend
         h1 Citas
 .row-fluid
@@ -43,35 +43,33 @@
 
 br
 input#datePicker(type="date",ng-model='query.date')
-
-p.help-block Número desde 0 a 23 (Horas)
 br
 .row-fluid
    table#tableAppoint(class="table table-hover",cellpaddin="0",cellspacing="0")
-    thead
-        th
-            strong Paciente
-        th
-            strong Doctor
-        th
-            string Servicio
-        th
-            string Fecha
-        th
-            string Nota
-    tbody
-        tr(ng-repeat='app in appointments|filter:query')
-            td {{app.namePat}}
-            td {{app.nameDoc}}
-            td {{app.service}}
-            td {{app.date | date:"yyyy-MM-dd HH:mm" }}
-            td {{app.notes}}
-            //td(data-ng-show="isDoctor")
-                a(class="btn btn-success",href="#/recipe")
-                    i()
-            td
-                a(class="btn btn-warning", href="#/modifyAppointment/{{app._id}}")
-                    i(class="icon-pencil icon-white")
-            td
-                a(class="btn btn-danger",bs-popover="/partials/deleteAppointment",data-placement="left")
-                    i(class="icon-remove-circle icon-white")
+        thead
+            th
+                strong Paciente
+            th
+                strong Doctor
+            th
+                string Servicio
+            th
+                string Fecha
+            th
+                string Nota
+        tbody
+            tr(ng-repeat='app in appointments|filter:query')
+                td {{app.namePat}}
+                td {{app.nameDoc}}
+                td {{app.service}}
+                td {{app.date | date:"yyyy-MM-dd HH:mm" }}
+                td {{app.notes}}
+                //td(data-ng-show="isDoctor")
+                    a(class="btn btn-success",href="#/recipe")
+                        i()
+                td
+                    a(class="btn btn-warning", href="#/modifyAppointment/{{app._id}}")
+                        i(class="icon-pencil icon-white")
+                td
+                    a(class="btn btn-danger",bs-popover="/partials/deleteAppointment",data-placement="left")
+                        i(class="icon-remove-circle icon-white")
