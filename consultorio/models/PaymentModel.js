@@ -11,7 +11,7 @@ var mongoose = require('mongoose')
 var paymentSchema = new Schema({
 	_id : ObjectId,
 	detail: String,
-	date: Date,
+	date: { type :Date , default : Date.now},
 	amount: Number,
 	patientId: ObjectId,
 	userId : ObjectId
