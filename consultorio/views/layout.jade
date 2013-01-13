@@ -1,6 +1,6 @@
 doctype 5
 html(ng-app="Consultorio")
-  head
+    head
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     //link(rel="icon", type="image/gif", href="/stylesheets/krankenwagen.gif")
     link(rel="shortcut icon", href="/stylesheets/favicon.ico")
@@ -70,9 +70,5 @@ html(ng-app="Consultorio")
 
 
     footer
-        .row-fluid
-            .span12
-                p
-                block foot
-                    .well
-                        p &copy; 2012 RoflDog Studios
+        .well(style='width:100%')
+            |&copy; 2012 RoflDog Studios

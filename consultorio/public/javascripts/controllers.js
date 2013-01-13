@@ -39,7 +39,7 @@ function IndexPaymentCrtl($scope,$http){
             $scope.showFlag=false;
             for(var i=0;i<$scope.patients.length;i++){
                 $scope.patients[i].show=true;
-                if($scope.patients[i].balance<0){
+                if($scope.patients[i].balance<=0){
                     $scope.patients[i].style ="success";
                     $scope.patients[i].balance *= -1;
                 }else{
