@@ -1,4 +1,6 @@
 function IndexCtrl($scope,$http){
+    var user;
+    var today = new Date('2013-01-13').toISOString();
     $http.get('/api/users').
         success(function(data,status,headers,config){
             $scope.users=data.users;
@@ -11,8 +13,14 @@ function IndexCtrl($scope,$http){
 
     $http.get('/api/session').
         success(function(data,status,headers,config){
+            user=data;
             $scope.login=data.username;
+            $http.get('/api/appointment/searchBusy/' + user._id  + '/' + escape(today)).
+                success(function(data,status,headers,config){
+                    $scope.login=data.username;
+                });
         });
+
 }
 
 function IndexPaymentCrtl($scope,$http){

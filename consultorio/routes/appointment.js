@@ -21,7 +21,7 @@ exports.searchBusy = function(req,res){
 	var date = new Date(req.params.date);
 	Appointment.getByDate(doctorId, date, function(busy){
 		res.json(busy);
-	})
+	});
 }
 
 

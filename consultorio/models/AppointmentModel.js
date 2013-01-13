@@ -80,6 +80,7 @@ module.exports = {
 	},
 	getByDate : function(dId, ad, done){
 		var query = this.model.find({});
+		query.where("DoctorId").equals(dId);
 		query.$where("this.date.getFullYear() == " + ad.getFullYear());
 		query.$where("this.date.getMonth() == " + ad.getMonth());
 		query.$where("this.date.getDate() == " + ad.getDate());
